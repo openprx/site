@@ -1,0 +1,150 @@
+{
+  "languageName": "Русский",
+  "meta": {
+    "siteName": "OpenPRX",
+    "homeTitle": "OpenPRX | AI-native инфраструктура разработки",
+    "homeDescription": "Открытая AI-native инфраструктура на Rust: OpenPR, PRX, prx-memory и wacli.",
+    "openprTitle": "OpenPR | OpenPRX",
+    "openprDescription": "Open-source управление проектами со встроенным governance.",
+    "prxTitle": "PRX | OpenPRX",
+    "prxDescription": "Самоэволюционирующий фреймворк AI-ассистентов на Rust.",
+    "memoryTitle": "prx-memory | OpenPRX",
+    "memoryDescription": "Local-first MCP memory для coding-агентов."
+  },
+  "nav": {
+    "home": "Главная",
+    "openpr": "OpenPR",
+    "prx": "PRX",
+    "memory": "prx-memory"
+  },
+  "header": {
+    "github": "GitHub",
+    "getStarted": "Начать",
+    "theme": "Тема"
+  },
+  "hero": {
+    "eyebrow": "Open Source Infrastructure",
+    "title": "AI-native инфраструктура разработки",
+    "subtitle": "Open source. Built with Rust.",
+    "description": "OpenPRX создает управляемые инструменты для команд и coding-агентов: project management, AI orchestration и долговременная память.",
+    "githubCta": "Открыть организацию GitHub",
+    "primaryCta": "Изучить продукты"
+  },
+  "products": {
+    "title": "Продукты",
+    "description": "Сфокусированный набор инструментов для практической AI-native разработки.",
+    "items": [
+      {
+        "id": "openpr",
+        "name": "OpenPR",
+        "tagline": "Open-source project management со встроенным governance",
+        "description": "Командная работа с issues, Kanban, sprint-планированием и governance-процессами.",
+        "repo": "https://github.com/openprx/openpr"
+      },
+      {
+        "id": "prx",
+        "name": "PRX",
+        "tagline": "Self-evolving AI assistant framework",
+        "description": "Rust-рантайм ассистента с поддержкой нескольких AI-провайдеров и governed sub-agents.",
+        "repo": "https://github.com/openprx/prx"
+      },
+      {
+        "id": "prx-memory",
+        "name": "prx-memory",
+        "tagline": "Local-first MCP memory для coding-агентов",
+        "description": "Надежная memory toolchain для store, recall, update и forget.",
+        "repo": "https://github.com/openprx/prx-memory"
+      }
+    ]
+  },
+  "features": {
+    "title": "Ключевые возможности",
+    "items": [
+      {
+        "title": "Производительность Rust",
+        "description": "Низкая задержка и надежность сервисов и CLI под production-нагрузкой."
+      },
+      {
+        "title": "Протокол MCP",
+        "description": "Нативный MCP server и инструменты для интеграции с coding-агентами."
+      },
+      {
+        "title": "Self-evolution",
+        "description": "Примитивы фреймворка для автономной оптимизации и циклов обучения."
+      },
+      {
+        "title": "Governance",
+        "description": "Политики, trust scoring и review gates встроены в рабочие процессы."
+      }
+    ]
+  },
+  "footer": {
+    "org": "OpenPRX на GitHub",
+    "license": "Лицензия Apache-2.0",
+    "language": "Язык"
+  },
+  "common": {
+    "backHome": "Назад на главную",
+    "keyFeatures": "Ключевые функции",
+    "quickStart": "Быстрый старт",
+    "repository": "Репозиторий",
+    "star": "Поставить звезду",
+    "techStack": "Технологии"
+  },
+  "pages": {
+    "openpr": {
+      "name": "OpenPR",
+      "tagline": "Open-source project management со встроенным governance",
+      "description": "Полноценная платформа совместной работы для современных инженерных команд.",
+      "tech": "Rust (Axum + SeaORM), SvelteKit, PostgreSQL",
+      "features": [
+        "Issues, Kanban-доски и планирование спринтов",
+        "Governance center: proposals, voting и trust scores",
+        "AI-интеграция: bot tokens и оркестрация AI-задач",
+        "MCP server: 34 инструмента в 3 протоколах"
+      ],
+      "repo": "https://github.com/openprx/openpr",
+      "quickStart": [
+        "git clone https://github.com/openprx/openpr.git",
+        "cd openpr",
+        "docker compose up -d"
+      ]
+    },
+    "prx": {
+      "name": "PRX",
+      "tagline": "Self-evolving AI assistant framework",
+      "description": "Расширяемый Rust-фреймворк для production-класса AI-ассистентов.",
+      "tech": "Rust",
+      "features": [
+        "14 AI-провайдеров и 19 каналов сообщений",
+        "Self-evolution система (~9500 строк)",
+        "OAuth auto-refresh для стабильной долгой автоматизации",
+        "Governed sub-agents с политиками"
+      ],
+      "repo": "https://github.com/openprx/prx",
+      "quickStart": [
+        "git clone https://github.com/openprx/prx.git",
+        "cd prx",
+        "cargo run --release"
+      ]
+    },
+    "prx-memory": {
+      "name": "prx-memory",
+      "tagline": "Local-first MCP memory для coding-агентов",
+      "description": "Memory runtime для долговременного, управляемого и доступного контекста агента.",
+      "tech": "Rust",
+      "features": [
+        "Режимы транспорта stdio и HTTP",
+        "Полная memory toolchain: store, recall, update, forget",
+        "Governance controls и модель данных для эволюции",
+        "Работает с Codex, Claude Code и OpenClaw"
+      ],
+      "repo": "https://github.com/openprx/prx-memory",
+      "quickStart": [
+        "git clone https://github.com/openprx/prx-memory.git",
+        "cd prx-memory",
+        "cargo run --features http"
+      ]
+    }
+  }
+}

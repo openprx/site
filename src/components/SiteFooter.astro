@@ -1,0 +1,30 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { type Dictionary, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+  path: string;
+}
+
+const { locale, dict, path } = Astro.props;
+---
+
+<footer class="mt-20 border-t border-[var(--border)] py-10">
+  <div class="container-shell flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+    <div>
+      <a
+        href="https://github.com/openprx"
+        target="_blank"
+        rel="noreferrer"
+        class="text-base font-semibold hover:text-[var(--brand-strong)]"
+      >
+        {dict.footer.org}
+      </a>
+      <p class="text-sm text-[var(--text-dim)]">{dict.footer.license}</p>
+    </div>
+
+    <LanguageSwitcher locale={locale} path={path} label={dict.footer.language} />
+  </div>
+</footer>

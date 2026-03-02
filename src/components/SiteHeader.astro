@@ -1,0 +1,81 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { localePath, type Dictionary, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+  path: string;
+}
+
+const { locale, dict, path } = Astro.props;
+
+const nav = [
+  { href: '/', label: dict.nav.home },
+  { href: '/openpr', label: dict.nav.openpr },
+  { href: '/prx', label: dict.nav.prx },
+  { href: '/prx-memory', label: dict.nav.memory }
+];
+
+const homeHref = localePath(locale, '/');
+const ctaHref = path === '/' ? '#products' : `${homeHref}#products`;
+---
+
+<header class="sticky top-0 z-30 border-b border-[var(--border)] backdrop-blur-xl bg-[color-mix(in_oklab,var(--bg)_86%,transparent)]">
+  <div class="container-shell flex items-center gap-4 py-3">
+    <a href={homeHref} class="shrink-0" aria-label="OpenPRX home">
+      <img src="/brand-assets/logo-full.svg" alt="OpenPRX" class="h-8 w-auto logo-dark" />
+      <img src="/brand-assets/logo-full-light.svg" alt="OpenPRX" class="h-8 w-auto logo-light" />
+    </a>
+
+    <nav class="hidden md:flex flex-wrap gap-2 text-sm">
+      {nav.map((item) => (
+        <a
+          href={localePath(locale, item.href)}
+          class="rounded-md px-3 py-1.5 text-[var(--text-dim)] hover:bg-[var(--bg-soft)] hover:text-[var(--text)]"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="ml-auto flex flex-wrap items-center justify-end gap-2">
+      <button
+        type="button"
+        data-theme-toggle
+        class="soft-border rounded-md bg-[var(--bg-soft)] px-3 py-1.5 text-xs text-[var(--text-dim)] hover:text-[var(--text)]"
+        aria-label={dict.header.theme}
+      >
+        <span class="mono-pill" data-theme-label>Dark</span>
+      </button>
+
+      <a
+        href="https://github.com/openprx"
+        target="_blank"
+        rel="noreferrer"
+        class="rounded-md px-3 py-1.5 text-sm text-[var(--text-dim)] hover:text-[var(--text)]"
+      >
+        {dict.header.github}
+      </a>
+
+      <a href={ctaHref} class="glow rounded-md px-3 py-1.5 text-sm font-semibold text-white bg-[var(--brand)]">
+        {dict.header.getStarted}
+      </a>
+    </div>
+  </div>
+
+</header>
+
+<style>
+  .logo-light {
+    display: none;
+  }
+
+  html[data-theme='light'] .logo-light {
+    display: block;
+  }
+
+  html[data-theme='light'] .logo-dark {
+    display: none;
+  }
+</style>

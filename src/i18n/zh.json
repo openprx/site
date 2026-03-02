@@ -1,0 +1,150 @@
+{
+  "languageName": "中文",
+  "meta": {
+    "siteName": "OpenPRX",
+    "homeTitle": "OpenPRX | AI 原生开发基础设施",
+    "homeDescription": "由 Rust 构建的开源 AI 原生开发基础设施：OpenPR、PRX、prx-memory 与 wacli。",
+    "openprTitle": "OpenPR | OpenPRX",
+    "openprDescription": "内置治理能力的开源项目管理平台。",
+    "prxTitle": "PRX | OpenPRX",
+    "prxDescription": "可自进化的 Rust AI 助手框架。",
+    "memoryTitle": "prx-memory | OpenPRX",
+    "memoryDescription": "面向编码代理的本地优先 MCP 记忆组件。"
+  },
+  "nav": {
+    "home": "首页",
+    "openpr": "OpenPR",
+    "prx": "PRX",
+    "memory": "prx-memory"
+  },
+  "header": {
+    "github": "GitHub",
+    "getStarted": "开始使用",
+    "theme": "主题"
+  },
+  "hero": {
+    "eyebrow": "开源基础设施",
+    "title": "AI 原生开发基础设施",
+    "subtitle": "开源。Rust 构建。",
+    "description": "OpenPRX 为团队与编码代理提供具备治理能力的工具，覆盖项目管理、AI 编排与长期记忆。",
+    "githubCta": "查看 GitHub 组织",
+    "primaryCta": "浏览产品"
+  },
+  "products": {
+    "title": "产品",
+    "description": "面向 AI 原生研发落地的核心工具集。",
+    "items": [
+      {
+        "id": "openpr",
+        "name": "OpenPR",
+        "tagline": "内置治理能力的开源项目管理",
+        "description": "提供议题、看板、迭代与治理流程的一体化协作平台。",
+        "repo": "https://github.com/openprx/openpr"
+      },
+      {
+        "id": "prx",
+        "name": "PRX",
+        "tagline": "可自进化的 AI 助手框架",
+        "description": "基于 Rust 的助手运行时，支持多模型提供方与受治理子代理。",
+        "repo": "https://github.com/openprx/prx"
+      },
+      {
+        "id": "prx-memory",
+        "name": "prx-memory",
+        "tagline": "面向编码代理的本地优先 MCP 记忆",
+        "description": "可持久化的记忆工具链，支持存储、检索、更新与遗忘。",
+        "repo": "https://github.com/openprx/prx-memory"
+      }
+    ]
+  },
+  "features": {
+    "title": "核心能力",
+    "items": [
+      {
+        "title": "Rust 性能",
+        "description": "低延迟服务与 CLI，面向生产环境稳定运行。"
+      },
+      {
+        "title": "MCP 协议",
+        "description": "原生 MCP 服务与工具，深度集成编码代理生态。"
+      },
+      {
+        "title": "自进化",
+        "description": "框架级自主优化能力，支持持续学习闭环。"
+      },
+      {
+        "title": "治理",
+        "description": "策略、信任评分与评审门禁内建于工作流。"
+      }
+    ]
+  },
+  "footer": {
+    "org": "GitHub 上的 OpenPRX",
+    "license": "Apache-2.0 许可证",
+    "language": "语言"
+  },
+  "common": {
+    "backHome": "返回首页",
+    "keyFeatures": "关键特性",
+    "quickStart": "快速开始",
+    "repository": "仓库",
+    "star": "GitHub Star",
+    "techStack": "技术栈"
+  },
+  "pages": {
+    "openpr": {
+      "name": "OpenPR",
+      "tagline": "内置治理能力的开源项目管理",
+      "description": "为现代工程团队打造的完整项目协作平台。",
+      "tech": "Rust (Axum + SeaORM), SvelteKit, PostgreSQL",
+      "features": [
+        "议题管理、看板与迭代规划",
+        "治理中心：提案、投票与信任评分",
+        "AI 集成：机器人令牌与 AI 任务编排",
+        "MCP 服务：34 个工具，支持 3 种协议"
+      ],
+      "repo": "https://github.com/openprx/openpr",
+      "quickStart": [
+        "git clone https://github.com/openprx/openpr.git",
+        "cd openpr",
+        "docker compose up -d"
+      ]
+    },
+    "prx": {
+      "name": "PRX",
+      "tagline": "可自进化的 AI 助手框架",
+      "description": "面向生产环境的可扩展 Rust AI 助手框架。",
+      "tech": "Rust",
+      "features": [
+        "支持 14 家 AI 提供方与 19 种消息渠道",
+        "自进化系统（约 9500 行）",
+        "OAuth 自动刷新，适合长时任务",
+        "带策略控制的受治理子代理"
+      ],
+      "repo": "https://github.com/openprx/prx",
+      "quickStart": [
+        "git clone https://github.com/openprx/prx.git",
+        "cd prx",
+        "cargo run --release"
+      ]
+    },
+    "prx-memory": {
+      "name": "prx-memory",
+      "tagline": "面向编码代理的本地优先 MCP 记忆",
+      "description": "让代理上下文可持久、可查询、可治理的记忆运行时。",
+      "tech": "Rust",
+      "features": [
+        "支持 stdio 与 HTTP 传输",
+        "完整记忆工具链：store、recall、update、forget",
+        "治理控制与可进化数据模型",
+        "兼容 Codex、Claude Code、OpenClaw"
+      ],
+      "repo": "https://github.com/openprx/prx-memory",
+      "quickStart": [
+        "git clone https://github.com/openprx/prx-memory.git",
+        "cd prx-memory",
+        "cargo run --features http"
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+---
+import { localeNames, localePath, locales, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  path: string;
+  label: string;
+}
+
+const { locale, path, label } = Astro.props;
+---
+
+<div class="flex flex-wrap items-center gap-2 text-xs text-[var(--text-dim)]">
+  <span class="mono-pill">{label}</span>
+  <div class="flex flex-wrap gap-1">
+    {locales.map((code) => {
+      const active = code === locale;
+      return (
+        <a
+          href={localePath(code, path)}
+          hreflang={code}
+          class:list={[
+            'rounded-md px-2 py-1 mono-pill transition-colors duration-200',
+            active
+              ? 'bg-[var(--brand)] text-white'
+              : 'bg-[var(--bg-soft)] text-[var(--text-dim)] hover:text-[var(--text)]'
+          ]}
+          aria-current={active ? 'true' : undefined}
+        >
+          {localeNames[code]}
+        </a>
+      );
+    })}
+  </div>
+</div>

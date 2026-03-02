@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <g transform="translate(4,4)">
+    <polygon points="36,2 66,18 66,54 36,70 6,54 6,18" fill="none" stroke="#4338ca" stroke-width="2.5"/>
+    <circle cx="36" cy="0" r="2" fill="#4338ca"/>
+    <circle cx="36" cy="72" r="2" fill="#4338ca"/>
+    <circle cx="2" cy="18" r="2" fill="#4338ca"/>
+    <circle cx="70" cy="18" r="2" fill="#4338ca"/>
+    <circle cx="2" cy="54" r="2" fill="#4338ca"/>
+    <circle cx="70" cy="54" r="2" fill="#4338ca"/>
+    <text x="36" y="43" text-anchor="middle" fill="#4338ca" font-family="'JetBrains Mono','SF Mono','Fira Code',monospace" font-weight="700" font-size="20" letter-spacing="1">PRX</text>
+  </g>
+  <text x="92" y="52" fill="#18181b" font-family="'Inter',-apple-system,sans-serif" font-weight="800" font-size="38" letter-spacing="-0.5">OpenPRX</text>
+</svg>

@@ -1,0 +1,150 @@
+{
+  "languageName": "ქართული",
+  "meta": {
+    "siteName": "OpenPRX",
+    "homeTitle": "OpenPRX | AI-native განვითარების ინფრასტრუქტურა",
+    "homeDescription": "Rust-ზე აგებული ღია AI-native ინფრასტრუქტურა: OpenPR, PRX, prx-memory და wacli.",
+    "openprTitle": "OpenPR | OpenPRX",
+    "openprDescription": "ღია პროექტების მართვა ჩაშენებული governance-ით.",
+    "prxTitle": "PRX | OpenPRX",
+    "prxDescription": "თვითევოლუციური AI ასისტენტის framework Rust-ზე.",
+    "memoryTitle": "prx-memory | OpenPRX",
+    "memoryDescription": "Local-first MCP memory coding აგენტებისთვის."
+  },
+  "nav": {
+    "home": "მთავარი",
+    "openpr": "OpenPR",
+    "prx": "PRX",
+    "memory": "prx-memory"
+  },
+  "header": {
+    "github": "GitHub",
+    "getStarted": "დაწყება",
+    "theme": "თემა"
+  },
+  "hero": {
+    "eyebrow": "Open Source Infrastructure",
+    "title": "AI-native განვითარების ინფრასტრუქტურა",
+    "subtitle": "Open source. Built with Rust.",
+    "description": "OpenPRX ქმნის governance-ზე ორიენტირებულ ინსტრუმენტებს გუნდებისა და coding აგენტებისთვის: project management, AI orchestration და გრძელვადიანი memory.",
+    "githubCta": "GitHub ორგანიზაციის ნახვა",
+    "primaryCta": "პროდუქტების ნახვა"
+  },
+  "products": {
+    "title": "პროდუქტები",
+    "description": "კონცენტრირებული ხელსაწყოების ნაკრები პრაქტიკული AI-native განვითარებისთვის.",
+    "items": [
+      {
+        "id": "openpr",
+        "name": "OpenPR",
+        "tagline": "ღია project management ჩაშენებული governance-ით",
+        "description": "გუნდური სამუშაოს მართვა issues, Kanban, sprint planning და governance workflow-ებით.",
+        "repo": "https://github.com/openprx/openpr"
+      },
+      {
+        "id": "prx",
+        "name": "PRX",
+        "tagline": "Self-evolving AI assistant framework",
+        "description": "Rust-ზე დაფუძნებული assistant runtime მრავალ AI provider-თან და governed sub-agent-ებთან.",
+        "repo": "https://github.com/openprx/prx"
+      },
+      {
+        "id": "prx-memory",
+        "name": "prx-memory",
+        "tagline": "Local-first MCP memory coding აგენტებისთვის",
+        "description": "მდგრადი memory toolchain store, recall, update და forget ოპერაციებისთვის.",
+        "repo": "https://github.com/openprx/prx-memory"
+      }
+    ]
+  },
+  "features": {
+    "title": "ძირითადი შესაძლებლობები",
+    "items": [
+      {
+        "title": "Rust წარმადობა",
+        "description": "დაბალი დაყოვნება და სტაბილური სერვისები/CLI production დატვირთვებისთვის."
+      },
+      {
+        "title": "MCP პროტოკოლი",
+        "description": "Native MCP server და ინსტრუმენტები coding აგენტებთან ღრმა ინტეგრაციისთვის."
+      },
+      {
+        "title": "Self-evolution",
+        "description": "framework დონის პრიმიტივები ავტონომიური ოპტიმიზაციისა და სწავლის ციკლებისთვის."
+      },
+      {
+        "title": "Governance",
+        "description": "პოლიტიკები, trust scoring და review gates ჩაშენებულია workflow-ში."
+      }
+    ]
+  },
+  "footer": {
+    "org": "OpenPRX GitHub-ზე",
+    "license": "ლიცენზია Apache-2.0",
+    "language": "ენა"
+  },
+  "common": {
+    "backHome": "მთავარზე დაბრუნება",
+    "keyFeatures": "ძირითადი ფუნქციები",
+    "quickStart": "სწრაფი დაწყება",
+    "repository": "რეპოზიტორია",
+    "star": "GitHub ვარსკვლავი",
+    "techStack": "ტექნოლოგიები"
+  },
+  "pages": {
+    "openpr": {
+      "name": "OpenPR",
+      "tagline": "ღია project management ჩაშენებული governance-ით",
+      "description": "თანამედროვე საინჟინრო გუნდებისთვის სრული კოლაბორაციის პლატფორმა.",
+      "tech": "Rust (Axum + SeaORM), SvelteKit, PostgreSQL",
+      "features": [
+        "Issues, Kanban დაფები და sprint planning",
+        "Governance center: proposals, voting და trust scores",
+        "AI ინტეგრაცია bot tokens-ით და AI task orchestration-ით",
+        "MCP server 34 tool-ით და 3 protocol-ით"
+      ],
+      "repo": "https://github.com/openprx/openpr",
+      "quickStart": [
+        "git clone https://github.com/openprx/openpr.git",
+        "cd openpr",
+        "docker compose up -d"
+      ]
+    },
+    "prx": {
+      "name": "PRX",
+      "tagline": "Self-evolving AI assistant framework",
+      "description": "გაფართოებადი Rust framework production კლასის AI ასისტენტებისთვის.",
+      "tech": "Rust",
+      "features": [
+        "14 AI provider და 19 messaging channel",
+        "Self-evolution სისტემა (~9500 ხაზი)",
+        "OAuth auto-refresh სტაბილური გრძელვადიანი ავტომატიზაციისთვის",
+        "Governed sub-agents პოლიტიკის კონტროლით"
+      ],
+      "repo": "https://github.com/openprx/prx",
+      "quickStart": [
+        "git clone https://github.com/openprx/prx.git",
+        "cd prx",
+        "cargo run --release"
+      ]
+    },
+    "prx-memory": {
+      "name": "prx-memory",
+      "tagline": "Local-first MCP memory coding აგენტებისთვის",
+      "description": "memory runtime აგენტის კონტექსტის მდგრადი, საძიებო და governance-ით მართვადი ფორმით შესანარჩუნებლად.",
+      "tech": "Rust",
+      "features": [
+        "stdio და HTTP transport რეჟიმები",
+        "სრული memory toolchain: store, recall, update, forget",
+        "Governance controls და evolution-ready მონაცემთა მოდელი",
+        "მუშაობს Codex-თან, Claude Code-თან და OpenClaw-თან"
+      ],
+      "repo": "https://github.com/openprx/prx-memory",
+      "quickStart": [
+        "git clone https://github.com/openprx/prx-memory.git",
+        "cd prx-memory",
+        "cargo run --features http"
+      ]
+    }
+  }
+}

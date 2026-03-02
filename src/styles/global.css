@@ -1,0 +1,115 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource/jetbrains-mono/700.css';
+@import 'tailwindcss';
+
+:root {
+  color-scheme: dark;
+  --bg: #07080c;
+  --bg-elev: #0f1220;
+  --bg-soft: #12162a;
+  --text: #f2f5ff;
+  --text-dim: #a0abc8;
+  --border: #2a3353;
+  --brand: #6366f1;
+  --brand-strong: #818cf8;
+  --code-bg: #0b0f1f;
+  --shadow: 0 16px 60px rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f5f6ff;
+  --bg-elev: #ffffff;
+  --bg-soft: #eef1ff;
+  --text: #101322;
+  --text-dim: #4f5c86;
+  --border: #ccd4f0;
+  --brand: #4338ca;
+  --brand-strong: #3730a3;
+  --code-bg: #e7ebff;
+  --shadow: 0 12px 44px rgba(67, 56, 202, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Inter Variable', Inter, sans-serif;
+  background:
+    radial-gradient(circle at 5% 10%, color-mix(in oklab, var(--brand) 20%, transparent), transparent 38%),
+    radial-gradient(circle at 90% 5%, color-mix(in oklab, var(--brand) 26%, transparent), transparent 34%),
+    linear-gradient(160deg, var(--bg), color-mix(in oklab, var(--bg) 88%, #000));
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+}
+
+.code-font {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.container-shell {
+  width: min(1100px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.panel {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--bg-elev) 92%, #fff 8%), var(--bg-elev));
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+.soft-border {
+  border: 1px solid color-mix(in oklab, var(--border) 84%, transparent);
+}
+
+.glow {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--brand) 48%, transparent),
+    0 16px 36px color-mix(in oklab, var(--brand) 28%, transparent);
+}
+
+.section-title {
+  font-size: clamp(1.55rem, 2.2vw, 2.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+}
+
+.mono-pill {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.02em;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  animation: fade-up both linear;
+  animation-timeline: view();
+  animation-range: entry 12% cover 32%;
+}
+
+@keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

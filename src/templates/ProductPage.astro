@@ -1,0 +1,88 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { getDictionary, localePath, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  product: 'openpr' | 'prx' | 'prx-memory';
+}
+
+const { locale, product } = Astro.props;
+const dict = getDictionary(locale);
+const page = dict.pages[product];
+
+const titleByProduct = {
+  openpr: dict.meta.openprTitle,
+  prx: dict.meta.prxTitle,
+  'prx-memory': dict.meta.memoryTitle
+};
+
+const descByProduct = {
+  openpr: dict.meta.openprDescription,
+  prx: dict.meta.prxDescription,
+  'prx-memory': dict.meta.memoryDescription
+};
+
+const path = `/${product}`;
+const repoPath = page.repo.replace('https://github.com/', '');
+const starsBadge = `https://img.shields.io/github/stars/${repoPath}?style=for-the-badge&logo=github&label=${encodeURIComponent(dict.common.star)}&color=6366f1`;
+---
+
+<MainLayout title={titleByProduct[product]} description={descByProduct[product]} locale={locale} path={path}>
+  <SiteHeader locale={locale} dict={dict} path={path} />
+
+  <main class="container-shell pt-16 pb-12">
+    <section class="panel px-6 py-10 md:px-10 md:py-12 reveal">
+      <p class="mono-pill text-xs uppercase tracking-[0.18em] text-[var(--brand-strong)]">{dict.meta.siteName}</p>
+      <h1 class="section-title mt-4">{page.name}</h1>
+      <p class="mt-3 text-lg text-[var(--brand-strong)]">{page.tagline}</p>
+      <p class="mt-4 max-w-3xl text-[var(--text-dim)]">{page.description}</p>
+
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a
+          href={page.repo}
+          target="_blank"
+          rel="noreferrer"
+          class="rounded-md border border-[var(--border)] bg-[var(--bg-soft)] px-4 py-2 text-sm text-[var(--text-dim)] hover:text-[var(--text)]"
+        >
+          {dict.common.repository}
+        </a>
+        <a href={page.repo} target="_blank" rel="noreferrer" class="rounded-md">
+          <img src={starsBadge} alt={`${page.name} ${dict.common.star}`} loading="lazy" />
+        </a>
+      </div>
+    </section>
+
+    <section class="mt-8 grid gap-6 lg:grid-cols-[1.25fr_1fr]">
+      <article class="panel p-6 reveal">
+        <h2 class="section-title text-2xl">{dict.common.keyFeatures}</h2>
+        <ul class="mt-5 space-y-3 text-sm text-[var(--text-dim)]">
+          {page.features.map((feature) => (
+            <li class="flex gap-3">
+              <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-[var(--brand)]"></span>
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+      </article>
+
+      <article class="panel p-6 reveal">
+        <h2 class="section-title text-2xl">{dict.common.techStack}</h2>
+        <p class="mt-4 rounded-lg bg-[var(--bg-soft)] px-3 py-2 code-font text-sm text-[var(--text)]">{page.tech}</p>
+
+        <h2 class="section-title mt-8 text-2xl">{dict.common.quickStart}</h2>
+        <pre class="mt-4 overflow-x-auto rounded-lg bg-[var(--code-bg)] p-4 text-xs text-[#d2d9ff]"><code class="code-font">{page.quickStart.join('\n')}</code></pre>
+      </article>
+    </section>
+
+    <div class="mt-8 reveal">
+      <a href={localePath(locale, '/')} class="rounded-md border border-[var(--border)] px-4 py-2 text-sm text-[var(--text-dim)] hover:text-[var(--text)]">
+        {dict.common.backHome}
+      </a>
+    </div>
+  </main>
+
+  <SiteFooter locale={locale} dict={dict} path={path} />
+</MainLayout>
