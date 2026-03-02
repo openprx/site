@@ -25,20 +25,50 @@
   "hero": {
     "eyebrow": "开源基础设施",
     "title": "AI 原生开发基础设施",
-    "subtitle": "开源。Rust 构建。",
+    "subtitle": "开源构建，Rust 驱动。",
     "description": "OpenPRX 为团队与编码代理提供具备治理能力的工具，覆盖项目管理、AI 编排与长期记忆。",
     "githubCta": "查看 GitHub 组织",
-    "primaryCta": "浏览产品"
+    "primaryCta": "浏览产品",
+    "stats": [
+      {
+        "value": "34",
+        "label": "MCP 工具",
+        "icon": "tools"
+      },
+      {
+        "value": "14",
+        "label": "AI 提供方",
+        "icon": "server"
+      },
+      {
+        "value": "19",
+        "label": "通信渠道",
+        "icon": "radio"
+      },
+      {
+        "value": "3",
+        "label": "协议（HTTP、stdio、SSE）",
+        "icon": "globe"
+      }
+    ]
   },
   "products": {
     "title": "产品",
     "description": "面向 AI 原生研发落地的核心工具集。",
+    "techLabel": "技术栈",
     "items": [
       {
         "id": "openpr",
         "name": "OpenPR",
         "tagline": "内置治理能力的开源项目管理",
         "description": "提供议题、看板、迭代与治理流程的一体化协作平台。",
+        "highlights": [
+          "治理",
+          "看板",
+          "MCP 服务",
+          "SvelteKit"
+        ],
+        "tech": "Rust、SvelteKit、PostgreSQL",
         "repo": "https://github.com/openprx/openpr"
       },
       {
@@ -46,37 +76,67 @@
         "name": "PRX",
         "tagline": "可自进化的 AI 助手框架",
         "description": "基于 Rust 的助手运行时，支持多模型提供方与受治理子代理。",
+        "highlights": [
+          "14 个提供方",
+          "19 个渠道",
+          "自进化",
+          "OAuth"
+        ],
+        "tech": "Rust 核心、MCP 客户端、多提供方运行时",
         "repo": "https://github.com/openprx/prx"
       },
       {
         "id": "prx-memory",
         "name": "prx-memory",
         "tagline": "面向编码代理的本地优先 MCP 记忆",
-        "description": "可持久化的记忆工具链，支持存储、检索、更新与遗忘。",
+        "description": "可持久化的记忆工具链，支持存储、检索与治理代理知识。",
+        "highlights": [
+          "MCP 原生",
+          "本地优先",
+          "进化支持",
+          "Codex/Claude"
+        ],
+        "tech": "Rust、MCP stdio/HTTP、词法+向量检索",
         "repo": "https://github.com/openprx/prx-memory"
       }
     ]
   },
-  "features": {
-    "title": "核心能力",
+  "why": {
+    "title": "为什么选择 OpenPRX",
     "items": [
       {
-        "title": "Rust 性能",
-        "description": "低延迟服务与 CLI，面向生产环境稳定运行。"
+        "title": "治理内建",
+        "description": "每条工作流都包含信任评分、评审门禁与策略控制。不是后期外挂，而是架构默认。",
+        "icon": "scale"
       },
       {
-        "title": "MCP 协议",
-        "description": "原生 MCP 服务与工具，深度集成编码代理生态。"
+        "title": "Rust 原生性能",
+        "description": "亚毫秒级延迟，尽可能采用零拷贝，从第一天起面向生产可靠性。",
+        "icon": "cpu"
       },
       {
-        "title": "自进化",
-        "description": "框架级自主优化能力，支持持续学习闭环。"
-      },
-      {
-        "title": "治理",
-        "description": "策略、信任评分与评审门禁内建于工作流。"
+        "title": "AI 优先架构",
+        "description": "原生支持 MCP 协议，34 个工具、14 家提供方。智能体不是“用户”，而是系统的一等公民。",
+        "icon": "layers"
       }
     ]
+  },
+  "fit": {
+    "title": "它们如何协同工作",
+    "description": "OpenPRX 三个产品组成一条完整的运行闭环，服务团队与编码代理。",
+    "flowLabel": "Manage → Operate → Remember",
+    "manage": "管理",
+    "operate": "执行",
+    "remember": "记忆",
+    "mcp": "MCP"
+  },
+  "getInvolved": {
+    "title": "参与共建",
+    "description": "OpenPRX 采用开源模式，所有开发在公开环境中进行。",
+    "githubOrg": "GitHub 组织",
+    "starButton": "在 GitHub 上 Star",
+    "licenseBadge": "Apache-2.0 许可",
+    "rustBadge": "Built with Rust 🦀"
   },
   "footer": {
     "org": "GitHub 上的 OpenPRX",
@@ -89,7 +149,12 @@
     "quickStart": "快速开始",
     "repository": "仓库",
     "star": "GitHub Star",
-    "techStack": "技术栈"
+    "techStack": "技术栈",
+    "architecture": "架构",
+    "alsoFrom": "OpenPRX 其他产品",
+    "languageBadge": "语言",
+    "licenseBadge": "许可证",
+    "learnMore": "了解更多"
   },
   "pages": {
     "openpr": {
@@ -97,12 +162,48 @@
       "tagline": "内置治理能力的开源项目管理",
       "description": "为现代工程团队打造的完整项目协作平台。",
       "tech": "Rust (Axum + SeaORM), SvelteKit, PostgreSQL",
+      "language": "Rust",
+      "license": "Apache-2.0",
       "features": [
-        "议题管理、看板与迭代规划",
-        "治理中心：提案、投票与信任评分",
-        "AI 集成：机器人令牌与 AI 任务编排",
-        "MCP 服务：34 个工具，支持 3 种协议"
+        {
+          "icon": "board",
+          "title": "议题与看板",
+          "description": "完整的议题追踪体系，支持看板管理与迭代规划。"
+        },
+        {
+          "icon": "governance",
+          "title": "治理中心",
+          "description": "覆盖提案、投票、信任评分、决策记录、否决与升级流程。"
+        },
+        {
+          "icon": "bot",
+          "title": "AI 集成",
+          "description": "支持机器人令牌、AI 代理、AI 任务、AI 评审与 Webhook 回调。"
+        },
+        {
+          "icon": "plug",
+          "title": "MCP 服务",
+          "description": "提供 34 个工具，支持 HTTP、stdio 与 SSE 三种协议。"
+        },
+        {
+          "icon": "attachment",
+          "title": "文件附件",
+          "description": "可将文件上传并附加到议题与评论中。"
+        },
+        {
+          "icon": "key",
+          "title": "Bot Token 鉴权",
+          "description": "为自动化代理与集成提供安全的 API 访问能力。"
+        }
       ],
+      "architecture": {
+        "browser": "浏览器",
+        "frontend": "SvelteKit 前端",
+        "api": "Rust API（Axum）",
+        "database": "PostgreSQL",
+        "mcp": "MCP 服务（34 个工具）",
+        "transports": "HTTP | stdio | SSE"
+      },
       "repo": "https://github.com/openprx/openpr",
       "quickStart": [
         "git clone https://github.com/openprx/openpr.git",
@@ -115,12 +216,49 @@
       "tagline": "可自进化的 AI 助手框架",
       "description": "面向生产环境的可扩展 Rust AI 助手框架。",
       "tech": "Rust",
+      "language": "Rust",
+      "license": "Apache-2.0",
       "features": [
-        "支持 14 家 AI 提供方与 19 种消息渠道",
-        "自进化系统（约 9500 行）",
-        "OAuth 自动刷新，适合长时任务",
-        "带策略控制的受治理子代理"
+        {
+          "icon": "brain",
+          "title": "14 家 AI 提供方",
+          "description": "支持 Anthropic、OpenAI、Google、Ollama、OpenRouter、Bedrock、GitHub Copilot、GLM、LiteLLM、vLLM、HuggingFace 等。"
+        },
+        {
+          "icon": "message",
+          "title": "19 条消息渠道",
+          "description": "覆盖 Signal、WhatsApp、Telegram、Discord、Slack、IRC 等 19 条渠道。"
+        },
+        {
+          "icon": "refresh",
+          "title": "自进化系统",
+          "description": "约 9500 行的自主优化系统，具备可量化的验收标准。"
+        },
+        {
+          "icon": "shield",
+          "title": "受治理子代理",
+          "description": "支持并发限制、深度控制、配置继承与策略执行。"
+        },
+        {
+          "icon": "unlock",
+          "title": "OAuth 自动刷新",
+          "description": "可自动刷新 Anthropic、GitHub Copilot 及兼容提供方的令牌。"
+        },
+        {
+          "icon": "zap",
+          "title": "生产级加固",
+          "description": "包含三阶段安全机制、限流、策略检查、压缩清理与超时控制。"
+        }
       ],
+      "architecture": {
+        "channelsTitle": "渠道（19）",
+        "channelsList": "Signal、Telegram、Slack、Discord、WhatsApp、IRC...",
+        "providersTitle": "提供方（14）",
+        "providersList": "Anthropic、OpenAI、Google、Ollama、OpenRouter...",
+        "coreTitle": "PRX Core（Rust）",
+        "coreLineOne": "Evolution · Governance",
+        "coreLineTwo": "Sub-agents · MCP Client"
+      },
       "repo": "https://github.com/openprx/prx",
       "quickStart": [
         "git clone https://github.com/openprx/prx.git",
@@ -133,12 +271,48 @@
       "tagline": "面向编码代理的本地优先 MCP 记忆",
       "description": "让代理上下文可持久、可查询、可治理的记忆运行时。",
       "tech": "Rust",
+      "language": "Rust",
+      "license": "Apache-2.0",
       "features": [
-        "支持 stdio 与 HTTP 传输",
-        "完整记忆工具链：store、recall、update、forget",
-        "治理控制与可进化数据模型",
-        "兼容 Codex、Claude Code、OpenClaw"
+        {
+          "icon": "plug",
+          "title": "双传输模式",
+          "description": "本地 CLI 场景使用 stdio，网络访问场景使用 HTTP。"
+        },
+        {
+          "icon": "toolbox",
+          "title": "完整工具链",
+          "description": "覆盖 store、recall、update、forget、export、import、migrate、reembed、compact。"
+        },
+        {
+          "icon": "governance",
+          "title": "治理控制",
+          "description": "支持结构化格式、标签归一化、比例边界与周期性维护。"
+        },
+        {
+          "icon": "dna",
+          "title": "进化支持",
+          "description": "通过 memory_evolve 执行 train+holdout 验收与约束门控。"
+        },
+        {
+          "icon": "crosshair",
+          "title": "混合检索",
+          "description": "词法与向量联合召回，可选接入 Jina、Cohere、Pinecone 重排。"
+        },
+        {
+          "icon": "handshake",
+          "title": "通用兼容",
+          "description": "可与 Codex、Claude Code、OpenClaw 及任意 MCP 客户端协同工作。"
+        }
       ],
+      "architecture": {
+        "agents": "编码代理（Codex、Claude Code、OpenClaw...）",
+        "mcp": "MCP（stdio / HTTP）",
+        "coreTitle": "prx-memory",
+        "coreLineOne": "Store · Recall · Evolve",
+        "coreLineTwo": "Governance · Rerank",
+        "storage": "本地 JSON / 向量嵌入"
+      },
       "repo": "https://github.com/openprx/prx-memory",
       "quickStart": [
         "git clone https://github.com/openprx/prx-memory.git",

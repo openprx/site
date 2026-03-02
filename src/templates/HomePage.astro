@@ -2,6 +2,7 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import Icon from '../components/Icon.astro';
 import { getDictionary, localePath, type Locale } from '../i18n';
 
 interface Props {
@@ -36,6 +37,20 @@ const productIcon: Record<string, string> = {
           <p class="mt-4 text-xl text-[var(--text)]">{dict.hero.subtitle}</p>
           <p class="mt-4 max-w-2xl text-base text-[var(--text-dim)]">{dict.hero.description}</p>
 
+          <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {dict.hero.stats.map((stat) => (
+              <div class="soft-border rounded-lg bg-[color-mix(in_oklab,var(--bg-soft)_86%,transparent)] px-4 py-3">
+                <div class="flex items-center gap-2">
+                  <Icon name={stat.icon} size={16} class="text-[var(--brand-strong)] opacity-60" />
+                  <p class="mono-pill text-3xl leading-none text-[var(--brand-strong)]" data-counter data-target={stat.value}>
+                    0
+                  </p>
+                </div>
+                <p class="mt-2 text-xs text-[var(--text-dim)]">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+
           <div class="mt-8 flex flex-wrap gap-3">
             <a
               href="https://github.com/openprx"
@@ -59,7 +74,7 @@ const productIcon: Record<string, string> = {
         <p class="mt-2 text-[var(--text-dim)]">{dict.products.description}</p>
       </div>
 
-      <div class="grid gap-4 sm:grid-cols-2">
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {dict.products.items.map((item) => {
           const detailLink = detailPages.has(item.id) ? localePath(locale, `/${item.id}`) : item.repo;
           const external = !detailPages.has(item.id);
@@ -83,6 +98,18 @@ const productIcon: Record<string, string> = {
               <p class="text-sm text-[var(--brand-strong)]">{item.tagline}</p>
               <p class="mt-3 text-sm text-[var(--text-dim)]">{item.description}</p>
 
+              <div class="mt-4 flex flex-wrap gap-2">
+                {item.highlights.map((tag) => (
+                  <span class="rounded-full border border-[var(--border)] bg-[var(--bg-soft)] px-2.5 py-1 text-xs text-[var(--text-dim)]">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <p class="mt-4 text-xs text-[var(--text-dim)]">
+                <span class="text-[var(--brand-strong)]">{dict.products.techLabel}:</span> {item.tech}
+              </p>
+
               <a
                 href={detailLink}
                 target={external ? '_blank' : undefined}
@@ -97,24 +124,132 @@ const productIcon: Record<string, string> = {
       </div>
     </section>
 
-    <section class="container-shell pb-8 reveal">
-      <div class="mb-6">
-        <h2 class="section-title">{dict.features.title}</h2>
-      </div>
+    <section class="container-shell pb-14 reveal">
+      <div class="panel p-6 md:p-8">
+        <div class="mb-6">
+          <h2 class="section-title">{dict.why.title}</h2>
+        </div>
 
-      <div class="grid gap-4 md:grid-cols-2">
-        {dict.features.items.map((feature) => (
-          <article class="panel p-5">
-            <h3 class="text-base font-semibold">{feature.title}</h3>
-            <p class="mt-2 text-sm text-[var(--text-dim)]">{feature.description}</p>
+        <div class="grid gap-4 md:grid-cols-3">
+          {dict.why.items.map((item) => (
+            <article class="soft-border rounded-xl bg-[color-mix(in_oklab,var(--bg-soft)_88%,transparent)] p-5">
+              <Icon name={item.icon} size={24} class="text-[var(--brand-strong)] mb-3" />
+              <h3 class="text-lg font-semibold">{item.title}</h3>
+              <p class="mt-3 text-sm text-[var(--text-dim)]">{item.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="container-shell pb-14 reveal">
+      <div class="panel p-6 md:p-8">
+        <h2 class="section-title">{dict.fit.title}</h2>
+        <p class="mt-3 max-w-3xl text-sm text-[var(--text-dim)]">{dict.fit.description}</p>
+        <p class="mt-5 text-sm text-[var(--brand-strong)]">{dict.fit.flowLabel}</p>
+
+        <div class="mt-6 architecture-map">
+          <article class="arch-node top-left">
+            <h3>{dict.nav.openpr}</h3>
+            <p>{dict.fit.manage}</p>
           </article>
-        ))}
+
+          <article class="arch-node top-right">
+            <h3>{dict.nav.prx}</h3>
+            <p>{dict.fit.operate}</p>
+          </article>
+
+          <article class="arch-node bottom-center">
+            <h3>{dict.nav.memory}</h3>
+            <p>{dict.fit.remember}</p>
+          </article>
+
+          <span class="line line-horizontal" aria-hidden="true"></span>
+          <span class="line line-left-down" aria-hidden="true"></span>
+          <span class="line line-right-down" aria-hidden="true"></span>
+
+          <span class="line-label line-label-top">{dict.fit.mcp}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="container-shell pb-10 reveal">
+      <div class="panel p-6 md:p-8">
+        <h2 class="section-title">{dict.getInvolved.title}</h2>
+        <p class="mt-3 text-sm text-[var(--text-dim)]">{dict.getInvolved.description}</p>
+
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <a
+            href="https://github.com/openprx"
+            target="_blank"
+            rel="noreferrer"
+            class="rounded-md border border-[var(--border)] bg-[var(--bg-soft)] px-4 py-2 text-sm text-[var(--text-dim)] hover:text-[var(--text)]"
+          >
+            {dict.getInvolved.githubOrg}
+          </a>
+          <a
+            href="https://github.com/openprx"
+            target="_blank"
+            rel="noreferrer"
+            class="glow rounded-md bg-[var(--brand)] px-4 py-2 text-sm font-semibold text-white"
+          >
+            {dict.getInvolved.starButton}
+          </a>
+          <span class="rounded-full border border-[var(--border)] bg-[var(--bg-soft)] px-3 py-1 text-xs text-[var(--text-dim)]">
+            {dict.getInvolved.licenseBadge}
+          </span>
+          <span class="rounded-full border border-[var(--border)] bg-[var(--bg-soft)] px-3 py-1 text-xs text-[var(--text-dim)]">
+            {dict.getInvolved.rustBadge}
+          </span>
+        </div>
       </div>
     </section>
   </main>
 
   <SiteFooter locale={locale} dict={dict} path="/" />
 </MainLayout>
+
+<script is:inline>
+  (() => {
+    const counters = document.querySelectorAll('[data-counter]');
+
+    const animateCounter = (el) => {
+      const target = Number(el.getAttribute('data-target') || '0');
+      if (!Number.isFinite(target)) {
+        return;
+      }
+
+      const duration = 900;
+      const start = performance.now();
+
+      const tick = (now) => {
+        const progress = Math.min((now - start) / duration, 1);
+        const value = Math.floor(target * progress);
+        el.textContent = String(value);
+
+        if (progress < 1) {
+          requestAnimationFrame(tick);
+        }
+      };
+
+      requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.45 }
+    );
+
+    counters.forEach((counter) => observer.observe(counter));
+  })();
+</script>
 
 <style>
   .logo-light {
@@ -127,5 +262,99 @@ const productIcon: Record<string, string> = {
 
   html[data-theme='light'] .logo-dark {
     display: none;
+  }
+
+  .architecture-map {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+      'left gap right'
+      'connector connector connector'
+      '. bottom .';
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .arch-node {
+    border: 1px solid var(--border);
+    border-radius: 0.9rem;
+    background: color-mix(in oklab, var(--bg-soft) 92%, transparent);
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .arch-node h3 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .arch-node p {
+    margin: 0.4rem 0 0;
+    font-size: 0.83rem;
+    color: var(--text-dim);
+  }
+
+  .top-left {
+    grid-area: left;
+  }
+
+  .top-right {
+    grid-area: right;
+  }
+
+  .bottom-center {
+    grid-area: bottom;
+  }
+
+  .line {
+    position: absolute;
+    background: color-mix(in oklab, var(--brand) 56%, var(--border));
+    pointer-events: none;
+  }
+
+  .line-horizontal {
+    top: calc(16.5% + 2.2rem);
+    left: 22%;
+    width: 56%;
+    height: 1px;
+  }
+
+  .line-left-down {
+    top: calc(16.5% + 2.2rem);
+    left: 33.5%;
+    width: 1px;
+    height: 39%;
+  }
+
+  .line-right-down {
+    top: calc(16.5% + 2.2rem);
+    right: 33.5%;
+    width: 1px;
+    height: 39%;
+  }
+
+  .line-label {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.74rem;
+    color: var(--brand-strong);
+  }
+
+  @media (max-width: 820px) {
+    .architecture-map {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'left'
+        'right'
+        'bottom';
+    }
+
+    .line,
+    .line-label {
+      display: none;
+    }
   }
 </style>

@@ -28,17 +28,47 @@
     "subtitle": "Open source. Built with Rust.",
     "description": "OpenPRX builds governed tooling for teams and coding agents across project management, AI orchestration, and long-term memory.",
     "githubCta": "View GitHub Organization",
-    "primaryCta": "Explore Products"
+    "primaryCta": "Explore Products",
+    "stats": [
+      {
+        "value": "34",
+        "label": "MCP Tools",
+        "icon": "tools"
+      },
+      {
+        "value": "14",
+        "label": "AI Providers",
+        "icon": "server"
+      },
+      {
+        "value": "19",
+        "label": "Channels",
+        "icon": "radio"
+      },
+      {
+        "value": "3",
+        "label": "Protocols (HTTP, stdio, SSE)",
+        "icon": "globe"
+      }
+    ]
   },
   "products": {
     "title": "Products",
     "description": "A focused toolkit for operational AI-native development.",
+    "techLabel": "Tech Stack",
     "items": [
       {
         "id": "openpr",
         "name": "OpenPR",
         "tagline": "Open-source project management with built-in governance",
         "description": "Team work management with issues, boards, sprints, and governance workflows.",
+        "highlights": [
+          "Governance",
+          "Kanban",
+          "MCP Server",
+          "SvelteKit"
+        ],
+        "tech": "Rust, SvelteKit, PostgreSQL",
         "repo": "https://github.com/openprx/openpr"
       },
       {
@@ -46,6 +76,13 @@
         "name": "PRX",
         "tagline": "Self-evolving AI assistant framework",
         "description": "Rust-native assistant runtime with multi-provider inference and governed sub-agents.",
+        "highlights": [
+          "14 Providers",
+          "19 Channels",
+          "Self-Evolution",
+          "OAuth"
+        ],
+        "tech": "Rust core, MCP client, multi-provider runtime",
         "repo": "https://github.com/openprx/prx"
       },
       {
@@ -53,30 +90,53 @@
         "name": "prx-memory",
         "tagline": "Local-first MCP memory for coding agents",
         "description": "Durable memory toolchain for storing, recalling, and governing agent knowledge.",
+        "highlights": [
+          "MCP Native",
+          "Local-First",
+          "Evolution",
+          "Codex/Claude"
+        ],
+        "tech": "Rust, MCP stdio/HTTP, lexical+vector retrieval",
         "repo": "https://github.com/openprx/prx-memory"
       }
     ]
   },
-  "features": {
-    "title": "Core Capabilities",
+  "why": {
+    "title": "Why OpenPRX",
     "items": [
       {
-        "title": "Rust Performance",
-        "description": "Low-latency services and CLIs designed for reliability under production load."
+        "title": "Governed by Design",
+        "description": "Every workflow includes trust scoring, review gates, and policy controls. Not bolted on, built in.",
+        "icon": "scale"
       },
       {
-        "title": "MCP Protocol",
-        "description": "Native MCP server and tools for rich integration with coding agents."
+        "title": "Rust-Native Performance",
+        "description": "Sub-millisecond latency. Zero-copy where possible. Production reliability from day one.",
+        "icon": "cpu"
       },
       {
-        "title": "Self-evolution",
-        "description": "Framework-level primitives for autonomous optimization and learning loops."
-      },
-      {
-        "title": "Governance",
-        "description": "Policies, trust scoring, and review gates baked into platform workflows."
+        "title": "AI-First Architecture",
+        "description": "MCP protocol native. 34 tools. 14 providers. Agents are first-class citizens in the system architecture.",
+        "icon": "layers"
       }
     ]
+  },
+  "fit": {
+    "title": "How It Fits Together",
+    "description": "OpenPRX products compose as one operating loop for modern teams and coding agents.",
+    "flowLabel": "Manage → Operate → Remember",
+    "manage": "Manage",
+    "operate": "Operate",
+    "remember": "Remember",
+    "mcp": "MCP"
+  },
+  "getInvolved": {
+    "title": "Get Involved",
+    "description": "OpenPRX is open source and actively developed in public.",
+    "githubOrg": "GitHub Organization",
+    "starButton": "Star us on GitHub",
+    "licenseBadge": "Apache-2.0 Licensed",
+    "rustBadge": "Built with Rust 🦀"
   },
   "footer": {
     "org": "OpenPRX on GitHub",
@@ -89,7 +149,12 @@
     "quickStart": "Quick Start",
     "repository": "Repository",
     "star": "Star on GitHub",
-    "techStack": "Tech Stack"
+    "techStack": "Tech Stack",
+    "architecture": "Architecture",
+    "alsoFrom": "Also from OpenPRX",
+    "languageBadge": "Language",
+    "licenseBadge": "License",
+    "learnMore": "Learn More"
   },
   "pages": {
     "openpr": {
@@ -97,12 +162,48 @@
       "tagline": "Open-source project management with built-in governance",
       "description": "A complete project collaboration platform for modern engineering teams.",
       "tech": "Rust (Axum + SeaORM), SvelteKit, PostgreSQL",
+      "language": "Rust",
+      "license": "Apache-2.0",
       "features": [
-        "Issues, Kanban boards, and sprint planning",
-        "Governance center with proposals, voting, and trust scores",
-        "AI integration with bot tokens and AI task orchestration",
-        "MCP server with 34 tools across 3 protocols"
+        {
+          "icon": "board",
+          "title": "Issues & Boards",
+          "description": "Full issue tracking with Kanban boards and sprint planning."
+        },
+        {
+          "icon": "governance",
+          "title": "Governance Center",
+          "description": "Proposals, voting, trust scores, decision records, veto, and escalation."
+        },
+        {
+          "icon": "bot",
+          "title": "AI Integration",
+          "description": "Bot tokens, AI agents, AI tasks, AI review, and webhook callbacks."
+        },
+        {
+          "icon": "plug",
+          "title": "MCP Server",
+          "description": "34 tools across HTTP, stdio, and SSE protocols."
+        },
+        {
+          "icon": "attachment",
+          "title": "File Attachments",
+          "description": "Upload and attach files to issues and comments."
+        },
+        {
+          "icon": "key",
+          "title": "Bot Token Auth",
+          "description": "Secure API access for automated agents and integrations."
+        }
       ],
+      "architecture": {
+        "browser": "Browser",
+        "frontend": "SvelteKit Frontend",
+        "api": "Rust API (Axum)",
+        "database": "PostgreSQL",
+        "mcp": "MCP Server (34 tools)",
+        "transports": "HTTP | stdio | SSE"
+      },
       "repo": "https://github.com/openprx/openpr",
       "quickStart": [
         "git clone https://github.com/openprx/openpr.git",
@@ -115,12 +216,49 @@
       "tagline": "Self-evolving AI assistant framework",
       "description": "An extensible Rust framework for production-grade AI assistants.",
       "tech": "Rust",
+      "language": "Rust",
+      "license": "Apache-2.0",
       "features": [
-        "14 AI providers and 19 messaging channels",
-        "Self-evolution system (~9500 lines)",
-        "OAuth auto-refresh for stable long-running automation",
-        "Governed sub-agents with policy controls"
+        {
+          "icon": "brain",
+          "title": "14 AI Providers",
+          "description": "Anthropic, OpenAI, Google, Ollama, OpenRouter, Bedrock, GitHub Copilot, GLM, LiteLLM, vLLM, HuggingFace, and more."
+        },
+        {
+          "icon": "message",
+          "title": "19 Channels",
+          "description": "Signal, WhatsApp, Telegram, Discord, Slack, IRC, and 13 more channels."
+        },
+        {
+          "icon": "refresh",
+          "title": "Self-Evolution",
+          "description": "Autonomous optimization system (~9,500 lines) with measurable acceptance criteria."
+        },
+        {
+          "icon": "shield",
+          "title": "Governed Sub-Agents",
+          "description": "Concurrency limits, depth controls, config inheritance, and policy enforcement."
+        },
+        {
+          "icon": "unlock",
+          "title": "OAuth Auto-Refresh",
+          "description": "Automatic token refresh for Anthropic, GitHub Copilot, and compatible providers."
+        },
+        {
+          "icon": "zap",
+          "title": "Production Hardened",
+          "description": "3-phase security, rate limiting, policy checks, compaction, and timeout controls."
+        }
       ],
+      "architecture": {
+        "channelsTitle": "Channels (19)",
+        "channelsList": "Signal, Telegram, Slack, Discord, WhatsApp, IRC...",
+        "providersTitle": "Providers (14)",
+        "providersList": "Anthropic, OpenAI, Google, Ollama, OpenRouter...",
+        "coreTitle": "PRX Core (Rust)",
+        "coreLineOne": "Evolution · Governance",
+        "coreLineTwo": "Sub-agents · MCP Client"
+      },
       "repo": "https://github.com/openprx/prx",
       "quickStart": [
         "git clone https://github.com/openprx/prx.git",
@@ -133,12 +271,48 @@
       "tagline": "Local-first MCP memory for coding agents",
       "description": "A memory runtime that keeps agent context durable, queryable, and governed.",
       "tech": "Rust",
+      "language": "Rust",
+      "license": "Apache-2.0",
       "features": [
-        "stdio and HTTP transport modes",
-        "Complete memory toolchain: store, recall, update, forget",
-        "Governance controls and evolution-ready data model",
-        "Works with Codex, Claude Code, and OpenClaw"
+        {
+          "icon": "plug",
+          "title": "Dual Transport",
+          "description": "stdio for local CLI integration, HTTP for networked access."
+        },
+        {
+          "icon": "toolbox",
+          "title": "Full Toolchain",
+          "description": "store, recall, update, forget, export, import, migrate, reembed, and compact."
+        },
+        {
+          "icon": "governance",
+          "title": "Governance Controls",
+          "description": "Structured format, tag normalization, ratio bounds, and periodic maintenance."
+        },
+        {
+          "icon": "dna",
+          "title": "Evolution Support",
+          "description": "memory_evolve with train+holdout acceptance and constraint gating."
+        },
+        {
+          "icon": "crosshair",
+          "title": "Hybrid Retrieval",
+          "description": "Lexical + vector recall with optional reranking via Jina, Cohere, and Pinecone."
+        },
+        {
+          "icon": "handshake",
+          "title": "Universal Compatibility",
+          "description": "Works with Codex, Claude Code, OpenClaw, and any MCP client."
+        }
       ],
+      "architecture": {
+        "agents": "Coding Agents (Codex, Claude Code, OpenClaw...)",
+        "mcp": "MCP (stdio / HTTP)",
+        "coreTitle": "prx-memory",
+        "coreLineOne": "Store · Recall · Evolve",
+        "coreLineTwo": "Governance · Rerank",
+        "storage": "Local JSON / Embeddings"
+      },
       "repo": "https://github.com/openprx/prx-memory",
       "quickStart": [
         "git clone https://github.com/openprx/prx-memory.git",

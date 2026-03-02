@@ -2,6 +2,7 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import Icon from '../components/Icon.astro';
 import { getDictionary, localePath, type Locale } from '../i18n';
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 const { locale, product } = Astro.props;
 const dict = getDictionary(locale);
 const page = dict.pages[product];
+const related = dict.products.items.filter((item) => item.id !== product);
 
 const titleByProduct = {
   openpr: dict.meta.openprTitle,
@@ -40,6 +42,18 @@ const starsBadge = `https://img.shields.io/github/stars/${repoPath}?style=for-th
       <p class="mt-3 text-lg text-[var(--brand-strong)]">{page.tagline}</p>
       <p class="mt-4 max-w-3xl text-[var(--text-dim)]">{page.description}</p>
 
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <span class="inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--bg-soft)] px-3 py-1 text-xs text-[var(--text-dim)]">
+          <span class="text-[var(--brand-strong)]">{dict.common.languageBadge}:</span>&nbsp;{page.language}
+        </span>
+        <span class="inline-flex items-center rounded-full border border-[var(--border)] bg-[var(--bg-soft)] px-3 py-1 text-xs text-[var(--text-dim)]">
+          <span class="text-[var(--brand-strong)]">{dict.common.licenseBadge}:</span>&nbsp;{page.license}
+        </span>
+        <a href={page.repo} target="_blank" rel="noreferrer" class="rounded-md">
+          <img src={starsBadge} alt={`${page.name} ${dict.common.star}`} loading="lazy" />
+        </a>
+      </div>
+
       <div class="mt-7 flex flex-wrap gap-3">
         <a
           href={page.repo}
@@ -49,32 +63,124 @@ const starsBadge = `https://img.shields.io/github/stars/${repoPath}?style=for-th
         >
           {dict.common.repository}
         </a>
-        <a href={page.repo} target="_blank" rel="noreferrer" class="rounded-md">
-          <img src={starsBadge} alt={`${page.name} ${dict.common.star}`} loading="lazy" />
-        </a>
       </div>
     </section>
 
-    <section class="mt-8 grid gap-6 lg:grid-cols-[1.25fr_1fr]">
-      <article class="panel p-6 reveal">
-        <h2 class="section-title text-2xl">{dict.common.keyFeatures}</h2>
-        <ul class="mt-5 space-y-3 text-sm text-[var(--text-dim)]">
-          {page.features.map((feature) => (
-            <li class="flex gap-3">
-              <span class="mt-1 h-2 w-2 shrink-0 rounded-full bg-[var(--brand)]"></span>
-              <span>{feature}</span>
-            </li>
-          ))}
-        </ul>
-      </article>
+    <section class="mt-8 panel p-6 md:p-8 reveal">
+      <h2 class="section-title text-2xl">{dict.common.keyFeatures}</h2>
+      <div class="mt-5 grid gap-4 md:grid-cols-2">
+        {page.features.map((feature) => (
+          <article class="soft-border rounded-xl bg-[color-mix(in_oklab,var(--bg-soft)_88%,transparent)] p-4">
+            <h3 class="text-base font-semibold">
+              <Icon name={feature.icon} size={18} class="inline-block mr-1.5 text-[var(--brand-strong)] -mt-0.5" />
+              {feature.title}
+            </h3>
+            <p class="mt-2 text-sm text-[var(--text-dim)]">{feature.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
 
-      <article class="panel p-6 reveal">
-        <h2 class="section-title text-2xl">{dict.common.techStack}</h2>
-        <p class="mt-4 rounded-lg bg-[var(--bg-soft)] px-3 py-2 code-font text-sm text-[var(--text)]">{page.tech}</p>
+    <section class="mt-8 panel p-6 md:p-8 reveal">
+      <h2 class="section-title text-2xl">{dict.common.architecture}</h2>
 
-        <h2 class="section-title mt-8 text-2xl">{dict.common.quickStart}</h2>
-        <pre class="mt-4 overflow-x-auto rounded-lg bg-[var(--code-bg)] p-4 text-xs text-[#d2d9ff]"><code class="code-font">{page.quickStart.join('\n')}</code></pre>
-      </article>
+      {product === 'openpr' && (
+        <div class="mt-5 architecture-shell">
+          <div class="flow-row flow-row-top">
+            <div class="arch-box">{page.architecture.browser}</div>
+            <span class="flow-arrow">→</span>
+            <div class="arch-box">{page.architecture.frontend}</div>
+            <span class="flow-arrow">→</span>
+            <div class="arch-box">{page.architecture.api}</div>
+            <span class="flow-arrow">→</span>
+            <div class="arch-box">{page.architecture.database}</div>
+          </div>
+
+          <div class="flow-column">
+            <span class="flow-arrow">↕</span>
+            <div class="arch-box arch-box-wide">
+              <strong>{page.architecture.mcp}</strong>
+              <p>{page.architecture.transports}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {product === 'prx' && (
+        <div class="mt-5 architecture-shell">
+          <div class="prx-grid">
+            <article class="arch-box left-align">
+              <h3>{page.architecture.channelsTitle}</h3>
+              <p>{page.architecture.channelsList}</p>
+            </article>
+            <article class="arch-box left-align">
+              <h3>{page.architecture.providersTitle}</h3>
+              <p>{page.architecture.providersList}</p>
+            </article>
+          </div>
+
+          <div class="flow-column">
+            <span class="flow-arrow">↓</span>
+            <article class="arch-box arch-box-wide">
+              <h3>{page.architecture.coreTitle}</h3>
+              <p>{page.architecture.coreLineOne}</p>
+              <p>{page.architecture.coreLineTwo}</p>
+            </article>
+          </div>
+        </div>
+      )}
+
+      {product === 'prx-memory' && (
+        <div class="mt-5 architecture-shell flow-column">
+          <article class="arch-box arch-box-wide">
+            <h3>{page.architecture.agents}</h3>
+          </article>
+          <span class="flow-arrow">↓ {page.architecture.mcp}</span>
+          <article class="arch-box arch-box-wide">
+            <h3>{page.architecture.coreTitle}</h3>
+            <p>{page.architecture.coreLineOne}</p>
+            <p>{page.architecture.coreLineTwo}</p>
+          </article>
+          <span class="flow-arrow">↓</span>
+          <article class="arch-box arch-box-wide">
+            <h3>{page.architecture.storage}</h3>
+          </article>
+        </div>
+      )}
+    </section>
+
+    <section class="mt-8 panel p-6 md:p-8 reveal">
+      <h2 class="section-title text-2xl">{dict.common.techStack}</h2>
+      <p class="mt-4 rounded-lg bg-[var(--bg-soft)] px-3 py-2 code-font text-sm text-[var(--text)]">{page.tech}</p>
+
+      <h2 class="section-title mt-8 text-2xl">{dict.common.quickStart}</h2>
+      <pre class="mt-4 overflow-x-auto rounded-lg bg-[var(--code-bg)] p-4 text-xs text-[#d2d9ff]"><code class="code-font">{page.quickStart.join('\n')}</code></pre>
+    </section>
+
+    <section class="mt-8 panel p-6 md:p-8 reveal">
+      <h2 class="section-title text-2xl">{dict.common.alsoFrom}</h2>
+      <div class="mt-5 grid gap-4 md:grid-cols-2">
+        {related.map((item) => (
+          <article class="soft-border rounded-xl bg-[color-mix(in_oklab,var(--bg-soft)_88%,transparent)] p-4">
+            <h3 class="text-base font-semibold">{item.name}</h3>
+            <p class="mt-1 text-sm text-[var(--brand-strong)]">{item.tagline}</p>
+            <p class="mt-2 text-sm text-[var(--text-dim)]">{item.description}</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              {item.highlights.map((tag) => (
+                <span class="rounded-full border border-[var(--border)] bg-[var(--bg-soft)] px-2.5 py-1 text-xs text-[var(--text-dim)]">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <a
+              href={localePath(locale, `/${item.id}`)}
+              class="mt-4 inline-flex rounded-md border border-[var(--border)] px-3 py-1.5 text-sm text-[var(--text-dim)] hover:text-[var(--text)]"
+            >
+              {dict.common.learnMore}
+            </a>
+          </article>
+        ))}
+      </div>
     </section>
 
     <div class="mt-8 reveal">
@@ -86,3 +192,83 @@ const starsBadge = `https://img.shields.io/github/stars/${repoPath}?style=for-th
 
   <SiteFooter locale={locale} dict={dict} path={path} />
 </MainLayout>
+
+<style>
+  .architecture-shell {
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: color-mix(in oklab, var(--bg-soft) 84%, transparent);
+    padding: 1rem;
+  }
+
+  .flow-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+  }
+
+  .flow-row-top {
+    margin-bottom: 0.75rem;
+  }
+
+  .flow-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .flow-arrow {
+    font-size: 0.92rem;
+    color: var(--brand-strong);
+  }
+
+  .arch-box {
+    border: 1px solid var(--border);
+    border-radius: 0.85rem;
+    background: var(--bg-elev);
+    padding: 0.8rem 0.95rem;
+    text-align: center;
+    font-size: 0.85rem;
+    min-width: 120px;
+  }
+
+  .arch-box h3 {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .arch-box p {
+    margin: 0.35rem 0 0;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+  }
+
+  .arch-box-wide {
+    min-width: min(540px, 100%);
+  }
+
+  .left-align {
+    text-align: left;
+  }
+
+  .prx-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+    align-items: stretch;
+    margin-bottom: 0.9rem;
+  }
+
+  @media (max-width: 760px) {
+    .arch-box-wide {
+      min-width: 100%;
+    }
+
+    .prx-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
