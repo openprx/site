@@ -8,9 +8,9 @@ export default defineConfig({
   output: 'static',
   integrations: [
     starlight({
-      title: 'OpenPRX Docs',
+      title: 'Docs',
       logo: {
-        src: './public/brand-assets/logo-full.svg'
+        src: './src/assets/logo.svg'
       },
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/openprx' }
