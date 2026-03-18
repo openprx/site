@@ -2,8 +2,8 @@
   "languageName": "English",
   "meta": {
     "siteName": "OpenPRX",
-    "homeTitle": "OpenPRX | AI-native development infrastructure",
-    "homeDescription": "Open-source AI-native development infrastructure built with Rust: OpenPR, PRX, prx-memory, and wacli.",
+    "homeTitle": "OpenPRX | AI-Autonomous Software Engineering Infrastructure",
+    "homeDescription": "Open-source infrastructure where AI agents autonomously plan, code, distribute, and defend software. Built with Rust.",
     "openprTitle": "OpenPR | OpenPRX",
     "openprDescription": "Open-source project management with built-in governance.",
     "prxTitle": "PRX | OpenPRX",
@@ -24,7 +24,8 @@
     "memory": "prx-memory",
     "prxSd": "PRX-SD",
     "prxWaf": "PRX-WAF",
-    "fenfa": "Fenfa"
+    "fenfa": "Fenfa",
+    "docs": "Docs"
   },
   "header": {
     "github": "GitHub",
@@ -32,38 +33,22 @@
     "theme": "Theme"
   },
   "hero": {
-    "eyebrow": "Open Source Infrastructure",
-    "title": "AI-native development infrastructure",
-    "subtitle": "Open source. Built with Rust.",
-    "description": "OpenPRX builds governed tooling for teams and coding agents across project management, AI orchestration, and long-term memory.",
-    "githubCta": "View GitHub Organization",
-    "primaryCta": "Explore Products",
+    "eyebrow": "Open Source · Built with Rust",
+    "title": "AI runs the pipeline. You set the rules.",
+    "subtitle": "Open-source infrastructure for AI-autonomous software engineering.",
+    "description": "OpenPRX is not another coding assistant. It's a complete pipeline where AI agents autonomously plan work, write code, distribute builds, and defend production — governed, auditable, and open source.",
+    "githubCta": "View on GitHub",
+    "primaryCta": "See the Pipeline",
     "stats": [
-      {
-        "value": "34",
-        "label": "MCP Tools",
-        "icon": "tools"
-      },
-      {
-        "value": "14",
-        "label": "AI Providers",
-        "icon": "server"
-      },
-      {
-        "value": "19",
-        "label": "Channels",
-        "icon": "radio"
-      },
-      {
-        "value": "3",
-        "label": "Protocols (HTTP, stdio, SSE)",
-        "icon": "globe"
-      }
+      { "value": "19", "label": "Messaging Channels", "icon": "radio" },
+      { "value": "14", "label": "LLM Providers", "icon": "brain" },
+      { "value": "34", "label": "MCP Tools", "icon": "tools" },
+      { "value": "38800", "label": "Security Rules", "icon": "shield" }
     ]
   },
   "products": {
     "title": "Products",
-    "description": "A focused toolkit for operational AI-native development.",
+    "description": "Each product handles one stage of the pipeline. Use them individually or deploy the full stack.",
     "techLabel": "Tech Stack",
     "items": [
       {
@@ -138,33 +123,60 @@
     ]
   },
   "why": {
-    "title": "Why OpenPRX",
+    "title": "Not Another Copilot",
     "items": [
       {
+        "title": "Autonomous, Not Assistive",
+        "description": "Coding assistants help you type faster. OpenPRX runs entire workflows — from issue triage to code fix to deployment — without waiting for human keystrokes.",
+        "icon": "zap"
+      },
+      {
+        "title": "Self-Evolving Intelligence",
+        "description": "PRX doesn't just call an LLM. It routes across 14 providers with Elo-rated model selection, and autonomously evolves its own prompts, memory, and strategies.",
+        "icon": "dna"
+      },
+      {
         "title": "Governed by Design",
-        "description": "Every workflow includes trust scoring, review gates, and policy controls. Not bolted on, built in.",
+        "description": "Trust scores, proposal voting, veto rights, approval workflows, and five-layer security policies. AI acts autonomously within human-defined boundaries.",
         "icon": "scale"
-      },
-      {
-        "title": "Rust-Native Performance",
-        "description": "Sub-millisecond latency. Zero-copy where possible. Production reliability from day one.",
-        "icon": "cpu"
-      },
-      {
-        "title": "AI-First Architecture",
-        "description": "MCP protocol native. 34 tools. 14 providers. Agents are first-class citizens in the system architecture.",
-        "icon": "layers"
       }
     ]
   },
-  "fit": {
-    "title": "How It Fits Together",
-    "description": "OpenPRX products compose as one operating loop for modern teams and coding agents.",
-    "flowLabel": "Manage → Operate → Remember",
-    "manage": "Manage",
-    "operate": "Operate",
-    "remember": "Remember",
-    "mcp": "MCP"
+  "pipeline": {
+    "title": "One Pipeline. Five Stages.",
+    "subtitle": "From issue creation to production defense — AI handles every step.",
+    "stages": [
+      {
+        "name": "Plan",
+        "product": "OpenPR",
+        "href": "/openpr",
+        "description": "AI-native project management. Issues auto-dispatch to coding agents via MCP and webhooks."
+      },
+      {
+        "name": "Think",
+        "product": "PRX",
+        "href": "/prx",
+        "description": "The AI brain. Routes across 14 providers, delegates to sub-agents, evolves its own strategies."
+      },
+      {
+        "name": "Build",
+        "product": "Webhook + Memory",
+        "href": "/prx-memory",
+        "description": "Dispatches coding agents. Results write back. Knowledge persists across sessions."
+      },
+      {
+        "name": "Ship",
+        "product": "Fenfa",
+        "href": "/fenfa",
+        "description": "Distribute builds to iOS, Android, macOS, Windows, and Linux via upload API."
+      },
+      {
+        "name": "Protect",
+        "product": "WAF + SD",
+        "href": "/prx-waf",
+        "description": "17-phase web defense. ML-powered antivirus. Automated quarantine and remediation."
+      }
+    ]
   },
   "getInvolved": {
     "title": "Get Involved",

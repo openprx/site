@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.1",
+    "@astrojs/starlight": "^0.38.1",
     "@fontsource-variable/inter": "^5.1.0",
     "@fontsource/jetbrains-mono": "^5.1.0",
     "@tailwindcss/vite": "^4.1.0",
-    "astro": "^5.4.0",
-    "tailwindcss": "^4.1.0"
+    "astro": "^6.0.6",
+    "tailwindcss": "^4.1.0",
+    "vite": "^8.0.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.8",

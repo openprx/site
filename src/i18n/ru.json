@@ -2,8 +2,8 @@
   "languageName": "Русский",
   "meta": {
     "siteName": "OpenPRX",
-    "homeTitle": "OpenPRX | AI-native инфраструктура разработки",
-    "homeDescription": "Открытая AI-native инфраструктура на Rust: OpenPR, PRX, prx-memory и wacli.",
+    "homeTitle": "OpenPRX | AI-автономная инфраструктура программной инженерии",
+    "homeDescription": "Открытая инфраструктура, в которой AI-агенты автономно планируют, пишут код, распространяют и защищают программное обеспечение. Создано на Rust.",
     "openprTitle": "OpenPR | OpenPRX",
     "openprDescription": "Открытая система управления проектами со встроенным governance.",
     "prxTitle": "PRX | OpenPRX",
@@ -24,7 +24,8 @@
     "memory": "prx-memory",
     "prxSd": "PRX-SD",
     "prxWaf": "PRX-WAF",
-    "fenfa": "Fenfa"
+    "fenfa": "Fenfa",
+    "docs": "Документация"
   },
   "header": {
     "github": "GitHub",
@@ -32,38 +33,22 @@
     "theme": "Тема"
   },
   "hero": {
-    "eyebrow": "Open Source Infrastructure",
-    "title": "AI-native инфраструктура разработки",
-    "subtitle": "Open source. Создано на Rust.",
-    "description": "OpenPRX создает инструменты с встроенным governance для команд и кодовых агентов: project management, AI orchestration и долговременная память.",
-    "githubCta": "Открыть организацию GitHub",
-    "primaryCta": "Изучить продукты",
+    "eyebrow": "Open Source · Создано на Rust",
+    "title": "AI управляет конвейером. Вы задаёте правила.",
+    "subtitle": "Открытая инфраструктура для AI-автономной программной инженерии.",
+    "description": "OpenPRX — это не очередной помощник для кодирования. Это полный конвейер, в котором AI-агенты автономно планируют работу, пишут код, распространяют сборки и защищают продакшен — управляемо, аудитируемо и с открытым исходным кодом.",
+    "githubCta": "Смотреть на GitHub",
+    "primaryCta": "Смотреть конвейер",
     "stats": [
-      {
-        "value": "34",
-        "label": "MCP-инструмента",
-        "icon": "tools"
-      },
-      {
-        "value": "14",
-        "label": "AI-провайдеров",
-        "icon": "server"
-      },
-      {
-        "value": "19",
-        "label": "Каналов",
-        "icon": "radio"
-      },
-      {
-        "value": "3",
-        "label": "Протокола (HTTP, stdio, SSE)",
-        "icon": "globe"
-      }
+      { "value": "19", "label": "Каналов обмена сообщениями", "icon": "radio" },
+      { "value": "14", "label": "LLM-провайдеров", "icon": "brain" },
+      { "value": "34", "label": "MCP-инструмента", "icon": "tools" },
+      { "value": "38800", "label": "Правил безопасности", "icon": "shield" }
     ]
   },
   "products": {
     "title": "Продукты",
-    "description": "Сфокусированный набор инструментов для практической AI-native разработки.",
+    "description": "Каждый продукт отвечает за один этап конвейера. Используйте их по отдельности или разверните весь стек.",
     "techLabel": "Технологии",
     "items": [
       {
@@ -138,33 +123,60 @@
     ]
   },
   "why": {
-    "title": "Почему OpenPRX",
+    "title": "Не очередной Copilot",
     "items": [
       {
-        "title": "Governance по умолчанию",
-        "description": "В каждый workflow встроены trust scoring, review gates и policy controls. Это не надстройка, а основа архитектуры.",
+        "title": "Автономный, а не ассистивный",
+        "description": "Помощники для кодирования помогают быстрее печатать. OpenPRX выполняет целые workflow — от сортировки issues до исправления кода и деплоя — без ожидания нажатий клавиш.",
+        "icon": "zap"
+      },
+      {
+        "title": "Самоэволюционирующий интеллект",
+        "description": "PRX не просто вызывает LLM. Он маршрутизирует запросы между 14 провайдерами с Elo-рейтингом моделей и автономно развивает собственные промпты, память и стратегии.",
+        "icon": "dna"
+      },
+      {
+        "title": "Управляемый по замыслу",
+        "description": "Trust scores, голосование по предложениям, право вето, workflow утверждений и пятиуровневые политики безопасности. AI действует автономно в рамках, определённых человеком.",
         "icon": "scale"
-      },
-      {
-        "title": "Rust-native производительность",
-        "description": "Задержка менее миллисекунды. Zero-copy там, где возможно. Надежность production-уровня с первого дня.",
-        "icon": "cpu"
-      },
-      {
-        "title": "AI-first архитектура",
-        "description": "Нативная поддержка протокола MCP, 34 инструмента и 14 провайдеров. Агенты в системе - не дополнение, а сущность первого класса.",
-        "icon": "layers"
       }
     ]
   },
-  "fit": {
-    "title": "Как это работает вместе",
-    "description": "Продукты OpenPRX соединяются в единый операционный цикл для команд и кодовых агентов.",
-    "flowLabel": "Manage → Operate → Remember",
-    "manage": "Управление",
-    "operate": "Исполнение",
-    "remember": "Память",
-    "mcp": "MCP"
+  "pipeline": {
+    "title": "Один конвейер. Пять этапов.",
+    "subtitle": "От создания issue до защиты продакшена — AI управляет каждым шагом.",
+    "stages": [
+      {
+        "name": "Планирование",
+        "product": "OpenPR",
+        "href": "/openpr",
+        "description": "AI-native управление проектами. Issues автоматически распределяются кодовым агентам через MCP и webhooks."
+      },
+      {
+        "name": "Мышление",
+        "product": "PRX",
+        "href": "/prx",
+        "description": "AI-мозг. Маршрутизирует между 14 провайдерами, делегирует суб-агентам, развивает собственные стратегии."
+      },
+      {
+        "name": "Сборка",
+        "product": "Webhook + Memory",
+        "href": "/prx-memory",
+        "description": "Запускает кодовых агентов. Результаты записываются обратно. Знания сохраняются между сессиями."
+      },
+      {
+        "name": "Доставка",
+        "product": "Fenfa",
+        "href": "/fenfa",
+        "description": "Распространение сборок на iOS, Android, macOS, Windows и Linux через API загрузки."
+      },
+      {
+        "name": "Защита",
+        "product": "WAF + SD",
+        "href": "/prx-waf",
+        "description": "17-фазная веб-защита. ML-антивирус. Автоматический карантин и устранение угроз."
+      }
+    ]
   },
   "getInvolved": {
     "title": "Присоединяйтесь",

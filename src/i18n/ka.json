@@ -2,8 +2,8 @@
   "languageName": "ქართული",
   "meta": {
     "siteName": "OpenPRX",
-    "homeTitle": "OpenPRX | AI-native განვითარების ინფრასტრუქტურა",
-    "homeDescription": "Rust-ზე აგებული ღია AI-native ინფრასტრუქტურა: OpenPR, PRX, prx-memory და wacli.",
+    "homeTitle": "OpenPRX | AI-ავტონომიური პროგრამული ინჟინერიის ინფრასტრუქტურა",
+    "homeDescription": "ღია ინფრასტრუქტურა, სადაც AI აგენტები ავტონომიურად გეგმავენ, წერენ კოდს, ავრცელებენ და იცავენ პროგრამულ უზრუნველყოფას. აგებულია Rust-ზე.",
     "openprTitle": "OpenPR | OpenPRX",
     "openprDescription": "ღია პროექტების მართვის პლატფორმა ჩაშენებული governance-ით.",
     "prxTitle": "PRX | OpenPRX",
@@ -24,7 +24,8 @@
     "memory": "prx-memory",
     "prxSd": "PRX-SD",
     "prxWaf": "PRX-WAF",
-    "fenfa": "Fenfa"
+    "fenfa": "Fenfa",
+    "docs": "დოკუმენტაცია"
   },
   "header": {
     "github": "GitHub",
@@ -32,38 +33,22 @@
     "theme": "თემა"
   },
   "hero": {
-    "eyebrow": "Open Source Infrastructure",
-    "title": "AI-native განვითარების ინფრასტრუქტურა",
-    "subtitle": "Open source. აგებულია Rust-ზე.",
-    "description": "OpenPRX ქმნის governance-ზე დაფუძნებულ ინსტრუმენტებს გუნდებისა და კოდირების აგენტებისთვის: project management, AI orchestration და გრძელვადიანი memory.",
-    "githubCta": "GitHub ორგანიზაციის ნახვა",
-    "primaryCta": "პროდუქტების ნახვა",
+    "eyebrow": "ღია წყარო · აგებულია Rust-ზე",
+    "title": "AI მართავს pipeline-ს. თქვენ ადგენთ წესებს.",
+    "subtitle": "ღია ინფრასტრუქტურა AI-ავტონომიური პროგრამული ინჟინერიისთვის.",
+    "description": "OpenPRX არ არის კიდევ ერთი კოდირების ასისტენტი. ეს არის სრული pipeline, სადაც AI აგენტები ავტონომიურად გეგმავენ სამუშაოს, წერენ კოდს, ავრცელებენ build-ებს და იცავენ production-ს — მართული, აუდიტირებადი და ღია წყაროს.",
+    "githubCta": "GitHub-ზე ნახვა",
+    "primaryCta": "Pipeline-ის ნახვა",
     "stats": [
-      {
-        "value": "34",
-        "label": "MCP ხელსაწყო",
-        "icon": "tools"
-      },
-      {
-        "value": "14",
-        "label": "AI პროვაიდერი",
-        "icon": "server"
-      },
-      {
-        "value": "19",
-        "label": "არხი",
-        "icon": "radio"
-      },
-      {
-        "value": "3",
-        "label": "პროტოკოლი (HTTP, stdio, SSE)",
-        "icon": "globe"
-      }
+      { "value": "19", "label": "მესიჯინგის არხი", "icon": "radio" },
+      { "value": "14", "label": "LLM პროვაიდერი", "icon": "brain" },
+      { "value": "34", "label": "MCP ხელსაწყო", "icon": "tools" },
+      { "value": "38800", "label": "უსაფრთხოების წესი", "icon": "shield" }
     ]
   },
   "products": {
     "title": "პროდუქტები",
-    "description": "კონცენტრირებული ხელსაწყოების ნაკრები პრაქტიკული AI-native განვითარებისთვის.",
+    "description": "თითოეული პროდუქტი pipeline-ის ერთ ეტაპს ამუშავებს. გამოიყენეთ ცალ-ცალკე ან გაშალეთ სრული სტეკი.",
     "techLabel": "ტექნოლოგიები",
     "items": [
       {
@@ -138,33 +123,60 @@
     ]
   },
   "why": {
-    "title": "რატომ OpenPRX",
+    "title": "არა კიდევ ერთი Copilot",
     "items": [
       {
-        "title": "Governance დიზაინითვე",
-        "description": "ყველა workflow-ში ჩაშენებულია trust scoring, review gates და policy controls. დამატებული ფუნქცია კი არა, სისტემის ბირთვია.",
+        "title": "ავტონომიური, არა ასისტენტური",
+        "description": "კოდირების ასისტენტები გეხმარებიან უფრო სწრაფად აკრიფოთ. OpenPRX აწარმოებს სრულ workflow-ებს — issue-ის სორტირებიდან კოდის შესწორებამდე და deploy-მდე — ადამიანის კლავიშზე დაჭერის მოლოდინის გარეშე.",
+        "icon": "zap"
+      },
+      {
+        "title": "თვითევოლუციური ინტელექტი",
+        "description": "PRX უბრალოდ LLM-ს არ იძახებს. ის 14 პროვაიდერზე ახდენს მარშრუტიზაციას Elo-რეიტინგიანი მოდელის შერჩევით და ავტონომიურად ავითარებს საკუთარ prompt-ებს, memory-სა და სტრატეგიებს.",
+        "icon": "dna"
+      },
+      {
+        "title": "მართვა დიზაინითვე",
+        "description": "Trust scores, წინადადებების კენჭისყრა, ვეტოს უფლებები, დამტკიცების workflow-ები და ხუთშრიანი უსაფრთხოების პოლიტიკა. AI ავტონომიურად მოქმედებს ადამიანის მიერ განსაზღვრულ საზღვრებში.",
         "icon": "scale"
-      },
-      {
-        "title": "Rust-native წარმადობა",
-        "description": "ქვემილიწამიანი latency, zero-copy სადაც შესაძლებელია, და წარმოებისთვის მზად საიმედოობა პირველივე დღიდან.",
-        "icon": "cpu"
-      },
-      {
-        "title": "AI-first არქიტექტურა",
-        "description": "MCP protocol-native მიდგომა, 34 ხელსაწყო და 14 პროვაიდერი. აგენტები აქ უბრალოდ მომხმარებლები არ არიან, ისინი სისტემის პირველი კლასის მოქალაქეები არიან.",
-        "icon": "layers"
       }
     ]
   },
-  "fit": {
-    "title": "როგორ მუშაობს ერთად",
-    "description": "OpenPRX-ის სამი პროდუქტი ერთიან ოპერაციულ ციკლად ერთიანდება გუნდებისა და კოდირების აგენტებისთვის.",
-    "flowLabel": "Manage → Operate → Remember",
-    "manage": "მართვა",
-    "operate": "ოპერირება",
-    "remember": "დამახსოვრება",
-    "mcp": "MCP"
+  "pipeline": {
+    "title": "ერთი Pipeline. ხუთი ეტაპი.",
+    "subtitle": "Issue-ის შექმნიდან production-ის დაცვამდე — AI ამუშავებს ყველა ნაბიჯს.",
+    "stages": [
+      {
+        "name": "დაგეგმვა",
+        "product": "OpenPR",
+        "href": "/openpr",
+        "description": "AI-native პროექტის მართვა. Issue-ები ავტომატურად ნაწილდება კოდირების აგენტებზე MCP-ითა და webhook-ებით."
+      },
+      {
+        "name": "აზროვნება",
+        "product": "PRX",
+        "href": "/prx",
+        "description": "AI-ის ტვინი. მარშრუტიზაცია 14 პროვაიდერზე, დელეგირება sub-agent-ებზე, საკუთარი სტრატეგიების ევოლუცია."
+      },
+      {
+        "name": "აგება",
+        "product": "Webhook + Memory",
+        "href": "/prx-memory",
+        "description": "კოდირების აგენტების გაშვება. შედეგები იწერება უკან. ცოდნა ინარჩუნება სესიებს შორის."
+      },
+      {
+        "name": "გაგზავნა",
+        "product": "Fenfa",
+        "href": "/fenfa",
+        "description": "Build-ების დისტრიბუცია iOS, Android, macOS, Windows და Linux-ზე upload API-ით."
+      },
+      {
+        "name": "დაცვა",
+        "product": "WAF + SD",
+        "href": "/prx-waf",
+        "description": "17-ფაზიანი ვებ დაცვა. ML-ზე დაფუძნებული ანტივირუსი. ავტომატური კარანტინი და გამოსწორება."
+      }
+    ]
   },
   "getInvolved": {
     "title": "ჩაერთეთ პროექტში",

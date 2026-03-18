@@ -2,8 +2,8 @@
   "languageName": "中文",
   "meta": {
     "siteName": "OpenPRX",
-    "homeTitle": "OpenPRX | AI 原生开发基础设施",
-    "homeDescription": "由 Rust 构建的开源 AI 原生开发基础设施：OpenPR、PRX、prx-memory 与 wacli。",
+    "homeTitle": "OpenPRX | AI 自主软件工程基础设施",
+    "homeDescription": "AI 代理自主规划、编码、分发与防御软件的开源基础设施。由 Rust 构建。",
     "openprTitle": "OpenPR | OpenPRX",
     "openprDescription": "内置治理能力的开源项目管理平台。",
     "prxTitle": "PRX | OpenPRX",
@@ -24,7 +24,8 @@
     "memory": "prx-memory",
     "prxSd": "PRX-SD",
     "prxWaf": "PRX-WAF",
-    "fenfa": "Fenfa"
+    "fenfa": "Fenfa",
+    "docs": "文档"
   },
   "header": {
     "github": "GitHub",
@@ -32,38 +33,22 @@
     "theme": "主题"
   },
   "hero": {
-    "eyebrow": "开源基础设施",
-    "title": "AI 原生开发基础设施",
-    "subtitle": "开源构建，Rust 驱动。",
-    "description": "OpenPRX 为团队与编码代理提供具备治理能力的工具，覆盖项目管理、AI 编排与长期记忆。",
-    "githubCta": "查看 GitHub 组织",
-    "primaryCta": "浏览产品",
+    "eyebrow": "开源 · 由 Rust 构建",
+    "title": "AI 运行流水线，你制定规则。",
+    "subtitle": "面向 AI 自主软件工程的开源基础设施。",
+    "description": "OpenPRX 不是又一个编码助手。它是一条完整的流水线，AI 代理在其中自主规划工作、编写代码、分发构建、防御生产环境 -- 可治理、可审计、完全开源。",
+    "githubCta": "在 GitHub 上查看",
+    "primaryCta": "查看流水线",
     "stats": [
-      {
-        "value": "34",
-        "label": "MCP 工具",
-        "icon": "tools"
-      },
-      {
-        "value": "14",
-        "label": "AI 提供方",
-        "icon": "server"
-      },
-      {
-        "value": "19",
-        "label": "通信渠道",
-        "icon": "radio"
-      },
-      {
-        "value": "3",
-        "label": "协议（HTTP、stdio、SSE）",
-        "icon": "globe"
-      }
+      { "value": "19", "label": "消息渠道", "icon": "radio" },
+      { "value": "14", "label": "LLM 提供方", "icon": "brain" },
+      { "value": "34", "label": "MCP 工具", "icon": "tools" },
+      { "value": "38800", "label": "安全规则", "icon": "shield" }
     ]
   },
   "products": {
     "title": "产品",
-    "description": "面向 AI 原生研发落地的核心工具集。",
+    "description": "每个产品负责流水线的一个阶段。可单独使用，也可部署完整技术栈。",
     "techLabel": "技术栈",
     "items": [
       {
@@ -138,33 +123,60 @@
     ]
   },
   "why": {
-    "title": "为什么选择 OpenPRX",
+    "title": "不是又一个 Copilot",
     "items": [
       {
-        "title": "治理内建",
-        "description": "每条工作流都包含信任评分、评审门禁与策略控制。不是后期外挂，而是架构默认。",
+        "title": "自主执行，而非辅助输入",
+        "description": "编码助手帮你打字更快。OpenPRX 运行完整工作流 -- 从议题分派到代码修复再到部署 -- 无需等待人工按键。",
+        "icon": "zap"
+      },
+      {
+        "title": "自进化智能",
+        "description": "PRX 不只是调用 LLM。它跨 14 家提供方路由，使用 Elo 评分选择模型，并自主进化自身的提示词、记忆与策略。",
+        "icon": "dna"
+      },
+      {
+        "title": "治理即设计",
+        "description": "信任评分、提案投票、否决权、审批流程与五层安全策略。AI 在人类定义的边界内自主行动。",
         "icon": "scale"
-      },
-      {
-        "title": "Rust 原生性能",
-        "description": "亚毫秒级延迟，尽可能采用零拷贝，从第一天起面向生产可靠性。",
-        "icon": "cpu"
-      },
-      {
-        "title": "AI 优先架构",
-        "description": "原生支持 MCP 协议，34 个工具、14 家提供方。智能体不是「用户」，而是系统的一等公民。",
-        "icon": "layers"
       }
     ]
   },
-  "fit": {
-    "title": "它们如何协同工作",
-    "description": "OpenPRX 三个产品组成一条完整的运行闭环，服务团队与编码代理。",
-    "flowLabel": "Manage → Operate → Remember",
-    "manage": "管理",
-    "operate": "执行",
-    "remember": "记忆",
-    "mcp": "MCP"
+  "pipeline": {
+    "title": "一条流水线，五个阶段。",
+    "subtitle": "从议题创建到生产防御 -- AI 处理每一步。",
+    "stages": [
+      {
+        "name": "规划",
+        "product": "OpenPR",
+        "href": "/openpr",
+        "description": "AI 原生项目管理。议题通过 MCP 和 Webhook 自动分派给编码代理。"
+      },
+      {
+        "name": "思考",
+        "product": "PRX",
+        "href": "/prx",
+        "description": "AI 大脑。跨 14 家提供方路由，委托子代理，进化自身策略。"
+      },
+      {
+        "name": "构建",
+        "product": "Webhook + Memory",
+        "href": "/prx-memory",
+        "description": "调度编码代理。结果回写。知识跨会话持久保存。"
+      },
+      {
+        "name": "交付",
+        "product": "Fenfa",
+        "href": "/fenfa",
+        "description": "通过上传 API 将构建分发至 iOS、Android、macOS、Windows 和 Linux。"
+      },
+      {
+        "name": "防护",
+        "product": "WAF + SD",
+        "href": "/prx-waf",
+        "description": "17 阶段 Web 防御。ML 驱动的杀毒引擎。自动隔离与修复。"
+      }
+    ]
   },
   "getInvolved": {
     "title": "参与共建",

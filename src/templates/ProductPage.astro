@@ -37,12 +37,31 @@ const descByProduct: Record<string, string> = {
 const path = `/${product}`;
 const repoPath = page.repo.replace('https://github.com/', '');
 const starsBadge = `https://img.shields.io/github/stars/${repoPath}?style=for-the-badge&logo=github&label=${encodeURIComponent(dict.common.star)}&color=6366f1`;
+
+const stageIndexByProduct: Record<string, number> = {
+  openpr: 0, prx: 1, 'prx-memory': 2, 'prx-sd': 4, 'prx-waf': 4, fenfa: 3
+};
+const currentStageIndex = stageIndexByProduct[product] ?? -1;
+const stages = dict.pipeline.stages;
 ---
 
 <MainLayout title={titleByProduct[product]} description={descByProduct[product]} locale={locale} path={path}>
   <SiteHeader locale={locale} dict={dict} path={path} />
 
   <main class="container-shell pt-16 pb-12">
+    <nav class="pipeline-breadcrumb mb-6 reveal" aria-label="Pipeline position">
+      {stages.map((stage, i) => (
+        <>
+          {i === currentStageIndex ? (
+            <span class="pipeline-crumb pipeline-crumb-active">{stage.name}</span>
+          ) : (
+            <a href={localePath(locale, stage.href)} class="pipeline-crumb">{stage.name}</a>
+          )}
+          {i < stages.length - 1 && <span class="pipeline-crumb-sep" aria-hidden="true">&#8594;</span>}
+        </>
+      ))}
+    </nav>
+
     <section class="panel px-6 py-10 md:px-10 md:py-12 reveal">
       <p class="mono-pill text-xs uppercase tracking-[0.18em] text-[var(--brand-strong)]">{dict.meta.siteName}</p>
       <h1 class="section-title mt-4">{page.name}</h1>
@@ -334,5 +353,38 @@ const starsBadge = `https://img.shields.io/github/stars/${repoPath}?style=for-th
     .prx-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  .pipeline-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .pipeline-crumb {
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .pipeline-crumb:hover {
+    color: var(--text);
+    background: var(--bg-soft);
+  }
+
+  .pipeline-crumb-active {
+    background: color-mix(in oklab, var(--brand) 18%, transparent);
+    color: var(--brand-strong);
+    font-weight: 600;
+  }
+
+  .pipeline-crumb-sep {
+    font-size: 0.7rem;
+    color: var(--brand-strong);
+    opacity: 0.5;
   }
 </style>

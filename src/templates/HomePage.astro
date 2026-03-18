@@ -63,10 +63,33 @@ const productIcon: Record<string, string> = {
             >
               {dict.hero.githubCta}
             </a>
-            <a href="#products" class="glow rounded-md bg-[var(--brand)] px-4 py-2 text-sm font-semibold text-white">
+            <a href="#pipeline" class="glow rounded-md bg-[var(--brand)] px-4 py-2 text-sm font-semibold text-white">
               {dict.hero.primaryCta}
             </a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pipeline" class="container-shell pb-14 reveal">
+      <div class="panel p-6 md:p-8">
+        <h2 class="section-title">{dict.pipeline.title}</h2>
+        <p class="mt-2 text-[var(--text-dim)]">{dict.pipeline.subtitle}</p>
+
+        <div class="mt-8 pipeline-flow">
+          {dict.pipeline.stages.map((stage, i) => (
+            <>
+              <a href={localePath(locale, stage.href)} class="pipeline-stage">
+                <span class="pipeline-number">{String(i + 1).padStart(2, '0')}</span>
+                <h3 class="pipeline-stage-name">{stage.name}</h3>
+                <p class="pipeline-product">{stage.product}</p>
+                <p class="pipeline-desc">{stage.description}</p>
+              </a>
+              {i < dict.pipeline.stages.length - 1 && (
+                <span class="pipeline-arrow" aria-hidden="true">&#8594;</span>
+              )}
+            </>
+          ))}
         </div>
       </div>
     </section>
@@ -141,37 +164,6 @@ const productIcon: Record<string, string> = {
               <p class="mt-3 text-sm text-[var(--text-dim)]">{item.description}</p>
             </article>
           ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="container-shell pb-14 reveal">
-      <div class="panel p-6 md:p-8">
-        <h2 class="section-title">{dict.fit.title}</h2>
-        <p class="mt-3 max-w-3xl text-sm text-[var(--text-dim)]">{dict.fit.description}</p>
-        <p class="mt-5 text-sm text-[var(--brand-strong)]">{dict.fit.flowLabel}</p>
-
-        <div class="mt-6 architecture-map">
-          <article class="arch-node top-left">
-            <h3>{dict.nav.openpr}</h3>
-            <p>{dict.fit.manage}</p>
-          </article>
-
-          <article class="arch-node top-right">
-            <h3>{dict.nav.prx}</h3>
-            <p>{dict.fit.operate}</p>
-          </article>
-
-          <article class="arch-node bottom-center">
-            <h3>{dict.nav.memory}</h3>
-            <p>{dict.fit.remember}</p>
-          </article>
-
-          <span class="line line-horizontal" aria-hidden="true"></span>
-          <span class="line line-left-down" aria-hidden="true"></span>
-          <span class="line line-right-down" aria-hidden="true"></span>
-
-          <span class="line-label line-label-top">{dict.fit.mcp}</span>
         </div>
       </div>
     </section>
@@ -267,97 +259,73 @@ const productIcon: Record<string, string> = {
     display: none;
   }
 
-  .architecture-map {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-areas:
-      'left gap right'
-      'connector connector connector'
-      '. bottom .';
-    gap: 1.5rem;
-    align-items: center;
+  .pipeline-flow {
+    display: flex;
+    align-items: stretch;
+    gap: 0.5rem;
   }
 
-  .arch-node {
+  .pipeline-stage {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     border: 1px solid var(--border);
-    border-radius: 0.9rem;
-    background: color-mix(in oklab, var(--bg-soft) 92%, transparent);
+    border-radius: 0.85rem;
+    background: color-mix(in oklab, var(--bg-soft) 88%, transparent);
     padding: 1rem;
-    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, border-color 0.2s;
   }
 
-  .arch-node h3 {
-    margin: 0;
-    font-size: 1rem;
+  .pipeline-stage:hover {
+    transform: translateY(-2px);
+    border-color: var(--brand);
   }
 
-  .arch-node p {
-    margin: 0.4rem 0 0;
-    font-size: 0.83rem;
-    color: var(--text-dim);
+  .pipeline-number {
+    font-size: 0.7rem;
+    color: var(--brand-strong);
+    font-family: var(--font-mono, monospace);
+    letter-spacing: 0.08em;
   }
 
-  .top-left {
-    grid-area: left;
+  .pipeline-stage-name {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
   }
 
-  .top-right {
-    grid-area: right;
-  }
-
-  .bottom-center {
-    grid-area: bottom;
-  }
-
-  .line {
-    position: absolute;
-    background: color-mix(in oklab, var(--brand) 56%, var(--border));
-    pointer-events: none;
-  }
-
-  .line-horizontal {
-    top: calc(16.5% + 2.2rem);
-    left: 22%;
-    width: 56%;
-    height: 1px;
-  }
-
-  .line-left-down {
-    top: calc(16.5% + 2.2rem);
-    left: 33.5%;
-    width: 1px;
-    height: 39%;
-  }
-
-  .line-right-down {
-    top: calc(16.5% + 2.2rem);
-    right: 33.5%;
-    width: 1px;
-    height: 39%;
-  }
-
-  .line-label {
-    position: absolute;
-    top: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.74rem;
+  .pipeline-product {
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
     color: var(--brand-strong);
   }
 
+  .pipeline-desc {
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    line-height: 1.45;
+  }
+
+  .pipeline-arrow {
+    display: flex;
+    align-items: center;
+    color: var(--brand-strong);
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    opacity: 0.6;
+  }
+
   @media (max-width: 820px) {
-    .architecture-map {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        'left'
-        'right'
-        'bottom';
+    .pipeline-flow {
+      flex-direction: column;
     }
 
-    .line,
-    .line-label {
-      display: none;
+    .pipeline-arrow {
+      justify-content: center;
+      transform: rotate(90deg);
     }
   }
 </style>
