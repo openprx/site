@@ -10,7 +10,8 @@ export default defineConfig({
     starlight({
       title: 'Docs',
       logo: {
-        src: './src/assets/logo.svg'
+        dark: './src/assets/logo.svg',
+        light: './src/assets/logo-light.svg'
       },
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/openprx' }
