@@ -9,13 +9,22 @@
     "prxTitle": "PRX | OpenPRX",
     "prxDescription": "Self-evolving AI assistant framework in Rust.",
     "memoryTitle": "prx-memory | OpenPRX",
-    "memoryDescription": "Local-first MCP memory for coding agents."
+    "memoryDescription": "Local-first MCP memory for coding agents.",
+    "prxSdTitle": "PRX-SD | OpenPRX",
+    "prxSdDescription": "Open-source antivirus engine with multi-layered threat detection.",
+    "prxWafTitle": "PRX-WAF | OpenPRX",
+    "prxWafDescription": "High-performance Web Application Firewall built on Pingora.",
+    "fenfaTitle": "Fenfa | OpenPRX",
+    "fenfaDescription": "Self-hosted app distribution platform for all platforms."
   },
   "nav": {
     "home": "Home",
     "openpr": "OpenPR",
     "prx": "PRX",
-    "memory": "prx-memory"
+    "memory": "prx-memory",
+    "prxSd": "PRX-SD",
+    "prxWaf": "PRX-WAF",
+    "fenfa": "Fenfa"
   },
   "header": {
     "github": "GitHub",
@@ -98,6 +107,33 @@
         ],
         "tech": "Rust, MCP stdio/HTTP, lexical+vector retrieval",
         "repo": "https://github.com/openprx/prx-memory"
+      },
+      {
+        "id": "prx-sd",
+        "name": "PRX-SD",
+        "tagline": "Open-source antivirus engine",
+        "description": "Multi-layered threat detection with hash matching, YARA rules, and heuristic analysis.",
+        "highlights": ["Hash Matching", "YARA Rules", "Heuristic Analysis", "Real-time Monitor"],
+        "tech": "Rust, YARA, LMDB, Tauri + Vue 3",
+        "repo": "https://github.com/openprx/prx-sd"
+      },
+      {
+        "id": "prx-waf",
+        "name": "PRX-WAF",
+        "tagline": "High-performance Web Application Firewall",
+        "description": "Built on Cloudflare Pingora with OWASP CRS, GeoIP, bot detection, and 644+ rules.",
+        "highlights": ["Pingora", "OWASP CRS", "GeoIP", "Bot Detection"],
+        "tech": "Rust, Pingora, PostgreSQL, Vue 3",
+        "repo": "https://github.com/openprx/prx-waf"
+      },
+      {
+        "id": "fenfa",
+        "name": "Fenfa",
+        "tagline": "Self-hosted app distribution platform",
+        "description": "Deploy once, distribute to iOS, Android, macOS, Windows, and Linux.",
+        "highlights": ["Multi-Platform", "Self-Hosted", "OTA Updates", "REST API"],
+        "tech": "Go, Vue 3, SQLite",
+        "repo": "https://github.com/openprx/fenfa"
       }
     ]
   },
@@ -318,6 +354,96 @@
         "git clone https://github.com/openprx/prx-memory.git",
         "cd prx-memory",
         "cargo run --features http"
+      ]
+    },
+    "prx-sd": {
+      "name": "PRX-SD",
+      "tagline": "Open-source antivirus engine",
+      "description": "Multi-layered threat detection engine for files and directories.",
+      "tech": "Rust, YARA, LMDB, Tauri + Vue 3",
+      "language": "Rust",
+      "license": "Apache-2.0",
+      "features": [
+        {"icon": "hash", "title": "Hash Signature Matching", "description": "O(1) LMDB lookup against millions of SHA-256/MD5 hashes from MalwareBazaar, URLhaus, VirusShare, and more."},
+        {"icon": "rule", "title": "YARA Rule Engine", "description": "64+ built-in rules plus community rulesets from Neo23x0, Yara-Rules, ReversingLabs, ESET, and InQuest."},
+        {"icon": "entropy", "title": "Heuristic Analysis", "description": "PE/ELF/MachO-aware entropy, suspicious API, packer detection, and behavioral scoring."},
+        {"icon": "scan", "title": "Real-time Monitoring", "description": "Watch directories for new or modified files with automatic scanning."},
+        {"icon": "quarantine", "title": "Quarantine System", "description": "Isolate, list, and restore detected threats with a built-in quarantine vault."},
+        {"icon": "platform", "title": "Cross-Platform", "description": "Native support for Linux, macOS, and Windows with platform-specific detections."}
+      ],
+      "architecture": {
+        "input": "File Input → Magic Detection (PE/ELF/MachO/PDF/ZIP)",
+        "hash": "Hash Match",
+        "hashDesc": "LMDB O(1)",
+        "yara": "YARA Scan",
+        "yaraDesc": "Pattern Match",
+        "heuristic": "Heuristic",
+        "heuristicDesc": "Score ≥60",
+        "result": "Result: Clean / Suspicious / Malicious"
+      },
+      "repo": "https://github.com/openprx/prx-sd",
+      "quickStart": [
+        "curl -fsSL https://raw.githubusercontent.com/openprx/prx-sd/main/install.sh | bash",
+        "sd scan /path/to/check",
+        "sd monitor /home /tmp"
+      ]
+    },
+    "prx-waf": {
+      "name": "PRX-WAF",
+      "tagline": "High-performance Web Application Firewall",
+      "description": "Production-grade WAF built on Cloudflare's Pingora proxy framework.",
+      "tech": "Rust, Pingora, PostgreSQL, Vue 3",
+      "language": "Rust",
+      "license": "Apache-2.0",
+      "features": [
+        {"icon": "firewall", "title": "16-Phase Request Pipeline", "description": "Full request lifecycle processing from connection to logging, with early exit on block."},
+        {"icon": "rule", "title": "644+ Built-in Rules", "description": "OWASP CRS, custom YAML rules, ModSecurity compatibility, and JSON rule format."},
+        {"icon": "globe", "title": "GeoIP with ip2region", "description": "Country and region-level blocking and rate limiting with offline ip2region database."},
+        {"icon": "bot", "title": "Bot Detection", "description": "User-agent analysis, behavioral scoring, and crawler classification."},
+        {"icon": "rate-limit", "title": "Advanced Rate Limiting", "description": "Per-IP, per-route, and per-API-key rate limiting with sliding window counters."},
+        {"icon": "shield", "title": "API Security", "description": "JSON body inspection, parameter validation, and API-specific rule profiles."}
+      ],
+      "architecture": {
+        "client": "Client",
+        "proxy": "Pingora Proxy",
+        "backend": "Backend Server",
+        "engine": "WAF Engine (644+ Rules)",
+        "phases": "OWASP CRS | GeoIP | Bot | Rate Limit | API"
+      },
+      "repo": "https://github.com/openprx/prx-waf",
+      "quickStart": [
+        "git clone https://github.com/openprx/prx-waf.git",
+        "cd prx-waf",
+        "docker compose up -d"
+      ]
+    },
+    "fenfa": {
+      "name": "Fenfa",
+      "tagline": "Self-hosted app distribution platform",
+      "description": "Open-source alternative to Pgyer and TestFlight for distributing apps across all platforms.",
+      "tech": "Go, Vue 3, SQLite",
+      "language": "Go",
+      "license": "MIT",
+      "features": [
+        {"icon": "upload", "title": "Universal Upload", "description": "Upload IPA, APK, DMG, EXE, and Linux packages with automatic metadata extraction."},
+        {"icon": "platform", "title": "5-Platform Support", "description": "iOS, Android, macOS, Windows, and Linux with platform-specific install pages."},
+        {"icon": "download", "title": "OTA Distribution", "description": "iOS OTA install via manifest.plist, Android direct APK, desktop download pages."},
+        {"icon": "package", "title": "Version Management", "description": "Track versions, changelogs, and build numbers across all platforms."},
+        {"icon": "key", "title": "Access Control", "description": "Password-protected downloads and short-link sharing for teams."},
+        {"icon": "plug", "title": "REST API", "description": "Full API for CI/CD integration, automated uploads, and version queries."}
+      ],
+      "architecture": {
+        "upload": "Upload (IPA/APK/DMG/EXE/DEB)",
+        "processing": "Go Backend",
+        "processingDesc": "Metadata Extract · Version Track · Storage",
+        "distribution": "Distribution Pages",
+        "distributionDesc": "iOS OTA · Android APK · Desktop Download"
+      },
+      "repo": "https://github.com/openprx/fenfa",
+      "quickStart": [
+        "docker run -d -p 3000:3000 -v fenfa-data:/data ghcr.io/openprx/fenfa:latest",
+        "# Or build from source:",
+        "git clone https://github.com/openprx/fenfa.git && cd fenfa && make build"
       ]
     }
   }

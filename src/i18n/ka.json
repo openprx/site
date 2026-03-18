@@ -9,13 +9,22 @@
     "prxTitle": "PRX | OpenPRX",
     "prxDescription": "თვითევოლუციური AI ასისტენტის ფრეიმვორკი Rust-ზე.",
     "memoryTitle": "prx-memory | OpenPRX",
-    "memoryDescription": "local-first MCP memory კოდირების აგენტებისთვის."
+    "memoryDescription": "local-first MCP memory კოდირების აგენტებისთვის.",
+    "prxSdTitle": "PRX-SD | OpenPRX",
+    "prxSdDescription": "ღია ანტივირუსული ძრავა მრავალფენიანი საფრთხეების აღმოჩენით.",
+    "prxWafTitle": "PRX-WAF | OpenPRX",
+    "prxWafDescription": "მაღალი წარმადობის Web Application Firewall Pingora-ზე.",
+    "fenfaTitle": "Fenfa | OpenPRX",
+    "fenfaDescription": "თვითჰოსტინგის აპლიკაციების დისტრიბუციის პლატფორმა."
   },
   "nav": {
     "home": "მთავარი",
     "openpr": "OpenPR",
     "prx": "PRX",
-    "memory": "prx-memory"
+    "memory": "prx-memory",
+    "prxSd": "PRX-SD",
+    "prxWaf": "PRX-WAF",
+    "fenfa": "Fenfa"
   },
   "header": {
     "github": "GitHub",
@@ -98,6 +107,33 @@
         ],
         "tech": "Rust, MCP stdio/HTTP, lexical+vector retrieval",
         "repo": "https://github.com/openprx/prx-memory"
+      },
+      {
+        "id": "prx-sd",
+        "name": "PRX-SD",
+        "tagline": "ღია ანტივირუსული ძრავა",
+        "description": "მრავალფენიანი საფრთხეების აღმოჩენა hash matching-ით, YARA წესებითა და ჰეურისტიკული ანალიზით.",
+        "highlights": ["Hash Matching", "YARA Rules", "Heuristic Analysis", "Real-time Monitor"],
+        "tech": "Rust, YARA, LMDB, Tauri + Vue 3",
+        "repo": "https://github.com/openprx/prx-sd"
+      },
+      {
+        "id": "prx-waf",
+        "name": "PRX-WAF",
+        "tagline": "მაღალი წარმადობის Web Application Firewall",
+        "description": "აგებული Cloudflare Pingora-ზე, OWASP CRS, GeoIP, bot detection და 644+ წესი.",
+        "highlights": ["Pingora", "OWASP CRS", "GeoIP", "Bot Detection"],
+        "tech": "Rust, Pingora, PostgreSQL, Vue 3",
+        "repo": "https://github.com/openprx/prx-waf"
+      },
+      {
+        "id": "fenfa",
+        "name": "Fenfa",
+        "tagline": "თვითჰოსტინგის აპლიკაციების დისტრიბუცია",
+        "description": "ერთხელ გაშვება, დისტრიბუცია iOS, Android, macOS, Windows და Linux-ზე.",
+        "highlights": ["Multi-Platform", "Self-Hosted", "OTA Updates", "REST API"],
+        "tech": "Go, Vue 3, SQLite",
+        "repo": "https://github.com/openprx/fenfa"
       }
     ]
   },
@@ -318,6 +354,96 @@
         "git clone https://github.com/openprx/prx-memory.git",
         "cd prx-memory",
         "cargo run --features http"
+      ]
+    },
+    "prx-sd": {
+      "name": "PRX-SD",
+      "tagline": "ღია ანტივირუსული ძრავა",
+      "description": "მრავალფენიანი საფრთხეების აღმოჩენის ძრავა ფაილებისა და დირექტორიებისთვის.",
+      "tech": "Rust, YARA, LMDB, Tauri + Vue 3",
+      "language": "Rust",
+      "license": "Apache-2.0",
+      "features": [
+        {"icon": "hash", "title": "Hash Signature Matching", "description": "LMDB O(1) lookup მილიონობით SHA-256/MD5 hash-ზე MalwareBazaar, URLhaus, VirusShare-დან."},
+        {"icon": "rule", "title": "YARA Rule Engine", "description": "64+ ჩაშენებული წესი და საზოგადოების rule sets Neo23x0, Yara-Rules, ReversingLabs-დან."},
+        {"icon": "entropy", "title": "Heuristic Analysis", "description": "PE/ELF/MachO-aware ენტროპია, საეჭვო API, packer detection და ქცევის შეფასება."},
+        {"icon": "scan", "title": "Real-time Monitoring", "description": "დირექტორიების მონიტორინგი ახალი ან შეცვლილი ფაილებისთვის ავტომატური სკანირებით."},
+        {"icon": "quarantine", "title": "Quarantine System", "description": "აღმოჩენილი საფრთხეების იზოლაცია, სიის ნახვა და აღდგენა."},
+        {"icon": "platform", "title": "Cross-Platform", "description": "Linux, macOS და Windows-ის მხარდაჭერა პლატფორმა-სპეციფიკური detections-ით."}
+      ],
+      "architecture": {
+        "input": "File Input → Magic Detection (PE/ELF/MachO/PDF/ZIP)",
+        "hash": "Hash Match",
+        "hashDesc": "LMDB O(1)",
+        "yara": "YARA Scan",
+        "yaraDesc": "Pattern Match",
+        "heuristic": "Heuristic",
+        "heuristicDesc": "Score ≥60",
+        "result": "შედეგი: Clean / Suspicious / Malicious"
+      },
+      "repo": "https://github.com/openprx/prx-sd",
+      "quickStart": [
+        "curl -fsSL https://raw.githubusercontent.com/openprx/prx-sd/main/install.sh | bash",
+        "sd scan /path/to/check",
+        "sd monitor /home /tmp"
+      ]
+    },
+    "prx-waf": {
+      "name": "PRX-WAF",
+      "tagline": "მაღალი წარმადობის Web Application Firewall",
+      "description": "Production-grade WAF Cloudflare-ის Pingora proxy framework-ზე.",
+      "tech": "Rust, Pingora, PostgreSQL, Vue 3",
+      "language": "Rust",
+      "license": "Apache-2.0",
+      "features": [
+        {"icon": "firewall", "title": "16-Phase Request Pipeline", "description": "სრული request lifecycle processing კავშირიდან ლოგირებამდე."},
+        {"icon": "rule", "title": "644+ Built-in Rules", "description": "OWASP CRS, custom YAML rules, ModSecurity compatibility და JSON rule format."},
+        {"icon": "globe", "title": "GeoIP ip2region-ით", "description": "ქვეყნის და რეგიონის დონის ბლოკირება offline ip2region მონაცემთა ბაზით."},
+        {"icon": "bot", "title": "Bot Detection", "description": "User-agent ანალიზი, ქცევითი შეფასება და crawler კლასიფიკაცია."},
+        {"icon": "rate-limit", "title": "Advanced Rate Limiting", "description": "IP-ით, route-ით და API-key-ით rate limiting sliding window counters-ით."},
+        {"icon": "shield", "title": "API Security", "description": "JSON body inspection, parameter validation და API-specific rule profiles."}
+      ],
+      "architecture": {
+        "client": "კლიენტი",
+        "proxy": "Pingora Proxy",
+        "backend": "Backend Server",
+        "engine": "WAF Engine (644+ Rules)",
+        "phases": "OWASP CRS | GeoIP | Bot | Rate Limit | API"
+      },
+      "repo": "https://github.com/openprx/prx-waf",
+      "quickStart": [
+        "git clone https://github.com/openprx/prx-waf.git",
+        "cd prx-waf",
+        "docker compose up -d"
+      ]
+    },
+    "fenfa": {
+      "name": "Fenfa",
+      "tagline": "თვითჰოსტინგის აპლიკაციების დისტრიბუცია",
+      "description": "Pgyer-ისა და TestFlight-ის ღია ალტერნატივა ყველა პლატფორმაზე.",
+      "tech": "Go, Vue 3, SQLite",
+      "language": "Go",
+      "license": "MIT",
+      "features": [
+        {"icon": "upload", "title": "Universal Upload", "description": "IPA, APK, DMG, EXE და Linux packages ატვირთვა ავტომატური metadata extraction-ით."},
+        {"icon": "platform", "title": "5-Platform Support", "description": "iOS, Android, macOS, Windows და Linux პლატფორმა-სპეციფიკური install pages-ით."},
+        {"icon": "download", "title": "OTA Distribution", "description": "iOS OTA install manifest.plist-ით, Android direct APK, desktop download pages."},
+        {"icon": "package", "title": "Version Management", "description": "ვერსიების, changelogs-ისა და build numbers-ის tracking ყველა პლატფორმაზე."},
+        {"icon": "key", "title": "Access Control", "description": "პაროლით დაცული downloads და short-link sharing."},
+        {"icon": "plug", "title": "REST API", "description": "სრული API CI/CD ინტეგრაციისთვის, ავტომატური uploads და version queries."}
+      ],
+      "architecture": {
+        "upload": "Upload (IPA/APK/DMG/EXE/DEB)",
+        "processing": "Go Backend",
+        "processingDesc": "Metadata Extract · Version Track · Storage",
+        "distribution": "Distribution Pages",
+        "distributionDesc": "iOS OTA · Android APK · Desktop Download"
+      },
+      "repo": "https://github.com/openprx/fenfa",
+      "quickStart": [
+        "docker run -d -p 3000:3000 -v fenfa-data:/data ghcr.io/openprx/fenfa:latest",
+        "# Or build from source:",
+        "git clone https://github.com/openprx/fenfa.git && cd fenfa && make build"
       ]
     }
   }

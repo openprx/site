@@ -9,13 +9,22 @@
     "prxTitle": "PRX | OpenPRX",
     "prxDescription": "Самоэволюционирующий фреймворк AI-ассистентов на Rust.",
     "memoryTitle": "prx-memory | OpenPRX",
-    "memoryDescription": "Local-first MCP memory для кодовых агентов."
+    "memoryDescription": "Local-first MCP memory для кодовых агентов.",
+    "prxSdTitle": "PRX-SD | OpenPRX",
+    "prxSdDescription": "Открытый антивирусный движок с многоуровневым обнаружением угроз.",
+    "prxWafTitle": "PRX-WAF | OpenPRX",
+    "prxWafDescription": "Высокопроизводительный Web Application Firewall на базе Pingora.",
+    "fenfaTitle": "Fenfa | OpenPRX",
+    "fenfaDescription": "Self-hosted платформа дистрибуции приложений для всех платформ."
   },
   "nav": {
     "home": "Главная",
     "openpr": "OpenPR",
     "prx": "PRX",
-    "memory": "prx-memory"
+    "memory": "prx-memory",
+    "prxSd": "PRX-SD",
+    "prxWaf": "PRX-WAF",
+    "fenfa": "Fenfa"
   },
   "header": {
     "github": "GitHub",
@@ -98,6 +107,33 @@
         ],
         "tech": "Rust, MCP stdio/HTTP, lexical+vector retrieval",
         "repo": "https://github.com/openprx/prx-memory"
+      },
+      {
+        "id": "prx-sd",
+        "name": "PRX-SD",
+        "tagline": "Открытый антивирусный движок",
+        "description": "Многоуровневое обнаружение угроз: hash matching, YARA-правила и эвристический анализ.",
+        "highlights": ["Hash Matching", "YARA-правила", "Эвристика", "Мониторинг"],
+        "tech": "Rust, YARA, LMDB, Tauri + Vue 3",
+        "repo": "https://github.com/openprx/prx-sd"
+      },
+      {
+        "id": "prx-waf",
+        "name": "PRX-WAF",
+        "tagline": "Высокопроизводительный Web Application Firewall",
+        "description": "На базе Cloudflare Pingora с OWASP CRS, GeoIP, детекцией ботов и 644+ правилами.",
+        "highlights": ["Pingora", "OWASP CRS", "GeoIP", "Детекция ботов"],
+        "tech": "Rust, Pingora, PostgreSQL, Vue 3",
+        "repo": "https://github.com/openprx/prx-waf"
+      },
+      {
+        "id": "fenfa",
+        "name": "Fenfa",
+        "tagline": "Self-hosted платформа дистрибуции приложений",
+        "description": "Один деплой — дистрибуция на iOS, Android, macOS, Windows и Linux.",
+        "highlights": ["Мультиплатформа", "Self-Hosted", "OTA-обновления", "REST API"],
+        "tech": "Go, Vue 3, SQLite",
+        "repo": "https://github.com/openprx/fenfa"
       }
     ]
   },
@@ -318,6 +354,168 @@
         "git clone https://github.com/openprx/prx-memory.git",
         "cd prx-memory",
         "cargo run --features http"
+      ]
+    },
+    "prx-sd": {
+      "name": "PRX-SD",
+      "tagline": "Открытый антивирусный движок",
+      "description": "Многоуровневый движок обнаружения угроз для файлов и директорий.",
+      "tech": "Rust, YARA, LMDB, Tauri + Vue 3",
+      "language": "Rust",
+      "license": "Apache-2.0",
+      "features": [
+        {
+          "icon": "hash",
+          "title": "Сигнатурное сопоставление хешей",
+          "description": "O(1) поиск в LMDB по миллионам SHA-256/MD5 хешей из MalwareBazaar, URLhaus, VirusShare."
+        },
+        {
+          "icon": "rule",
+          "title": "Движок YARA-правил",
+          "description": "64+ встроенных правил и наборы сообщества от Neo23x0, Yara-Rules, ReversingLabs, ESET, InQuest."
+        },
+        {
+          "icon": "entropy",
+          "title": "Эвристический анализ",
+          "description": "PE/ELF/MachO-ориентированная энтропия, подозрительные API, детекция упаковщиков и поведенческий скоринг."
+        },
+        {
+          "icon": "scan",
+          "title": "Мониторинг в реальном времени",
+          "description": "Отслеживание директорий на предмет новых или измененных файлов с автоматическим сканированием."
+        },
+        {
+          "icon": "quarantine",
+          "title": "Система карантина",
+          "description": "Изоляция, просмотр и восстановление обнаруженных угроз."
+        },
+        {
+          "icon": "platform",
+          "title": "Кроссплатформенность",
+          "description": "Нативная поддержка Linux, macOS и Windows с платформо-специфичными детекциями."
+        }
+      ],
+      "architecture": {
+        "input": "Вход файла → Magic Detection (PE/ELF/MachO/PDF/ZIP)",
+        "hash": "Hash Match",
+        "hashDesc": "LMDB O(1)",
+        "yara": "YARA Scan",
+        "yaraDesc": "Pattern Match",
+        "heuristic": "Эвристика",
+        "heuristicDesc": "Score ≥60",
+        "result": "Результат: Clean / Suspicious / Malicious"
+      },
+      "repo": "https://github.com/openprx/prx-sd",
+      "quickStart": [
+        "curl -fsSL https://raw.githubusercontent.com/openprx/prx-sd/main/install.sh | bash",
+        "sd scan /path/to/check",
+        "sd monitor /home /tmp"
+      ]
+    },
+    "prx-waf": {
+      "name": "PRX-WAF",
+      "tagline": "Высокопроизводительный Web Application Firewall",
+      "description": "Production-grade WAF на базе Cloudflare Pingora proxy framework.",
+      "tech": "Rust, Pingora, PostgreSQL, Vue 3",
+      "language": "Rust",
+      "license": "Apache-2.0",
+      "features": [
+        {
+          "icon": "firewall",
+          "title": "16-фазный конвейер запросов",
+          "description": "Полная обработка жизненного цикла запроса от подключения до логирования."
+        },
+        {
+          "icon": "rule",
+          "title": "644+ встроенных правил",
+          "description": "OWASP CRS, пользовательские YAML-правила, совместимость с ModSecurity и JSON-формат."
+        },
+        {
+          "icon": "globe",
+          "title": "GeoIP с ip2region",
+          "description": "Блокировка на уровне стран и регионов с оффлайн базой ip2region."
+        },
+        {
+          "icon": "bot",
+          "title": "Детекция ботов",
+          "description": "Анализ User-Agent, поведенческий скоринг и классификация краулеров."
+        },
+        {
+          "icon": "rate-limit",
+          "title": "Продвинутый Rate Limiting",
+          "description": "Rate limiting по IP, маршруту и API-ключу с sliding window."
+        },
+        {
+          "icon": "shield",
+          "title": "API Security",
+          "description": "Инспекция JSON body, валидация параметров и API-профили правил."
+        }
+      ],
+      "architecture": {
+        "client": "Клиент",
+        "proxy": "Pingora Proxy",
+        "backend": "Backend-сервер",
+        "engine": "WAF Engine (644+ правил)",
+        "phases": "OWASP CRS | GeoIP | Bot | Rate Limit | API"
+      },
+      "repo": "https://github.com/openprx/prx-waf",
+      "quickStart": [
+        "git clone https://github.com/openprx/prx-waf.git",
+        "cd prx-waf",
+        "docker compose up -d"
+      ]
+    },
+    "fenfa": {
+      "name": "Fenfa",
+      "tagline": "Self-hosted платформа дистрибуции приложений",
+      "description": "Открытая альтернатива Pgyer и TestFlight для дистрибуции на все платформы.",
+      "tech": "Go, Vue 3, SQLite",
+      "language": "Go",
+      "license": "MIT",
+      "features": [
+        {
+          "icon": "upload",
+          "title": "Универсальная загрузка",
+          "description": "Загрузка IPA, APK, DMG, EXE и Linux-пакетов с автоматическим извлечением метаданных."
+        },
+        {
+          "icon": "platform",
+          "title": "5 платформ",
+          "description": "iOS, Android, macOS, Windows и Linux с платформо-специфичными страницами установки."
+        },
+        {
+          "icon": "download",
+          "title": "OTA-дистрибуция",
+          "description": "iOS OTA через manifest.plist, Android — прямой APK, десктоп — страницы загрузки."
+        },
+        {
+          "icon": "package",
+          "title": "Управление версиями",
+          "description": "Отслеживание версий, changelog и номеров сборок по всем платформам."
+        },
+        {
+          "icon": "key",
+          "title": "Контроль доступа",
+          "description": "Загрузки с паролем и sharing через короткие ссылки."
+        },
+        {
+          "icon": "plug",
+          "title": "REST API",
+          "description": "Полное API для CI/CD интеграции, автозагрузки и запросов версий."
+        }
+      ],
+      "architecture": {
+        "upload": "Загрузка (IPA/APK/DMG/EXE/DEB)",
+        "processing": "Go Backend",
+        "processingDesc": "Извлечение метаданных · Версионирование · Хранение",
+        "distribution": "Страницы дистрибуции",
+        "distributionDesc": "iOS OTA · Android APK · Desktop Download"
+      },
+      "repo": "https://github.com/openprx/fenfa",
+      "quickStart": [
+        "docker run -d -p 3000:3000 -v fenfa-data:/data ghcr.io/openprx/fenfa:latest",
+        "# Или сборка из исходников:",
+        "git clone https://github.com/openprx/fenfa.git && cd fenfa && make build"
       ]
     }
   }

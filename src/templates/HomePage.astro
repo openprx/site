@@ -11,12 +11,15 @@ interface Props {
 
 const { locale } = Astro.props;
 const dict = getDictionary(locale);
-const detailPages = new Set(['openpr', 'prx', 'prx-memory']);
+const detailPages = new Set(['openpr', 'prx', 'prx-memory', 'prx-sd', 'prx-waf', 'fenfa']);
 
 const productIcon: Record<string, string> = {
   openpr: 'OPR',
   prx: 'PRX',
   'prx-memory': 'MEM',
+  'prx-sd': 'AV',
+  'prx-waf': 'WAF',
+  fenfa: 'FEN',
 };
 ---
 

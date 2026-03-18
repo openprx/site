@@ -7,24 +7,31 @@ import { getDictionary, localePath, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
-  product: 'openpr' | 'prx' | 'prx-memory';
+  product: 'openpr' | 'prx' | 'prx-memory' | 'prx-sd' | 'prx-waf' | 'fenfa';
 }
 
 const { locale, product } = Astro.props;
 const dict = getDictionary(locale);
 const page = dict.pages[product];
+const arch = page.architecture as Record<string, string>;
 const related = dict.products.items.filter((item) => item.id !== product);
 
-const titleByProduct = {
+const titleByProduct: Record<string, string> = {
   openpr: dict.meta.openprTitle,
   prx: dict.meta.prxTitle,
-  'prx-memory': dict.meta.memoryTitle
+  'prx-memory': dict.meta.memoryTitle,
+  'prx-sd': dict.meta.prxSdTitle,
+  'prx-waf': dict.meta.prxWafTitle,
+  fenfa: dict.meta.fenfaTitle
 };
 
-const descByProduct = {
+const descByProduct: Record<string, string> = {
   openpr: dict.meta.openprDescription,
   prx: dict.meta.prxDescription,
-  'prx-memory': dict.meta.memoryDescription
+  'prx-memory': dict.meta.memoryDescription,
+  'prx-sd': dict.meta.prxSdDescription,
+  'prx-waf': dict.meta.prxWafDescription,
+  fenfa: dict.meta.fenfaDescription
 };
 
 const path = `/${product}`;
@@ -87,20 +94,20 @@ const starsBadge = `https://img.shields.io/github/stars/${repoPath}?style=for-th
       {product === 'openpr' && (
         <div class="mt-5 architecture-shell">
           <div class="flow-row flow-row-top">
-            <div class="arch-box">{page.architecture.browser}</div>
+            <div class="arch-box">{arch.browser}</div>
             <span class="flow-arrow">→</span>
-            <div class="arch-box">{page.architecture.frontend}</div>
+            <div class="arch-box">{arch.frontend}</div>
             <span class="flow-arrow">→</span>
-            <div class="arch-box">{page.architecture.api}</div>
+            <div class="arch-box">{arch.api}</div>
             <span class="flow-arrow">→</span>
-            <div class="arch-box">{page.architecture.database}</div>
+            <div class="arch-box">{arch.database}</div>
           </div>
 
           <div class="flow-column">
             <span class="flow-arrow">↕</span>
             <div class="arch-box arch-box-wide">
-              <strong>{page.architecture.mcp}</strong>
-              <p>{page.architecture.transports}</p>
+              <strong>{arch.mcp}</strong>
+              <p>{arch.transports}</p>
             </div>
           </div>
         </div>
@@ -110,21 +117,21 @@ const starsBadge = `https://img.shields.io/github/stars/${repoPath}?style=for-th
         <div class="mt-5 architecture-shell">
           <div class="prx-grid">
             <article class="arch-box left-align">
-              <h3>{page.architecture.channelsTitle}</h3>
-              <p>{page.architecture.channelsList}</p>
+              <h3>{arch.channelsTitle}</h3>
+              <p>{arch.channelsList}</p>
             </article>
             <article class="arch-box left-align">
-              <h3>{page.architecture.providersTitle}</h3>
-              <p>{page.architecture.providersList}</p>
+              <h3>{arch.providersTitle}</h3>
+              <p>{arch.providersList}</p>
             </article>
           </div>
 
           <div class="flow-column">
             <span class="flow-arrow">↓</span>
             <article class="arch-box arch-box-wide">
-              <h3>{page.architecture.coreTitle}</h3>
-              <p>{page.architecture.coreLineOne}</p>
-              <p>{page.architecture.coreLineTwo}</p>
+              <h3>{arch.coreTitle}</h3>
+              <p>{arch.coreLineOne}</p>
+              <p>{arch.coreLineTwo}</p>
             </article>
           </div>
         </div>
@@ -133,17 +140,74 @@ const starsBadge = `https://img.shields.io/github/stars/${repoPath}?style=for-th
       {product === 'prx-memory' && (
         <div class="mt-5 architecture-shell flow-column">
           <article class="arch-box arch-box-wide">
-            <h3>{page.architecture.agents}</h3>
+            <h3>{arch.agents}</h3>
           </article>
-          <span class="flow-arrow">↓ {page.architecture.mcp}</span>
+          <span class="flow-arrow">↓ {arch.mcp}</span>
           <article class="arch-box arch-box-wide">
-            <h3>{page.architecture.coreTitle}</h3>
-            <p>{page.architecture.coreLineOne}</p>
-            <p>{page.architecture.coreLineTwo}</p>
+            <h3>{arch.coreTitle}</h3>
+            <p>{arch.coreLineOne}</p>
+            <p>{arch.coreLineTwo}</p>
           </article>
           <span class="flow-arrow">↓</span>
           <article class="arch-box arch-box-wide">
-            <h3>{page.architecture.storage}</h3>
+            <h3>{arch.storage}</h3>
+          </article>
+        </div>
+      )}
+
+      {product === 'prx-sd' && (
+        <div class="mt-5 architecture-shell flow-column">
+          <article class="arch-box arch-box-wide">
+            <h3>{arch.input}</h3>
+          </article>
+          <span class="flow-arrow">↓</span>
+          <div class="flow-row">
+            <div class="arch-box"><h3>{arch.hash}</h3><p>{arch.hashDesc}</p></div>
+            <span class="flow-arrow">→</span>
+            <div class="arch-box"><h3>{arch.yara}</h3><p>{arch.yaraDesc}</p></div>
+            <span class="flow-arrow">→</span>
+            <div class="arch-box"><h3>{arch.heuristic}</h3><p>{arch.heuristicDesc}</p></div>
+          </div>
+          <span class="flow-arrow">↓</span>
+          <article class="arch-box arch-box-wide">
+            <h3>{arch.result}</h3>
+          </article>
+        </div>
+      )}
+
+      {product === 'prx-waf' && (
+        <div class="mt-5 architecture-shell">
+          <div class="flow-row flow-row-top">
+            <div class="arch-box">{arch.client}</div>
+            <span class="flow-arrow">→</span>
+            <div class="arch-box">{arch.proxy}</div>
+            <span class="flow-arrow">→</span>
+            <div class="arch-box">{arch.backend}</div>
+          </div>
+          <div class="flow-column">
+            <span class="flow-arrow">↕</span>
+            <article class="arch-box arch-box-wide">
+              <strong>{arch.engine}</strong>
+              <p>{arch.phases}</p>
+            </article>
+          </div>
+        </div>
+      )}
+
+      {product === 'fenfa' && (
+        <div class="mt-5 architecture-shell flow-column">
+          <article class="arch-box arch-box-wide">
+            <h3>{arch.upload}</h3>
+          </article>
+          <span class="flow-arrow">↓</span>
+          <article class="arch-box arch-box-wide">
+            <h3>{arch.processing}</h3>
+            <p>{arch.processingDesc}</p>
+          </article>
+          <span class="flow-arrow">↓</span>
+          <article class="arch-box arch-box-wide">
+            <h3>{arch.distribution}</h3>
+            <p>{arch.distributionDesc}</p>
           </article>
         </div>
       )}

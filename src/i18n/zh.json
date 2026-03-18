@@ -9,13 +9,22 @@
     "prxTitle": "PRX | OpenPRX",
     "prxDescription": "可自进化的 Rust AI 助手框架。",
     "memoryTitle": "prx-memory | OpenPRX",
-    "memoryDescription": "面向编码代理的本地优先 MCP 记忆组件。"
+    "memoryDescription": "面向编码代理的本地优先 MCP 记忆组件。",
+    "prxSdTitle": "PRX-SD | OpenPRX",
+    "prxSdDescription": "多层威胁检测的开源杀毒引擎。",
+    "prxWafTitle": "PRX-WAF | OpenPRX",
+    "prxWafDescription": "基于 Pingora 的高性能 Web 应用防火墙。",
+    "fenfaTitle": "Fenfa | OpenPRX",
+    "fenfaDescription": "全平台自托管应用分发平台。"
   },
   "nav": {
     "home": "首页",
     "openpr": "OpenPR",
     "prx": "PRX",
-    "memory": "prx-memory"
+    "memory": "prx-memory",
+    "prxSd": "PRX-SD",
+    "prxWaf": "PRX-WAF",
+    "fenfa": "Fenfa"
   },
   "header": {
     "github": "GitHub",
@@ -98,6 +107,33 @@
         ],
         "tech": "Rust、MCP stdio/HTTP、词法+向量检索",
         "repo": "https://github.com/openprx/prx-memory"
+      },
+      {
+        "id": "prx-sd",
+        "name": "PRX-SD",
+        "tagline": "开源杀毒引擎",
+        "description": "集哈希匹配、YARA 规则与启发式分析于一体的多层威胁检测。",
+        "highlights": ["哈希匹配", "YARA 规则", "启发式分析", "实时监控"],
+        "tech": "Rust、YARA、LMDB、Tauri + Vue 3",
+        "repo": "https://github.com/openprx/prx-sd"
+      },
+      {
+        "id": "prx-waf",
+        "name": "PRX-WAF",
+        "tagline": "高性能 Web 应用防火墙",
+        "description": "基于 Cloudflare Pingora 构建，内置 OWASP CRS、GeoIP、Bot 检测与 644+ 条规则。",
+        "highlights": ["Pingora", "OWASP CRS", "GeoIP", "Bot 检测"],
+        "tech": "Rust、Pingora、PostgreSQL、Vue 3",
+        "repo": "https://github.com/openprx/prx-waf"
+      },
+      {
+        "id": "fenfa",
+        "name": "Fenfa",
+        "tagline": "自托管应用分发平台",
+        "description": "一次部署，分发至 iOS、Android、macOS、Windows 和 Linux。",
+        "highlights": ["全平台", "自托管", "OTA 更新", "REST API"],
+        "tech": "Go、Vue 3、SQLite",
+        "repo": "https://github.com/openprx/fenfa"
       }
     ]
   },
@@ -116,7 +152,7 @@
       },
       {
         "title": "AI 优先架构",
-        "description": "原生支持 MCP 协议，34 个工具、14 家提供方。智能体不是“用户”，而是系统的一等公民。",
+        "description": "原生支持 MCP 协议，34 个工具、14 家提供方。智能体不是「用户」，而是系统的一等公民。",
         "icon": "layers"
       }
     ]
@@ -318,6 +354,168 @@
         "git clone https://github.com/openprx/prx-memory.git",
         "cd prx-memory",
         "cargo run --features http"
+      ]
+    },
+    "prx-sd": {
+      "name": "PRX-SD",
+      "tagline": "开源杀毒引擎",
+      "description": "面向文件与目录的多层威胁检测引擎。",
+      "tech": "Rust、YARA、LMDB、Tauri + Vue 3",
+      "language": "Rust",
+      "license": "Apache-2.0",
+      "features": [
+        {
+          "icon": "hash",
+          "title": "哈希签名匹配",
+          "description": "通过 LMDB 对百万级 SHA-256/MD5 哈希进行 O(1) 查找，数据来源包括 MalwareBazaar、URLhaus、VirusShare 等。"
+        },
+        {
+          "icon": "rule",
+          "title": "YARA 规则引擎",
+          "description": "内置 64+ 条规则，同时集成 Neo23x0、Yara-Rules、ReversingLabs、ESET、InQuest 等社区规则集。"
+        },
+        {
+          "icon": "entropy",
+          "title": "启发式分析",
+          "description": "PE/ELF/MachO 感知的熵值分析、可疑 API 检测、加壳识别与行为评分。"
+        },
+        {
+          "icon": "scan",
+          "title": "实时监控",
+          "description": "监控目录中的新增或修改文件，自动触发扫描。"
+        },
+        {
+          "icon": "quarantine",
+          "title": "隔离系统",
+          "description": "内置隔离区，支持威胁隔离、列表查看与恢复操作。"
+        },
+        {
+          "icon": "platform",
+          "title": "跨平台",
+          "description": "原生支持 Linux、macOS 和 Windows，含平台特定检测逻辑。"
+        }
+      ],
+      "architecture": {
+        "input": "文件输入 → 魔数识别（PE/ELF/MachO/PDF/ZIP）",
+        "hash": "哈希匹配",
+        "hashDesc": "LMDB O(1)",
+        "yara": "YARA 扫描",
+        "yaraDesc": "模式匹配",
+        "heuristic": "启发式",
+        "heuristicDesc": "评分 ≥60",
+        "result": "结果: 安全 / 可疑 / 恶意"
+      },
+      "repo": "https://github.com/openprx/prx-sd",
+      "quickStart": [
+        "curl -fsSL https://raw.githubusercontent.com/openprx/prx-sd/main/install.sh | bash",
+        "sd scan /path/to/check",
+        "sd monitor /home /tmp"
+      ]
+    },
+    "prx-waf": {
+      "name": "PRX-WAF",
+      "tagline": "高性能 Web 应用防火墙",
+      "description": "基于 Cloudflare Pingora 代理框架的生产级 WAF。",
+      "tech": "Rust、Pingora、PostgreSQL、Vue 3",
+      "language": "Rust",
+      "license": "Apache-2.0",
+      "features": [
+        {
+          "icon": "firewall",
+          "title": "16 阶段请求管线",
+          "description": "从连接到日志记录的完整请求生命周期处理，命中即终止。"
+        },
+        {
+          "icon": "rule",
+          "title": "644+ 条内置规则",
+          "description": "OWASP CRS、自定义 YAML 规则、ModSecurity 兼容格式与 JSON 规则。"
+        },
+        {
+          "icon": "globe",
+          "title": "GeoIP + ip2region",
+          "description": "基于离线 ip2region 数据库的国家和地区级阻断与限速。"
+        },
+        {
+          "icon": "bot",
+          "title": "Bot 检测",
+          "description": "User-Agent 分析、行为评分与爬虫分类。"
+        },
+        {
+          "icon": "rate-limit",
+          "title": "高级限速",
+          "description": "按 IP、路由、API Key 的滑动窗口限速。"
+        },
+        {
+          "icon": "shield",
+          "title": "API 安全",
+          "description": "JSON 请求体检查、参数验证与 API 专属规则。"
+        }
+      ],
+      "architecture": {
+        "client": "客户端",
+        "proxy": "Pingora 代理",
+        "backend": "后端服务",
+        "engine": "WAF 引擎（644+ 规则）",
+        "phases": "OWASP CRS | GeoIP | Bot | 限速 | API"
+      },
+      "repo": "https://github.com/openprx/prx-waf",
+      "quickStart": [
+        "git clone https://github.com/openprx/prx-waf.git",
+        "cd prx-waf",
+        "docker compose up -d"
+      ]
+    },
+    "fenfa": {
+      "name": "Fenfa",
+      "tagline": "自托管应用分发平台",
+      "description": "Pgyer 与 TestFlight 的开源替代方案，支持全平台应用分发。",
+      "tech": "Go、Vue 3、SQLite",
+      "language": "Go",
+      "license": "MIT",
+      "features": [
+        {
+          "icon": "upload",
+          "title": "通用上传",
+          "description": "支持 IPA、APK、DMG、EXE 及 Linux 包上传，自动提取元数据。"
+        },
+        {
+          "icon": "platform",
+          "title": "五平台支持",
+          "description": "iOS、Android、macOS、Windows、Linux，各平台独立安装页面。"
+        },
+        {
+          "icon": "download",
+          "title": "OTA 分发",
+          "description": "iOS OTA 通过 manifest.plist 安装，Android 直接 APK，桌面下载页。"
+        },
+        {
+          "icon": "package",
+          "title": "版本管理",
+          "description": "跨平台跟踪版本号、变更日志与构建号。"
+        },
+        {
+          "icon": "key",
+          "title": "访问控制",
+          "description": "密码保护下载与短链接分享。"
+        },
+        {
+          "icon": "plug",
+          "title": "REST API",
+          "description": "完整 API 支持 CI/CD 集成、自动上传与版本查询。"
+        }
+      ],
+      "architecture": {
+        "upload": "上传（IPA/APK/DMG/EXE/DEB）",
+        "processing": "Go 后端",
+        "processingDesc": "元数据提取 · 版本追踪 · 存储",
+        "distribution": "分发页面",
+        "distributionDesc": "iOS OTA · Android APK · 桌面下载"
+      },
+      "repo": "https://github.com/openprx/fenfa",
+      "quickStart": [
+        "docker run -d -p 3000:3000 -v fenfa-data:/data ghcr.io/openprx/fenfa:latest",
+        "# 或从源码构建：",
+        "git clone https://github.com/openprx/fenfa.git && cd fenfa && make build"
       ]
     }
   }
