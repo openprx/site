@@ -1,0 +1,31 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { getDictionary } from '../i18n';
+
+const locale = 'en';
+const dict = getDictionary(locale);
+---
+
+<MainLayout title="404 - Page Not Found" description="The page you are looking for does not exist." locale={locale} path="/404">
+  <SiteHeader locale={locale} dict={dict} path="/404" />
+
+  <main>
+    <section class="container-shell pt-16 pb-14">
+      <div class="panel px-6 py-10 md:px-10 md:py-14 text-center">
+        <p class="mono-pill text-8xl font-bold text-[var(--brand-strong)]">404</p>
+        <h1 class="mt-6 section-title">Page Not Found</h1>
+        <p class="mt-4 text-[var(--text-dim)]">The page you are looking for does not exist or has been moved.</p>
+        <a
+          href="/"
+          class="mt-8 inline-flex glow rounded-md bg-[var(--brand)] px-5 py-2.5 text-sm font-semibold text-white"
+        >
+          Back to Home
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <SiteFooter locale={locale} dict={dict} path="/404" />
+</MainLayout>
