@@ -1,5 +1,5 @@
 #:schema node_modules/wrangler/config-schema.json
-name = "openprx-site"
+name = "openprx"
 compatibility_date = "2025-04-01"
 
 [assets]
