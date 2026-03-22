@@ -21,11 +21,13 @@
     "home": "首页",
     "openpr": "OpenPR",
     "prx": "PRX",
-    "memory": "prx-memory",
+    "memory": "PRX-Memory",
     "prxSd": "PRX-SD",
     "prxWaf": "PRX-WAF",
     "fenfa": "Fenfa",
-    "docs": "文档"
+    "docs": "文档",
+    "products": "产品",
+    "community": "社区"
   },
   "header": {
     "github": "GitHub",
@@ -33,17 +35,16 @@
     "theme": "主题"
   },
   "hero": {
-    "eyebrow": "开源 · 由 Rust 构建",
-    "title": "AI 运行流水线，你制定规则。",
-    "subtitle": "面向 AI 自主软件工程的开源基础设施。",
-    "description": "OpenPRX 不是又一个编码助手。它是一条完整的流水线，AI 代理在其中自主规划工作、编写代码、分发构建、防御生产环境 -- 可治理、可审计、完全开源。",
+    "eyebrow": "开源 · Rust 构建",
+    "title": "AI 时代的开放基础设施。",
+    "subtitle": "我们构建开源工具，让 AI 智能体自主工作——连接、防御、进化和分发。",
+    "description": "从项目规划到威胁检测，每个环节都由专用工具完成——可治理、可审计、完全透明。",
     "githubCta": "在 GitHub 上查看",
     "primaryCta": "查看流水线",
-    "stats": [
-      { "value": "19", "label": "消息渠道", "icon": "radio" },
-      { "value": "14", "label": "LLM 提供方", "icon": "brain" },
-      { "value": "34", "label": "MCP 工具", "icon": "tools" },
-      { "value": "38800", "label": "安全规则", "icon": "shield" }
+    "valuePills": [
+      { "label": "完全开源", "icon": "unlock" },
+      { "label": "AI 驱动自动化", "icon": "zap" },
+      { "label": "企业级安全", "icon": "shield" }
     ]
   },
   "products": {
@@ -54,90 +55,75 @@
       {
         "id": "openpr",
         "name": "OpenPR",
-        "tagline": "内置治理能力的开源项目管理",
-        "description": "提供议题、看板、迭代与治理流程的一体化协作平台。",
-        "highlights": [
-          "治理",
-          "看板",
-          "MCP 服务",
-          "SvelteKit"
-        ],
+        "tagline": "团队共同决策的项目管理",
+        "description": "规划工作、追踪议题，通过内置的提案、投票与信任评分做出团队决策。",
+        "highlights": ["团队治理", "迭代规划", "AI 集成", "提案投票"],
         "tech": "Rust、SvelteKit、PostgreSQL",
         "repo": "https://github.com/openprx/openpr"
       },
       {
         "id": "prx",
         "name": "PRX",
-        "tagline": "可自进化的 AI 助手框架",
-        "description": "基于 Rust 的助手运行时，支持多模型提供方与受治理子代理。",
-        "highlights": [
-          "14 个提供方",
-          "19 个渠道",
-          "自进化",
-          "OAuth"
-        ],
+        "tagline": "越用越聪明的 AI 助手",
+        "description": "对接任意聊天平台，自动选择最优 AI 模型，并持续进化自身策略。",
+        "highlights": ["多平台", "自进化", "任意模型", "可扩展"],
         "tech": "Rust 核心、MCP 客户端、多提供方运行时",
         "repo": "https://github.com/openprx/prx"
       },
       {
         "id": "prx-memory",
-        "name": "prx-memory",
-        "tagline": "面向编码代理的本地优先 MCP 记忆",
-        "description": "可持久化的记忆工具链，支持存储、检索与治理代理知识。",
-        "highlights": [
-          "MCP 原生",
-          "本地优先",
-          "进化支持",
-          "Codex/Claude"
-        ],
+        "name": "PRX-Memory",
+        "tagline": "让 AI 工具拥有长期记忆",
+        "description": "你的 AI 编码工具能记住学到的知识——跨会话、跨项目、跨团队。",
+        "highlights": ["持久记忆", "本地优先", "任意 AI 兼容", "智能召回"],
         "tech": "Rust、MCP stdio/HTTP、词法+向量检索",
         "repo": "https://github.com/openprx/prx-memory"
       },
       {
         "id": "prx-sd",
         "name": "PRX-SD",
-        "tagline": "开源杀毒引擎",
-        "description": "集哈希匹配、YARA 规则与启发式分析于一体的多层威胁检测。",
-        "highlights": ["哈希匹配", "YARA 规则", "启发式分析", "实时监控"],
+        "tagline": "服务器与桌面的开源杀毒",
+        "description": "扫描文件、检测恶意软件、隔离威胁——借助社区共享的威胁情报。",
+        "highlights": ["恶意软件检测", "实时监控", "自动隔离", "跨平台"],
         "tech": "Rust、YARA、LMDB、Tauri + Vue 3",
         "repo": "https://github.com/openprx/prx-sd"
       },
       {
         "id": "prx-waf",
         "name": "PRX-WAF",
-        "tagline": "高性能 Web 应用防火墙",
-        "description": "基于 Cloudflare Pingora 构建，内置 OWASP CRS、GeoIP、Bot 检测与 644+ 条规则。",
-        "highlights": ["Pingora", "OWASP CRS", "GeoIP", "Bot 检测"],
+        "tagline": "守护你的网站免受攻击",
+        "description": "拦截恶意流量、阻止机器人、保护 API——使用社区驱动的规则，自动更新。",
+        "highlights": ["攻击拦截", "Bot 检测", "地域过滤", "API 防护"],
         "tech": "Rust、Pingora、PostgreSQL、Vue 3",
         "repo": "https://github.com/openprx/prx-waf"
       },
       {
         "id": "fenfa",
         "name": "Fenfa",
-        "tagline": "自托管应用分发平台",
-        "description": "一次部署，分发至 iOS、Android、macOS、Windows 和 Linux。",
-        "highlights": ["全平台", "自托管", "OTA 更新", "REST API"],
+        "tagline": "将应用分发到每一台设备",
+        "description": "上传一次，分发至 iOS、Android 和桌面——支持 OTA 更新和下载页面。",
+        "highlights": ["全平台", "OTA 更新", "自托管", "CI/CD 就绪"],
         "tech": "Go、Vue 3、SQLite",
         "repo": "https://github.com/openprx/fenfa"
       }
     ]
   },
   "why": {
-    "title": "不是又一个 Copilot",
+    "title": "团队为什么选择 OpenPRX",
     "items": [
       {
-        "title": "自主执行，而非辅助输入",
-        "description": "编码助手帮你打字更快。OpenPRX 运行完整工作流 -- 从议题分派到代码修复再到部署 -- 无需等待人工按键。",
+        "title": "你休息，它工作",
+        "description": "不只是代码助手——一条完整流水线，自主完成规划、构建、交付与防护。",
         "icon": "zap"
       },
       {
-        "title": "自进化智能",
-        "description": "PRX 不只是调用 LLM。它跨 14 家提供方路由，使用 Elo 评分选择模型，并自主进化自身的提示词、记忆与策略。",
+        "title": "持续学习和进化",
+        "description": "你的 AI 工具会越来越好。PRX 自主进化提示词、记忆与策略，并有安全护栏保障。",
         "icon": "dna"
       },
       {
-        "title": "治理即设计",
-        "description": "信任评分、提案投票、否决权、审批流程与五层安全策略。AI 在人类定义的边界内自主行动。",
+        "title": "默认透明",
+        "description": "每个决策可审计，每个操作受治理。信任分、投票与否决权确保 AI 可问责。",
         "icon": "scale"
       }
     ]
@@ -150,37 +136,39 @@
         "name": "规划",
         "product": "OpenPR",
         "href": "/openpr",
-        "description": "AI 原生项目管理。议题通过 MCP 和 Webhook 自动分派给编码代理。"
+        "description": "内置治理的工作管理。AI 代理自动领取任务。"
       },
       {
         "name": "思考",
         "product": "PRX",
         "href": "/prx",
-        "description": "AI 大脑。跨 14 家提供方路由，委托子代理，进化自身策略。"
+        "description": "自我进化的 AI 大脑，为每个任务选择最优模型。"
       },
       {
         "name": "构建",
         "product": "Webhook + Memory",
         "href": "/prx-memory",
-        "description": "调度编码代理。结果回写。知识跨会话持久保存。"
+        "description": "代码自动编写、审查、并跨会话记忆。"
       },
       {
         "name": "交付",
         "product": "Fenfa",
         "href": "/fenfa",
-        "description": "通过上传 API 将构建分发至 iOS、Android、macOS、Windows 和 Linux。"
+        "description": "一次上传，分发到所有平台。"
       },
       {
         "name": "防护",
         "product": "WAF + SD",
         "href": "/prx-waf",
-        "description": "17 阶段 Web 防御。ML 驱动的杀毒引擎。自动隔离与修复。"
+        "description": "防火墙与杀毒引擎，全天候守护你的应用。"
       }
     ]
   },
   "getInvolved": {
     "title": "参与共建",
     "description": "OpenPRX 采用开源模式，所有开发在公开环境中进行。",
+    "docsCta": "阅读文档",
+    "communityCta": "加入社区",
     "githubOrg": "GitHub 组织",
     "starButton": "在 GitHub 上 Star",
     "licenseBadge": "Apache-2.0 许可",
@@ -202,7 +190,8 @@
     "alsoFrom": "OpenPRX 其他产品",
     "languageBadge": "语言",
     "licenseBadge": "许可证",
-    "learnMore": "了解更多"
+    "learnMore": "了解更多",
+    "docs": "文档"
   },
   "pages": {
     "openpr": {
@@ -315,7 +304,7 @@
       ]
     },
     "prx-memory": {
-      "name": "prx-memory",
+      "name": "PRX-Memory",
       "tagline": "面向编码代理的本地优先 MCP 记忆",
       "description": "让代理上下文可持久、可查询、可治理的记忆运行时。",
       "tech": "Rust",
@@ -356,7 +345,7 @@
       "architecture": {
         "agents": "编码代理（Codex、Claude Code、OpenClaw...）",
         "mcp": "MCP（stdio / HTTP）",
-        "coreTitle": "prx-memory",
+        "coreTitle": "PRX-Memory",
         "coreLineOne": "Store · Recall · Evolve",
         "coreLineTwo": "Governance · Rerank",
         "storage": "本地 JSON / 向量嵌入"

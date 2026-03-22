@@ -21,11 +21,13 @@
     "home": "Главная",
     "openpr": "OpenPR",
     "prx": "PRX",
-    "memory": "prx-memory",
+    "memory": "PRX-Memory",
     "prxSd": "PRX-SD",
     "prxWaf": "PRX-WAF",
     "fenfa": "Fenfa",
-    "docs": "Документация"
+    "docs": "Документация",
+    "products": "Продукты",
+    "community": "Сообщество"
   },
   "header": {
     "github": "GitHub",
@@ -34,16 +36,15 @@
   },
   "hero": {
     "eyebrow": "Open Source · Создано на Rust",
-    "title": "AI управляет конвейером. Вы задаёте правила.",
-    "subtitle": "Открытая инфраструктура для AI-автономной программной инженерии.",
-    "description": "OpenPRX — это не очередной помощник для кодирования. Это полный конвейер, в котором AI-агенты автономно планируют работу, пишут код, распространяют сборки и защищают продакшен — управляемо, аудитируемо и с открытым исходным кодом.",
+    "title": "Открытая инфраструктура для эпохи AI.",
+    "subtitle": "Мы создаём инструменты с открытым кодом, позволяющие AI-агентам работать автономно — подключаться, защищать, эволюционировать и распространять.",
+    "description": "От планирования проектов до обнаружения угроз — каждый этап выполняется специализированными инструментами. Управляемо, аудитируемо, полностью прозрачно.",
     "githubCta": "Смотреть на GitHub",
     "primaryCta": "Смотреть конвейер",
-    "stats": [
-      { "value": "19", "label": "Каналов обмена сообщениями", "icon": "radio" },
-      { "value": "14", "label": "LLM-провайдеров", "icon": "brain" },
-      { "value": "34", "label": "MCP-инструмента", "icon": "tools" },
-      { "value": "38800", "label": "Правил безопасности", "icon": "shield" }
+    "valuePills": [
+      { "label": "Полностью Open Source", "icon": "unlock" },
+      { "label": "AI-автоматизация", "icon": "zap" },
+      { "label": "Корпоративная безопасность", "icon": "shield" }
     ]
   },
   "products": {
@@ -54,13 +55,13 @@
       {
         "id": "openpr",
         "name": "OpenPR",
-        "tagline": "Open-source project management со встроенным governance",
-        "description": "Управление командной работой с issues, досками, спринтами и governance-процессами.",
+        "tagline": "Управление проектами, где команда решает вместе",
+        "description": "Планируйте работу, отслеживайте задачи и принимайте решения со встроенными предложениями, голосованием и рейтингом доверия.",
         "highlights": [
-          "Governance",
-          "Kanban",
-          "MCP Server",
-          "SvelteKit"
+          "Командное управление",
+          "Планирование спринтов",
+          "AI-интеграция",
+          "Предложения и голосование"
         ],
         "tech": "Rust, SvelteKit, PostgreSQL",
         "repo": "https://github.com/openprx/openpr"
@@ -68,27 +69,27 @@
       {
         "id": "prx",
         "name": "PRX",
-        "tagline": "Self-evolving AI assistant framework",
-        "description": "Rust-рантайм ассистента с поддержкой нескольких провайдеров и governed sub-agents.",
+        "tagline": "AI-ассистент, который становится умнее со временем",
+        "description": "Подключайтесь к любой чат-платформе, автоматически выбирайте лучшую AI-модель и развивайте собственные стратегии.",
         "highlights": [
-          "14 Providers",
-          "19 Channels",
-          "Self-Evolution",
-          "OAuth"
+          "Мультиплатформа",
+          "Самоэволюция",
+          "Любая AI-модель",
+          "Расширяемый"
         ],
         "tech": "Rust core, MCP client, multi-provider runtime",
         "repo": "https://github.com/openprx/prx"
       },
       {
         "id": "prx-memory",
-        "name": "prx-memory",
-        "tagline": "Local-first MCP memory для кодовых агентов",
-        "description": "Надежная memory toolchain для хранения, поиска и governance знаний агента.",
+        "name": "PRX-Memory",
+        "tagline": "Долговременная память для ваших AI-инструментов",
+        "description": "Ваши AI-инструменты для кодирования запоминают изученное — между сессиями, проектами и командами.",
         "highlights": [
-          "MCP Native",
+          "Постоянная память",
           "Local-First",
-          "Evolution",
-          "Codex/Claude"
+          "Работает с любым AI",
+          "Умный поиск"
         ],
         "tech": "Rust, MCP stdio/HTTP, lexical+vector retrieval",
         "repo": "https://github.com/openprx/prx-memory"
@@ -96,48 +97,48 @@
       {
         "id": "prx-sd",
         "name": "PRX-SD",
-        "tagline": "Открытый антивирусный движок",
-        "description": "Многоуровневое обнаружение угроз: hash matching, YARA-правила и эвристический анализ.",
-        "highlights": ["Hash Matching", "YARA-правила", "Эвристика", "Мониторинг"],
+        "tagline": "Открытый антивирус для серверов и десктопов",
+        "description": "Сканируйте файлы, обнаруживайте вредоносное ПО и помещайте угрозы в карантин — с разведкой угроз от сообщества.",
+        "highlights": ["Обнаружение вредоносного ПО", "Мониторинг в реальном времени", "Автокарантин", "Кроссплатформа"],
         "tech": "Rust, YARA, LMDB, Tauri + Vue 3",
         "repo": "https://github.com/openprx/prx-sd"
       },
       {
         "id": "prx-waf",
         "name": "PRX-WAF",
-        "tagline": "Высокопроизводительный Web Application Firewall",
-        "description": "На базе Cloudflare Pingora с OWASP CRS, GeoIP, детекцией ботов и 644+ правилами.",
-        "highlights": ["Pingora", "OWASP CRS", "GeoIP", "Детекция ботов"],
+        "tagline": "Защитите ваши сайты от атак",
+        "description": "Блокируйте вредоносный трафик, останавливайте ботов и защищайте API — с правилами от сообщества, которые обновляются автоматически.",
+        "highlights": ["Блокировка атак", "Обнаружение ботов", "Геофильтрация", "Защита API"],
         "tech": "Rust, Pingora, PostgreSQL, Vue 3",
         "repo": "https://github.com/openprx/prx-waf"
       },
       {
         "id": "fenfa",
         "name": "Fenfa",
-        "tagline": "Self-hosted платформа дистрибуции приложений",
-        "description": "Один деплой — дистрибуция на iOS, Android, macOS, Windows и Linux.",
-        "highlights": ["Мультиплатформа", "Self-Hosted", "OTA-обновления", "REST API"],
+        "tagline": "Распространяйте приложения на каждое устройство",
+        "description": "Загрузите один раз, доставьте на iOS, Android и десктоп — с OTA-обновлениями и страницами загрузки.",
+        "highlights": ["Все платформы", "OTA-обновления", "Self-Hosted", "CI/CD Ready"],
         "tech": "Go, Vue 3, SQLite",
         "repo": "https://github.com/openprx/fenfa"
       }
     ]
   },
   "why": {
-    "title": "Не очередной Copilot",
+    "title": "Почему команды выбирают OpenPRX",
     "items": [
       {
-        "title": "Автономный, а не ассистивный",
-        "description": "Помощники для кодирования помогают быстрее печатать. OpenPRX выполняет целые workflow — от сортировки issues до исправления кода и деплоя — без ожидания нажатий клавиш.",
+        "title": "Работает, пока вы спите",
+        "description": "Не просто помощник для кода — полный конвейер, который автономно планирует, собирает, доставляет и защищает ПО.",
         "icon": "zap"
       },
       {
-        "title": "Самоэволюционирующий интеллект",
-        "description": "PRX не просто вызывает LLM. Он маршрутизирует запросы между 14 провайдерами с Elo-рейтингом моделей и автономно развивает собственные промпты, память и стратегии.",
+        "title": "Учится и адаптируется",
+        "description": "Ваши AI-инструменты становятся лучше со временем. PRX развивает собственные промпты, память и стратегии со встроенными защитными ограничениями.",
         "icon": "dna"
       },
       {
-        "title": "Управляемый по замыслу",
-        "description": "Trust scores, голосование по предложениям, право вето, workflow утверждений и пятиуровневые политики безопасности. AI действует автономно в рамках, определённых человеком.",
+        "title": "Прозрачность по умолчанию",
+        "description": "Каждое решение аудитируемо. Каждое действие управляемо. Рейтинги доверия, голосование и право вето обеспечивают подотчётность AI.",
         "icon": "scale"
       }
     ]
@@ -150,31 +151,31 @@
         "name": "Планирование",
         "product": "OpenPR",
         "href": "/openpr",
-        "description": "AI-native управление проектами. Issues автоматически распределяются кодовым агентам через MCP и webhooks."
+        "description": "Организация работы со встроенным управлением. AI-агенты автоматически подхватывают задачи."
       },
       {
         "name": "Мышление",
         "product": "PRX",
         "href": "/prx",
-        "description": "AI-мозг. Маршрутизирует между 14 провайдерами, делегирует суб-агентам, развивает собственные стратегии."
+        "description": "Самосовершенствующийся AI-мозг, выбирающий лучшую модель для каждой задачи."
       },
       {
         "name": "Сборка",
         "product": "Webhook + Memory",
         "href": "/prx-memory",
-        "description": "Запускает кодовых агентов. Результаты записываются обратно. Знания сохраняются между сессиями."
+        "description": "Код пишется, проверяется и запоминается — между сессиями."
       },
       {
         "name": "Доставка",
         "product": "Fenfa",
         "href": "/fenfa",
-        "description": "Распространение сборок на iOS, Android, macOS, Windows и Linux через API загрузки."
+        "description": "Распространение на все платформы одной загрузкой."
       },
       {
         "name": "Защита",
         "product": "WAF + SD",
         "href": "/prx-waf",
-        "description": "17-фазная веб-защита. ML-антивирус. Автоматический карантин и устранение угроз."
+        "description": "Файервол и антивирус, защищающие ваши приложения круглосуточно."
       }
     ]
   },
@@ -184,7 +185,9 @@
     "githubOrg": "Организация GitHub",
     "starButton": "Поставить звезду на GitHub",
     "licenseBadge": "Лицензия Apache-2.0",
-    "rustBadge": "Built with Rust 🦀"
+    "rustBadge": "Built with Rust 🦀",
+    "docsCta": "Читать документацию",
+    "communityCta": "Вступить в сообщество"
   },
   "footer": {
     "org": "OpenPRX на GitHub",
@@ -202,7 +205,8 @@
     "alsoFrom": "Другие продукты OpenPRX",
     "languageBadge": "Язык",
     "licenseBadge": "Лицензия",
-    "learnMore": "Подробнее"
+    "learnMore": "Подробнее",
+    "docs": "Документация"
   },
   "pages": {
     "openpr": {
@@ -315,7 +319,7 @@
       ]
     },
     "prx-memory": {
-      "name": "prx-memory",
+      "name": "PRX-Memory",
       "tagline": "Local-first MCP memory для кодовых агентов",
       "description": "Memory runtime для долговременного, доступного и управляемого контекста агента.",
       "tech": "Rust",
@@ -356,7 +360,7 @@
       "architecture": {
         "agents": "Кодовые агенты (Codex, Claude Code, OpenClaw...)",
         "mcp": "MCP (stdio / HTTP)",
-        "coreTitle": "prx-memory",
+        "coreTitle": "PRX-Memory",
         "coreLineOne": "Store · Recall · Evolve",
         "coreLineTwo": "Governance · Rerank",
         "storage": "Локальный JSON / Embeddings"

@@ -21,11 +21,13 @@
     "home": "Home",
     "openpr": "OpenPR",
     "prx": "PRX",
-    "memory": "prx-memory",
+    "memory": "PRX-Memory",
     "prxSd": "PRX-SD",
     "prxWaf": "PRX-WAF",
     "fenfa": "Fenfa",
-    "docs": "Docs"
+    "docs": "Docs",
+    "products": "Products",
+    "community": "Community"
   },
   "header": {
     "github": "GitHub",
@@ -34,16 +36,15 @@
   },
   "hero": {
     "eyebrow": "Open Source · Built with Rust",
-    "title": "AI runs the pipeline. You set the rules.",
-    "subtitle": "Open-source infrastructure for AI-autonomous software engineering.",
-    "description": "OpenPRX is not another coding assistant. It's a complete pipeline where AI agents autonomously plan work, write code, distribute builds, and defend production — governed, auditable, and open source.",
+    "title": "Open infrastructure for the AI era.",
+    "subtitle": "We build open-source tools that let AI agents work autonomously — connect, defend, evolve, and distribute.",
+    "description": "From project planning to threat detection, every stage is handled by purpose-built tools — governed, auditable, and fully transparent.",
     "githubCta": "View on GitHub",
     "primaryCta": "See the Pipeline",
-    "stats": [
-      { "value": "19", "label": "Messaging Channels", "icon": "radio" },
-      { "value": "14", "label": "LLM Providers", "icon": "brain" },
-      { "value": "34", "label": "MCP Tools", "icon": "tools" },
-      { "value": "38800", "label": "Security Rules", "icon": "shield" }
+    "valuePills": [
+      { "label": "Fully Open Source", "icon": "unlock" },
+      { "label": "AI-Powered Automation", "icon": "zap" },
+      { "label": "Enterprise-Grade Security", "icon": "shield" }
     ]
   },
   "products": {
@@ -54,13 +55,13 @@
       {
         "id": "openpr",
         "name": "OpenPR",
-        "tagline": "Open-source project management with built-in governance",
-        "description": "Team work management with issues, boards, sprints, and governance workflows.",
+        "tagline": "Project management where the team decides together",
+        "description": "Plan work, track issues, and make decisions with built-in proposals, voting, and trust scores.",
         "highlights": [
-          "Governance",
-          "Kanban",
-          "MCP Server",
-          "SvelteKit"
+          "Team Governance",
+          "Sprint Planning",
+          "AI Integration",
+          "Proposals & Voting"
         ],
         "tech": "Rust, SvelteKit, PostgreSQL",
         "repo": "https://github.com/openprx/openpr"
@@ -68,27 +69,27 @@
       {
         "id": "prx",
         "name": "PRX",
-        "tagline": "Self-evolving AI assistant framework",
-        "description": "Rust-native assistant runtime with multi-provider inference and governed sub-agents.",
+        "tagline": "An AI assistant that gets smarter over time",
+        "description": "Connect to any chat platform, pick the best AI model automatically, and evolve its own strategies.",
         "highlights": [
-          "14 Providers",
-          "19 Channels",
-          "Self-Evolution",
-          "OAuth"
+          "Multi-Platform",
+          "Self-Evolving",
+          "Any AI Model",
+          "Extensible"
         ],
         "tech": "Rust core, MCP client, multi-provider runtime",
         "repo": "https://github.com/openprx/prx"
       },
       {
         "id": "prx-memory",
-        "name": "prx-memory",
-        "tagline": "Local-first MCP memory for coding agents",
-        "description": "Durable memory toolchain for storing, recalling, and governing agent knowledge.",
+        "name": "PRX-Memory",
+        "tagline": "Long-term memory for your AI tools",
+        "description": "Your AI coding tools remember what they learned — across sessions, projects, and teams.",
         "highlights": [
-          "MCP Native",
+          "Persistent Memory",
           "Local-First",
-          "Evolution",
-          "Codex/Claude"
+          "Works with Any AI",
+          "Smart Recall"
         ],
         "tech": "Rust, MCP stdio/HTTP, lexical+vector retrieval",
         "repo": "https://github.com/openprx/prx-memory"
@@ -96,48 +97,48 @@
       {
         "id": "prx-sd",
         "name": "PRX-SD",
-        "tagline": "Open-source antivirus engine",
-        "description": "Multi-layered threat detection with hash matching, YARA rules, and heuristic analysis.",
-        "highlights": ["Hash Matching", "YARA Rules", "Heuristic Analysis", "Real-time Monitor"],
+        "tagline": "Open-source antivirus for servers and desktops",
+        "description": "Scan files, detect malware, and quarantine threats — with community-shared threat intelligence.",
+        "highlights": ["Malware Detection", "Real-time Monitor", "Auto Quarantine", "Cross-Platform"],
         "tech": "Rust, YARA, LMDB, Tauri + Vue 3",
         "repo": "https://github.com/openprx/prx-sd"
       },
       {
         "id": "prx-waf",
         "name": "PRX-WAF",
-        "tagline": "High-performance Web Application Firewall",
-        "description": "Built on Cloudflare Pingora with OWASP CRS, GeoIP, bot detection, and 644+ rules.",
-        "highlights": ["Pingora", "OWASP CRS", "GeoIP", "Bot Detection"],
+        "tagline": "Protect your websites from attacks",
+        "description": "Block malicious traffic, stop bots, and defend APIs — with community-driven rules that update automatically.",
+        "highlights": ["Attack Blocking", "Bot Detection", "Geo Filtering", "API Protection"],
         "tech": "Rust, Pingora, PostgreSQL, Vue 3",
         "repo": "https://github.com/openprx/prx-waf"
       },
       {
         "id": "fenfa",
         "name": "Fenfa",
-        "tagline": "Self-hosted app distribution platform",
-        "description": "Deploy once, distribute to iOS, Android, macOS, Windows, and Linux.",
-        "highlights": ["Multi-Platform", "Self-Hosted", "OTA Updates", "REST API"],
+        "tagline": "Distribute apps to every device",
+        "description": "Upload once, deliver to iOS, Android, and desktop — with OTA updates and download pages.",
+        "highlights": ["All Platforms", "OTA Updates", "Self-Hosted", "CI/CD Ready"],
         "tech": "Go, Vue 3, SQLite",
         "repo": "https://github.com/openprx/fenfa"
       }
     ]
   },
   "why": {
-    "title": "Not Another Copilot",
+    "title": "Why teams choose OpenPRX",
     "items": [
       {
-        "title": "Autonomous, Not Assistive",
-        "description": "Coding assistants help you type faster. OpenPRX runs entire workflows — from issue triage to code fix to deployment — without waiting for human keystrokes.",
+        "title": "Works while you sleep",
+        "description": "Not just a code helper — a full pipeline that plans, builds, ships, and protects software autonomously.",
         "icon": "zap"
       },
       {
-        "title": "Self-Evolving Intelligence",
-        "description": "PRX doesn't just call an LLM. It routes across 14 providers with Elo-rated model selection, and autonomously evolves its own prompts, memory, and strategies.",
+        "title": "Learns and adapts",
+        "description": "Your AI tools get better over time. PRX evolves its own prompts, memory, and strategies with built-in safety rails.",
         "icon": "dna"
       },
       {
-        "title": "Governed by Design",
-        "description": "Trust scores, proposal voting, veto rights, approval workflows, and five-layer security policies. AI acts autonomously within human-defined boundaries.",
+        "title": "Transparent by default",
+        "description": "Every decision is auditable. Every action is governed. Trust scores, voting, and veto rights keep AI accountable.",
         "icon": "scale"
       }
     ]
@@ -150,37 +151,39 @@
         "name": "Plan",
         "product": "OpenPR",
         "href": "/openpr",
-        "description": "AI-native project management. Issues auto-dispatch to coding agents via MCP and webhooks."
+        "description": "Organize work with built-in governance. AI agents pick up tasks automatically."
       },
       {
         "name": "Think",
         "product": "PRX",
         "href": "/prx",
-        "description": "The AI brain. Routes across 14 providers, delegates to sub-agents, evolves its own strategies."
+        "description": "A self-improving AI brain that picks the best model for every task."
       },
       {
         "name": "Build",
         "product": "Webhook + Memory",
         "href": "/prx-memory",
-        "description": "Dispatches coding agents. Results write back. Knowledge persists across sessions."
+        "description": "Code gets written, reviewed, and remembered — across sessions."
       },
       {
         "name": "Ship",
         "product": "Fenfa",
         "href": "/fenfa",
-        "description": "Distribute builds to iOS, Android, macOS, Windows, and Linux via upload API."
+        "description": "Distribute to every platform with one upload."
       },
       {
         "name": "Protect",
         "product": "WAF + SD",
         "href": "/prx-waf",
-        "description": "17-phase web defense. ML-powered antivirus. Automated quarantine and remediation."
+        "description": "Firewall and antivirus that guard your apps around the clock."
       }
     ]
   },
   "getInvolved": {
     "title": "Get Involved",
     "description": "OpenPRX is open source and actively developed in public.",
+    "docsCta": "Read the Docs",
+    "communityCta": "Join Community",
     "githubOrg": "GitHub Organization",
     "starButton": "Star us on GitHub",
     "licenseBadge": "Apache-2.0 Licensed",
@@ -202,7 +205,8 @@
     "alsoFrom": "Also from OpenPRX",
     "languageBadge": "Language",
     "licenseBadge": "License",
-    "learnMore": "Learn More"
+    "learnMore": "Learn More",
+    "docs": "Documentation"
   },
   "pages": {
     "openpr": {
@@ -315,7 +319,7 @@
       ]
     },
     "prx-memory": {
-      "name": "prx-memory",
+      "name": "PRX-Memory",
       "tagline": "Local-first MCP memory for coding agents",
       "description": "A memory runtime that keeps agent context durable, queryable, and governed.",
       "tech": "Rust",
@@ -356,7 +360,7 @@
       "architecture": {
         "agents": "Coding Agents (Codex, Claude Code, OpenClaw...)",
         "mcp": "MCP (stdio / HTTP)",
-        "coreTitle": "prx-memory",
+        "coreTitle": "PRX-Memory",
         "coreLineOne": "Store · Recall · Evolve",
         "coreLineTwo": "Governance · Rerank",
         "storage": "Local JSON / Embeddings"

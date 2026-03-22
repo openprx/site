@@ -40,17 +40,12 @@ const productIcon: Record<string, string> = {
           <p class="mt-4 text-xl text-[var(--text)]">{dict.hero.subtitle}</p>
           <p class="mt-4 max-w-2xl text-base text-[var(--text-dim)]">{dict.hero.description}</p>
 
-          <div class="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {dict.hero.stats.map((stat) => (
-              <div class="soft-border rounded-lg bg-[color-mix(in_oklab,var(--bg-soft)_86%,transparent)] px-4 py-3">
-                <div class="flex items-center gap-2">
-                  <Icon name={stat.icon} size={16} class="text-[var(--brand-strong)] opacity-60" />
-                  <p class="mono-pill text-3xl leading-none text-[var(--brand-strong)]" data-counter data-target={stat.value}>
-                    0
-                  </p>
-                </div>
-                <p class="mt-2 text-xs text-[var(--text-dim)]">{stat.label}</p>
-              </div>
+          <div class="mt-6 flex flex-wrap gap-2.5">
+            {dict.hero.valuePills.map((pill) => (
+              <span class="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[color-mix(in_oklab,var(--bg-soft)_86%,transparent)] px-3.5 py-1.5 text-sm text-[var(--text-dim)]">
+                <Icon name={pill.icon} size={14} class="text-[var(--brand-strong)] opacity-70" />
+                {pill.label}
+              </span>
             ))}
           </div>
 
@@ -62,9 +57,6 @@ const productIcon: Record<string, string> = {
               class="rounded-md border border-[var(--border)] bg-[var(--bg-soft)] px-4 py-2 text-sm text-[var(--text-dim)] hover:text-[var(--text)]"
             >
               {dict.hero.githubCta}
-            </a>
-            <a href="#pipeline" class="glow rounded-md bg-[var(--brand)] px-4 py-2 text-sm font-semibold text-white">
-              {dict.hero.primaryCta}
             </a>
           </div>
         </div>
@@ -132,10 +124,6 @@ const productIcon: Record<string, string> = {
                 ))}
               </div>
 
-              <p class="mt-4 text-xs text-[var(--text-dim)]">
-                <span class="text-[var(--brand-strong)]">{dict.products.techLabel}:</span> {item.tech}
-              </p>
-
               <a
                 href={detailLink}
                 target={external ? '_blank' : undefined}
@@ -175,20 +163,28 @@ const productIcon: Record<string, string> = {
 
         <div class="mt-6 flex flex-wrap items-center gap-3">
           <a
+            href="https://docs.openprx.dev"
+            target="_blank"
+            rel="noreferrer"
+            class="glow rounded-md bg-[var(--brand)] px-4 py-2 text-sm font-semibold text-white"
+          >
+            {dict.getInvolved.docsCta}
+          </a>
+          <a
+            href="https://community.openprx.dev"
+            target="_blank"
+            rel="noreferrer"
+            class="rounded-md border border-[var(--border)] bg-[var(--bg-soft)] px-4 py-2 text-sm text-[var(--text-dim)] hover:text-[var(--text)]"
+          >
+            {dict.getInvolved.communityCta}
+          </a>
+          <a
             href="https://github.com/openprx"
             target="_blank"
             rel="noreferrer"
             class="rounded-md border border-[var(--border)] bg-[var(--bg-soft)] px-4 py-2 text-sm text-[var(--text-dim)] hover:text-[var(--text)]"
           >
             {dict.getInvolved.githubOrg}
-          </a>
-          <a
-            href="https://github.com/openprx"
-            target="_blank"
-            rel="noreferrer"
-            class="glow rounded-md bg-[var(--brand)] px-4 py-2 text-sm font-semibold text-white"
-          >
-            {dict.getInvolved.starButton}
           </a>
           <span class="rounded-full border border-[var(--border)] bg-[var(--bg-soft)] px-3 py-1 text-xs text-[var(--text-dim)]">
             {dict.getInvolved.licenseBadge}
@@ -203,48 +199,6 @@ const productIcon: Record<string, string> = {
 
   <SiteFooter locale={locale} dict={dict} path="/" />
 </MainLayout>
-
-<script is:inline>
-  (() => {
-    const counters = document.querySelectorAll('[data-counter]');
-
-    const animateCounter = (el) => {
-      const target = Number(el.getAttribute('data-target') || '0');
-      if (!Number.isFinite(target)) {
-        return;
-      }
-
-      const duration = 900;
-      const start = performance.now();
-
-      const tick = (now) => {
-        const progress = Math.min((now - start) / duration, 1);
-        const value = Math.floor(target * progress);
-        el.textContent = String(value);
-
-        if (progress < 1) {
-          requestAnimationFrame(tick);
-        }
-      };
-
-      requestAnimationFrame(tick);
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animateCounter(entry.target);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.45 }
-    );
-
-    counters.forEach((counter) => observer.observe(counter));
-  })();
-</script>
 
 <style>
   .logo-light {

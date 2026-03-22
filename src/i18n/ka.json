@@ -21,11 +21,13 @@
     "home": "მთავარი",
     "openpr": "OpenPR",
     "prx": "PRX",
-    "memory": "prx-memory",
+    "memory": "PRX-Memory",
     "prxSd": "PRX-SD",
     "prxWaf": "PRX-WAF",
     "fenfa": "Fenfa",
-    "docs": "დოკუმენტაცია"
+    "docs": "დოკუმენტაცია",
+    "products": "პროდუქტები",
+    "community": "საზოგადოება"
   },
   "header": {
     "github": "GitHub",
@@ -34,16 +36,15 @@
   },
   "hero": {
     "eyebrow": "ღია წყარო · აგებულია Rust-ზე",
-    "title": "AI მართავს pipeline-ს. თქვენ ადგენთ წესებს.",
-    "subtitle": "ღია ინფრასტრუქტურა AI-ავტონომიური პროგრამული ინჟინერიისთვის.",
-    "description": "OpenPRX არ არის კიდევ ერთი კოდირების ასისტენტი. ეს არის სრული pipeline, სადაც AI აგენტები ავტონომიურად გეგმავენ სამუშაოს, წერენ კოდს, ავრცელებენ build-ებს და იცავენ production-ს — მართული, აუდიტირებადი და ღია წყაროს.",
+    "title": "ღია ინფრასტრუქტურა AI-ის ეპოქისთვის.",
+    "subtitle": "ჩვენ ვქმნით ღია წყაროს ხელსაწყოებს, რომლებიც AI აგენტებს ავტონომიურად მუშაობის საშუალებას აძლევს — დაკავშირება, დაცვა, ევოლუცია და დისტრიბუცია.",
+    "description": "პროექტის დაგეგმვიდან საფრთხეების აღმოჩენამდე, ყველა ეტაპს სპეციალიზებული ხელსაწყოები ამუშავებს — მართვადი, აუდიტირებადი და სრულიად გამჭვირვალე.",
     "githubCta": "GitHub-ზე ნახვა",
     "primaryCta": "Pipeline-ის ნახვა",
-    "stats": [
-      { "value": "19", "label": "მესიჯინგის არხი", "icon": "radio" },
-      { "value": "14", "label": "LLM პროვაიდერი", "icon": "brain" },
-      { "value": "34", "label": "MCP ხელსაწყო", "icon": "tools" },
-      { "value": "38800", "label": "უსაფრთხოების წესი", "icon": "shield" }
+    "valuePills": [
+      { "label": "სრულად ღია წყარო", "icon": "unlock" },
+      { "label": "AI-ით მართული ავტომატიზაცია", "icon": "zap" },
+      { "label": "Enterprise-დონის უსაფრთხოება", "icon": "shield" }
     ]
   },
   "products": {
@@ -54,13 +55,13 @@
       {
         "id": "openpr",
         "name": "OpenPR",
-        "tagline": "ღია project management ჩაშენებული governance-ით",
-        "description": "გუნდური სამუშაოს მართვა issues-ით, დაფებით, სპრინტებით და governance workflow-ებით.",
+        "tagline": "პროექტის მართვა, სადაც გუნდი ერთად წყვეტს",
+        "description": "დაგეგმეთ სამუშაო, თვალყური ადევნეთ issues-ს და მიიღეთ გადაწყვეტილებები ჩაშენებული წინადადებებით, კენჭისყრითა და ნდობის ქულებით.",
         "highlights": [
-          "Governance",
-          "Kanban",
-          "MCP Server",
-          "SvelteKit"
+          "გუნდური მართვა",
+          "სპრინტის დაგეგმვა",
+          "AI ინტეგრაცია",
+          "წინადადებები და კენჭისყრა"
         ],
         "tech": "Rust, SvelteKit, PostgreSQL",
         "repo": "https://github.com/openprx/openpr"
@@ -68,27 +69,27 @@
       {
         "id": "prx",
         "name": "PRX",
-        "tagline": "Self-evolving AI assistant framework",
-        "description": "Rust-ზე დაფუძნებული ასისტენტის runtime მრავალ პროვაიდერთან და governed sub-agent-ებთან.",
+        "tagline": "AI ასისტენტი, რომელიც დროთა განმავლობაში ჭკვიანდება",
+        "description": "დაუკავშირდით ნებისმიერ ჩატ პლატფორმას, ავტომატურად შეარჩიეთ საუკეთესო AI მოდელი და განავითარეთ საკუთარი სტრატეგიები.",
         "highlights": [
-          "14 Providers",
-          "19 Channels",
-          "Self-Evolution",
-          "OAuth"
+          "მრავალპლატფორმა",
+          "თვითევოლუცია",
+          "ნებისმიერი AI მოდელი",
+          "გაფართოებადი"
         ],
         "tech": "Rust core, MCP client, multi-provider runtime",
         "repo": "https://github.com/openprx/prx"
       },
       {
         "id": "prx-memory",
-        "name": "prx-memory",
-        "tagline": "local-first MCP memory კოდირების აგენტებისთვის",
-        "description": "მდგრადი memory toolchain აგენტის ცოდნის შენახვისთვის, მოძიებისთვის და governance კონტროლისთვის.",
+        "name": "PRX-Memory",
+        "tagline": "გრძელვადიანი მეხსიერება თქვენი AI ხელსაწყოებისთვის",
+        "description": "თქვენი AI კოდირების ხელსაწყოები იმახსოვრებენ ნასწავლს — სესიებს, პროექტებსა და გუნდებს შორის.",
         "highlights": [
-          "MCP Native",
-          "Local-First",
-          "Evolution",
-          "Codex/Claude"
+          "მდგრადი მეხსიერება",
+          "ლოკალური პრიორიტეტი",
+          "ნებისმიერ AI-თან მუშაობს",
+          "ჭკვიანი გამოძახება"
         ],
         "tech": "Rust, MCP stdio/HTTP, lexical+vector retrieval",
         "repo": "https://github.com/openprx/prx-memory"
@@ -96,48 +97,48 @@
       {
         "id": "prx-sd",
         "name": "PRX-SD",
-        "tagline": "ღია ანტივირუსული ძრავა",
-        "description": "მრავალფენიანი საფრთხეების აღმოჩენა hash matching-ით, YARA წესებითა და ჰეურისტიკული ანალიზით.",
-        "highlights": ["Hash Matching", "YARA Rules", "Heuristic Analysis", "Real-time Monitor"],
+        "tagline": "ღია ანტივირუსი სერვერებისა და დესკტოპებისთვის",
+        "description": "დაასკანერეთ ფაილები, აღმოაჩინეთ მავნე პროგრამები და გადაიტანეთ საფრთხეები კარანტინში — საზოგადოების მიერ გაზიარებული საფრთხეების დაზვერვით.",
+        "highlights": ["მავნე პროგრამების აღმოჩენა", "რეალურ დროში მონიტორინგი", "ავტო-კარანტინი", "კროს-პლატფორმა"],
         "tech": "Rust, YARA, LMDB, Tauri + Vue 3",
         "repo": "https://github.com/openprx/prx-sd"
       },
       {
         "id": "prx-waf",
         "name": "PRX-WAF",
-        "tagline": "მაღალი წარმადობის Web Application Firewall",
-        "description": "აგებული Cloudflare Pingora-ზე, OWASP CRS, GeoIP, bot detection და 644+ წესი.",
-        "highlights": ["Pingora", "OWASP CRS", "GeoIP", "Bot Detection"],
+        "tagline": "დაიცავით თქვენი ვებსაიტები თავდასხმებისგან",
+        "description": "დაბლოკეთ მავნე ტრაფიკი, შეაჩერეთ ბოტები და დაიცავით API-ები — საზოგადოების მიერ მართული წესებით, რომლებიც ავტომატურად განახლდება.",
+        "highlights": ["თავდასხმების ბლოკირება", "ბოტების აღმოჩენა", "გეო-ფილტრაცია", "API დაცვა"],
         "tech": "Rust, Pingora, PostgreSQL, Vue 3",
         "repo": "https://github.com/openprx/prx-waf"
       },
       {
         "id": "fenfa",
         "name": "Fenfa",
-        "tagline": "თვითჰოსტინგის აპლიკაციების დისტრიბუცია",
-        "description": "ერთხელ გაშვება, დისტრიბუცია iOS, Android, macOS, Windows და Linux-ზე.",
-        "highlights": ["Multi-Platform", "Self-Hosted", "OTA Updates", "REST API"],
+        "tagline": "გაავრცელეთ აპლიკაციები ყველა მოწყობილობაზე",
+        "description": "ატვირთეთ ერთხელ, გაავრცელეთ iOS, Android-სა და დესკტოპზე — OTA განახლებებითა და ჩამოტვირთვის გვერდებით.",
+        "highlights": ["ყველა პლატფორმა", "OTA განახლებები", "თვითჰოსტინგი", "CI/CD მზადყოფნა"],
         "tech": "Go, Vue 3, SQLite",
         "repo": "https://github.com/openprx/fenfa"
       }
     ]
   },
   "why": {
-    "title": "არა კიდევ ერთი Copilot",
+    "title": "რატომ ირჩევენ გუნდები OpenPRX-ს",
     "items": [
       {
-        "title": "ავტონომიური, არა ასისტენტური",
-        "description": "კოდირების ასისტენტები გეხმარებიან უფრო სწრაფად აკრიფოთ. OpenPRX აწარმოებს სრულ workflow-ებს — issue-ის სორტირებიდან კოდის შესწორებამდე და deploy-მდე — ადამიანის კლავიშზე დაჭერის მოლოდინის გარეშე.",
+        "title": "მუშაობს, სანამ თქვენ ისვენებთ",
+        "description": "არა მხოლოდ კოდის დამხმარე — სრული pipeline, რომელიც ავტონომიურად გეგმავს, აგებს, აწვდის და იცავს პროგრამულ უზრუნველყოფას.",
         "icon": "zap"
       },
       {
-        "title": "თვითევოლუციური ინტელექტი",
-        "description": "PRX უბრალოდ LLM-ს არ იძახებს. ის 14 პროვაიდერზე ახდენს მარშრუტიზაციას Elo-რეიტინგიანი მოდელის შერჩევით და ავტონომიურად ავითარებს საკუთარ prompt-ებს, memory-სა და სტრატეგიებს.",
+        "title": "სწავლობს და ადაპტირდება",
+        "description": "თქვენი AI ხელსაწყოები დროთა განმავლობაში უკეთესი ხდება. PRX ავითარებს საკუთარ prompt-ებს, მეხსიერებასა და სტრატეგიებს ჩაშენებული უსაფრთხოების ზღუდეებით.",
         "icon": "dna"
       },
       {
-        "title": "მართვა დიზაინითვე",
-        "description": "Trust scores, წინადადებების კენჭისყრა, ვეტოს უფლებები, დამტკიცების workflow-ები და ხუთშრიანი უსაფრთხოების პოლიტიკა. AI ავტონომიურად მოქმედებს ადამიანის მიერ განსაზღვრულ საზღვრებში.",
+        "title": "ნაგულისხმევად გამჭვირვალე",
+        "description": "ყველა გადაწყვეტილება აუდიტირებადია. ყველა მოქმედება მართულია. ნდობის ქულები, კენჭისყრა და ვეტოს უფლებები AI-ს ანგარიშვალდებულს ხდის.",
         "icon": "scale"
       }
     ]
@@ -150,31 +151,31 @@
         "name": "დაგეგმვა",
         "product": "OpenPR",
         "href": "/openpr",
-        "description": "AI-native პროექტის მართვა. Issue-ები ავტომატურად ნაწილდება კოდირების აგენტებზე MCP-ითა და webhook-ებით."
+        "description": "ჩაშენებული მართვის სამუშაო ორგანიზაცია. AI აგენტები ავტომატურად იღებენ ამოცანებს."
       },
       {
         "name": "აზროვნება",
         "product": "PRX",
         "href": "/prx",
-        "description": "AI-ის ტვინი. მარშრუტიზაცია 14 პროვაიდერზე, დელეგირება sub-agent-ებზე, საკუთარი სტრატეგიების ევოლუცია."
+        "description": "თვითგანვითარებადი AI ტვინი, რომელიც ყველა ამოცანისთვის საუკეთესო მოდელს ირჩევს."
       },
       {
         "name": "აგება",
         "product": "Webhook + Memory",
         "href": "/prx-memory",
-        "description": "კოდირების აგენტების გაშვება. შედეგები იწერება უკან. ცოდნა ინარჩუნება სესიებს შორის."
+        "description": "კოდი იწერება, მოწმდება და ინახება — სესიებს შორის."
       },
       {
         "name": "გაგზავნა",
         "product": "Fenfa",
         "href": "/fenfa",
-        "description": "Build-ების დისტრიბუცია iOS, Android, macOS, Windows და Linux-ზე upload API-ით."
+        "description": "ერთი ატვირთვით გავრცელება ყველა პლატფორმაზე."
       },
       {
         "name": "დაცვა",
         "product": "WAF + SD",
         "href": "/prx-waf",
-        "description": "17-ფაზიანი ვებ დაცვა. ML-ზე დაფუძნებული ანტივირუსი. ავტომატური კარანტინი და გამოსწორება."
+        "description": "Firewall და ანტივირუსი, რომლებიც თქვენს აპლიკაციებს მთელი დღე-ღამე იცავს."
       }
     ]
   },
@@ -184,7 +185,9 @@
     "githubOrg": "GitHub ორგანიზაცია",
     "starButton": "დაასტარეთ GitHub-ზე",
     "licenseBadge": "Apache-2.0 ლიცენზია",
-    "rustBadge": "Built with Rust 🦀"
+    "rustBadge": "Built with Rust 🦀",
+    "docsCta": "დოკუმენტაციის წაკითხვა",
+    "communityCta": "შეუერთდით საზოგადოებას"
   },
   "footer": {
     "org": "OpenPRX GitHub-ზე",
@@ -202,7 +205,8 @@
     "alsoFrom": "სხვა პროდუქტები OpenPRX-დან",
     "languageBadge": "ენა",
     "licenseBadge": "ლიცენზია",
-    "learnMore": "დეტალურად"
+    "learnMore": "დეტალურად",
+    "docs": "დოკუმენტაცია"
   },
   "pages": {
     "openpr": {
@@ -315,7 +319,7 @@
       ]
     },
     "prx-memory": {
-      "name": "prx-memory",
+      "name": "PRX-Memory",
       "tagline": "local-first MCP memory კოდირების აგენტებისთვის",
       "description": "memory runtime აგენტის კონტექსტის მდგრადი, საძიებო და governance-ით მართვადი ფორმით შესანარჩუნებლად.",
       "tech": "Rust",
@@ -356,7 +360,7 @@
       "architecture": {
         "agents": "კოდირების აგენტები (Codex, Claude Code, OpenClaw...)",
         "mcp": "MCP (stdio / HTTP)",
-        "coreTitle": "prx-memory",
+        "coreTitle": "PRX-Memory",
         "coreLineOne": "Store · Recall · Evolve",
         "coreLineTwo": "Governance · Rerank",
         "storage": "ლოკალური JSON / Embeddings"

@@ -9,19 +9,17 @@ interface Props {
 
 const { locale, dict, path } = Astro.props;
 
-const nav = [
-  { href: '/', label: dict.nav.home },
+const productNav = [
   { href: '/openpr', label: dict.nav.openpr },
   { href: '/prx', label: dict.nav.prx },
   { href: '/prx-memory', label: dict.nav.memory },
   { href: '/prx-sd', label: dict.nav.prxSd },
   { href: '/prx-waf', label: dict.nav.prxWaf },
   { href: '/fenfa', label: dict.nav.fenfa },
-  { href: '/getting-started/overview', label: dict.nav.docs }
 ];
 
 const homeHref = localePath(locale, '/');
-const ctaHref = path === '/' ? '#pipeline' : `${homeHref}#pipeline`;
+const ctaHref = 'https://docs.openprx.dev/en/';
 ---
 
 <header class="sticky top-0 z-30 border-b border-[var(--border)] backdrop-blur-xl bg-[color-mix(in_oklab,var(--bg)_86%,transparent)]">
@@ -32,15 +30,54 @@ const ctaHref = path === '/' ? '#pipeline' : `${homeHref}#pipeline`;
     </a>
 
     <!-- Desktop nav -->
-    <nav class="hidden md:flex flex-wrap gap-1 text-sm">
-      {nav.map((item) => (
-        <a
-          href={localePath(locale, item.href)}
-          class="rounded-md px-2.5 py-1.5 text-[var(--text-dim)] hover:bg-[var(--bg-soft)] hover:text-[var(--text)]"
+    <nav class="hidden md:flex flex-wrap items-center gap-1 text-sm">
+      <a
+        href={homeHref}
+        class="rounded-md px-2.5 py-1.5 text-[var(--text-dim)] hover:bg-[var(--bg-soft)] hover:text-[var(--text)]"
+      >
+        {dict.nav.home}
+      </a>
+
+      <!-- Products dropdown -->
+      <div class="nav-dropdown relative">
+        <button
+          type="button"
+          class="nav-dropdown-trigger rounded-md px-2.5 py-1.5 text-[var(--text-dim)] hover:bg-[var(--bg-soft)] hover:text-[var(--text)] inline-flex items-center gap-1"
         >
-          {item.label}
-        </a>
-      ))}
+          {dict.nav.products}
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="nav-dropdown-chevron">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <div class="nav-dropdown-menu absolute left-0 top-full mt-1 min-w-[160px] rounded-lg border border-[var(--border)] bg-[var(--bg-elev)] shadow-lg py-1 hidden">
+          {productNav.map((item) => (
+            <a
+              href={localePath(locale, item.href)}
+              class="block px-3.5 py-2 text-sm text-[var(--text-dim)] hover:bg-[var(--bg-soft)] hover:text-[var(--text)]"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <a
+        href="https://docs.openprx.dev"
+        target="_blank"
+        rel="noreferrer"
+        class="rounded-md px-2.5 py-1.5 text-[var(--text-dim)] hover:bg-[var(--bg-soft)] hover:text-[var(--text)]"
+      >
+        {dict.nav.docs}
+      </a>
+
+      <a
+        href="https://community.openprx.dev"
+        target="_blank"
+        rel="noreferrer"
+        class="rounded-md px-2.5 py-1.5 text-[var(--text-dim)] hover:bg-[var(--bg-soft)] hover:text-[var(--text)]"
+      >
+        {dict.nav.community}
+      </a>
     </nav>
 
     <div class="ml-auto flex items-center gap-2">
@@ -62,7 +99,7 @@ const ctaHref = path === '/' ? '#pipeline' : `${homeHref}#pipeline`;
         {dict.header.github}
       </a>
 
-      <a href={ctaHref} class="hidden sm:inline-flex glow rounded-md px-3 py-1.5 text-sm font-semibold text-white bg-[var(--brand)]">
+      <a href={ctaHref} target="_blank" rel="noreferrer" class="hidden sm:inline-flex glow rounded-md px-3 py-1.5 text-sm font-semibold text-white bg-[var(--brand)]">
         {dict.header.getStarted}
       </a>
 
@@ -87,14 +124,40 @@ const ctaHref = path === '/' ? '#pipeline' : `${homeHref}#pipeline`;
   <!-- Mobile menu panel -->
   <div data-mobile-menu class="hidden md:hidden border-t border-[var(--border)] bg-[color-mix(in_oklab,var(--bg)_96%,transparent)]">
     <nav class="container-shell flex flex-col gap-1 py-3">
-      {nav.map((item) => (
+      <a
+        href={homeHref}
+        class="rounded-md px-3 py-2.5 text-sm text-[var(--text-dim)] hover:bg-[var(--bg-soft)] hover:text-[var(--text)]"
+      >
+        {dict.nav.home}
+      </a>
+
+      <p class="px-3 pt-3 pb-1 text-xs font-semibold text-[var(--brand-strong)] uppercase tracking-wider">{dict.nav.products}</p>
+      {productNav.map((item) => (
         <a
           href={localePath(locale, item.href)}
-          class="rounded-md px-3 py-2.5 text-sm text-[var(--text-dim)] hover:bg-[var(--bg-soft)] hover:text-[var(--text)]"
+          class="rounded-md px-3 py-2.5 text-sm text-[var(--text-dim)] hover:bg-[var(--bg-soft)] hover:text-[var(--text)] pl-5"
         >
           {item.label}
         </a>
       ))}
+
+      <a
+        href="https://docs.openprx.dev"
+        target="_blank"
+        rel="noreferrer"
+        class="rounded-md px-3 py-2.5 text-sm text-[var(--text-dim)] hover:bg-[var(--bg-soft)] hover:text-[var(--text)]"
+      >
+        {dict.nav.docs}
+      </a>
+      <a
+        href="https://community.openprx.dev"
+        target="_blank"
+        rel="noreferrer"
+        class="rounded-md px-3 py-2.5 text-sm text-[var(--text-dim)] hover:bg-[var(--bg-soft)] hover:text-[var(--text)]"
+      >
+        {dict.nav.community}
+      </a>
+
       <div class="mt-2 pt-2 border-t border-[var(--border)] flex flex-col gap-1">
         <a
           href="https://github.com/openprx"
@@ -104,7 +167,7 @@ const ctaHref = path === '/' ? '#pipeline' : `${homeHref}#pipeline`;
         >
           {dict.header.github}
         </a>
-        <a href={ctaHref} class="glow rounded-md px-3 py-2.5 text-sm font-semibold text-white text-center bg-[var(--brand)]">
+        <a href={ctaHref} target="_blank" rel="noreferrer" class="glow rounded-md px-3 py-2.5 text-sm font-semibold text-white text-center bg-[var(--brand)]">
           {dict.header.getStarted}
         </a>
       </div>
@@ -114,28 +177,43 @@ const ctaHref = path === '/' ? '#pipeline' : `${homeHref}#pipeline`;
 
 <script is:inline>
   (() => {
+    // Mobile menu toggle
     const toggle = document.querySelector('[data-menu-toggle]');
     const menu = document.querySelector('[data-mobile-menu]');
     const iconOpen = document.querySelector('[data-menu-icon-open]');
     const iconClose = document.querySelector('[data-menu-icon-close]');
-    if (!toggle || !menu || !iconOpen || !iconClose) return;
-
-    toggle.addEventListener('click', () => {
-      const isOpen = !menu.classList.contains('hidden');
-      menu.classList.toggle('hidden');
-      iconOpen.classList.toggle('hidden');
-      iconClose.classList.toggle('hidden');
-      toggle.setAttribute('aria-expanded', String(!isOpen));
-    });
-
-    // Close on link click
-    menu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        menu.classList.add('hidden');
-        iconOpen.classList.remove('hidden');
-        iconClose.classList.add('hidden');
-        toggle.setAttribute('aria-expanded', 'false');
+    if (toggle && menu && iconOpen && iconClose) {
+      toggle.addEventListener('click', () => {
+        const isOpen = !menu.classList.contains('hidden');
+        menu.classList.toggle('hidden');
+        iconOpen.classList.toggle('hidden');
+        iconClose.classList.toggle('hidden');
+        toggle.setAttribute('aria-expanded', String(!isOpen));
       });
+
+      menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+          iconOpen.classList.remove('hidden');
+          iconClose.classList.add('hidden');
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // Desktop dropdown
+    document.querySelectorAll('.nav-dropdown').forEach((dropdown) => {
+      const trigger = dropdown.querySelector('.nav-dropdown-trigger');
+      const panel = dropdown.querySelector('.nav-dropdown-menu');
+      if (!trigger || !panel) return;
+
+      let timeout;
+      const show = () => { clearTimeout(timeout); panel.classList.remove('hidden'); };
+      const hide = () => { timeout = setTimeout(() => panel.classList.add('hidden'), 150); };
+
+      dropdown.addEventListener('mouseenter', show);
+      dropdown.addEventListener('mouseleave', hide);
+      trigger.addEventListener('click', () => panel.classList.toggle('hidden'));
     });
   })();
 </script>
@@ -151,5 +229,22 @@ const ctaHref = path === '/' ? '#pipeline' : `${homeHref}#pipeline`;
 
   html[data-theme='light'] .logo-dark {
     display: none;
+  }
+
+  .nav-dropdown-chevron {
+    transition: transform 0.15s ease;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-chevron {
+    transform: rotate(180deg);
+  }
+
+  .nav-dropdown-menu {
+    animation: dropdown-in 0.12s ease-out;
+  }
+
+  @keyframes dropdown-in {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 </style>
