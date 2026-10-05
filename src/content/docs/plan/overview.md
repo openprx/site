@@ -52,7 +52,7 @@ Sylvode exposes 140 tools via the Model Context Protocol (MCP), allowing AI agen
 
 ### Webhooks
 
-30 event types are fired via HMAC-SHA256 signed HTTP webhooks covering issues, comments, labels, sprints, proposals, governance, and AI task lifecycle. See [Webhooks](/plan/webhooks/) for event types and payload structure.
+Workspace webhooks deliver HMAC-SHA256 signed HTTP requests. A webhook can subscribe to exactly 14 events: `issue.created`, `issue.updated`, `issue.assigned`, `issue.deleted`, `issue.state_changed`, `comment.created`, `comment.updated`, `comment.deleted`, `label.added`, `label.removed`, `sprint.started`, `sprint.completed`, `ai.task_completed` and `ai.task_failed`. The API refuses any other event name when a webhook is created or updated. See [Webhooks](/plan/webhooks/) for the payload structure.
 
 ### Notifications
 
@@ -64,29 +64,29 @@ A built-in document/page system for project documentation, meeting notes, and kn
 
 ## Architecture
 
-Sylvode consists of five services:
+Sylvode consists of five services, defined in the bundled `docker-compose.yml`:
 
 | Service | Port | Role |
 |---------|------|------|
-| **api** | 8080 | REST API server (Axum) |
-| **worker** | -- | Background task dispatcher (polls `ai_tasks` table) |
+| **api** | 8080 in the container, published on host port 8081 | REST API server (Axum) |
+| **worker** | -- | Background pipelines (AI task dispatch, governance settlement, form jobs) |
 | **mcp-server** | 8090 | MCP protocol server (HTTP, stdio, SSE) |
-| **frontend** | 80 | Web UI (SvelteKit, served via nginx) |
-| **postgres** | 5432 | PostgreSQL 16 database |
+| **frontend** | 80 in the container, published on host port 3000 | Web UI (SvelteKit, served via nginx, proxies `/api` to the API) |
+| **postgres** | 5432, compose network only | PostgreSQL 16 database |
 
 An optional **webhook** service handles outbound event routing and WSS tunnel support for agents behind NAT.
 
 ```
-Frontend (nginx :3000) --> API (:8080) <-- MCP Server (:8090)
+Frontend (host :3000) --> API (host :8081, container :8080) <-- MCP Server (:8090)
                               |
-                         PostgreSQL (:5432)
+                         PostgreSQL (compose network)
                               |
                          Worker (background)
 ```
 
 ## Database
 
-Sylvode uses PostgreSQL 16 with 38 tables organized into three groups:
+Sylvode uses PostgreSQL 16. The migrations are numbered `0000` through `0069`; applied in order they create 101 tables. Among them:
 
 **Core project management** -- `users`, `workspaces`, `workspace_members`, `projects`, `work_items`, `comments`, `activities`, `labels`, `work_item_labels`, `sprints`
 
@@ -94,29 +94,27 @@ Sylvode uses PostgreSQL 16 with 38 tables organized into three groups:
 
 **Infrastructure** -- `notifications`, `webhooks`, `webhook_deliveries`, `pages`, `job_queue`, `scheduled_jobs`, `cache_entries`, `ai_learning_records`, `ai_participants`
 
-Migrations are numbered `0001` through `0019` and are applied automatically on first startup via the PostgreSQL `docker-entrypoint-initdb.d` mechanism.
+The remaining tables belong to universal forms, plugins, workflows, project types, the event ledger and Flow. The migrations are compiled into the API, which applies any missing ones when it starts; on the first start of an empty volume the PostgreSQL image also runs them through `docker-entrypoint-initdb.d`.
 
 ## Quick Start
 
 ### Prerequisites
 
-- Docker and Docker Compose
+- Docker with the `docker compose` plugin, or Podman
 - Git
+- A Rust toolchain and Python 3.11+ (`scripts/start.sh` builds the binaries on the host and validates the generated configuration)
 
 ### Deploy with Docker Compose
 
 ```bash
-git clone https://github.com/openprx/sylvode
-cd sylvode
+git clone https://github.com/openprx/openpr
+cd openpr
 
-# Set a production JWT secret
-export JWT_SECRET="your-secure-random-string"
-
-# Start all services
-docker compose up -d
+# Generate the configuration, build the binaries and start all services
+bash scripts/start.sh
 ```
 
-This starts PostgreSQL, runs migrations, and brings up the API, worker, MCP server, and frontend.
+On first run `scripts/start.sh` writes `config/sylvode.compose.toml` (API and worker) and `config/sylvode.compose.mcp.toml` (MCP server) with random bootstrap secrets, plus a compose-only `.env`, then builds the release binaries and runs `docker compose up -d --build`.
 
 ### Access
 
@@ -126,18 +124,24 @@ This starts PostgreSQL, runs migrations, and brings up the API, worker, MCP serv
 | REST API | `http://localhost:8081` |
 | MCP Server | `http://localhost:8090` |
 
-The first user to register automatically becomes the workspace admin.
+The web UI has no sign-up page. While no user exists, `POST /api/v1/auth/register` creates the first account, which becomes the system administrator; later accounts are created by an administrator.
 
-### Environment Variables
+### Configuration
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `JWT_SECRET` | `change-me-in-production` | Secret for signing JWT tokens |
-| `JWT_ACCESS_TTL_SECONDS` | `2592000` (30 days) | Access token lifetime |
-| `JWT_REFRESH_TTL_SECONDS` | `2592000` (30 days) | Refresh token lifetime |
-| `DATABASE_URL` | (set in compose) | PostgreSQL connection string |
-| `RUST_LOG` | `info` | Log level filter |
-| `UPLOAD_DIR` | `/app/uploads` | File upload storage directory |
+The `api`, `worker` and `mcp-server` binaries read no environment variables. Every setting comes from one TOML file, named with `--config` and defaulting to `config/sylvode.toml`:
+
+| Key | Default | Description |
+|-----|---------|-------------|
+| `database.url` | required (API, worker) | PostgreSQL connection URL |
+| `auth.jwt_secret` | required (API, worker) | JWT signing secret, at least 16 characters |
+| `auth.access_ttl_seconds` | `1296000` (15 days) | Access token lifetime |
+| `auth.refresh_ttl_seconds` | `1728000` (20 days) | Refresh token lifetime |
+| `server.bind_addr` | `0.0.0.0:8081` (API) | Listen address |
+| `logging.filter` | `<service>=info,tower_http=info` | Log filter (replaces `RUST_LOG`) |
+| `storage.dir` | `./uploads` | Upload directory of the local storage backend |
+| `mcp.api_url`, `mcp.bot_token`, `mcp.workspace_id` | `http://localhost:8081`, none, required | MCP server settings |
+
+Only compose-level `SYLVODE_*` variables (bind host, published ports, runtime image) are read, by `docker compose` and `scripts/start.sh`. See the [configuration reference](https://docs.openprx.dev/en/sylvode/configuration/) for every key.
 
 ### Production Deployment
 
@@ -166,6 +170,6 @@ Both types can be assigned to issues, participate in governance, and interact th
 ## What's Next
 
 - [MCP Server](/plan/mcp-server/) -- 140 tools for AI agent integration
-- [Webhooks](/plan/webhooks/) -- 30 event types and payload structure
+- [Webhooks](/plan/webhooks/) -- The 14 subscribable events and the payload structure
 - [AI Tasks](/plan/ai-tasks/) -- Task dispatch and agent callback workflow
 - [Governance](/plan/governance/) -- Proposals, voting, veto rights, and trust scores

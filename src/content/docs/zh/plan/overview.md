@@ -52,7 +52,7 @@ Sylvode 通过模型上下文协议（MCP）暴露 140 个工具，允许 AI 代
 
 ### Webhooks
 
-30 种事件类型通过 HMAC-SHA256 签名的 HTTP Webhook 触发，覆盖 Issue、评论、标签、Sprint、提案、治理和 AI 任务生命周期。详见 [Webhooks](/zh/plan/webhooks/)。
+工作区 Webhook 以 HMAC-SHA256 签名的 HTTP 请求投递事件。一个 Webhook 只能订阅以下 14 种事件：`issue.created`、`issue.updated`、`issue.assigned`、`issue.deleted`、`issue.state_changed`、`comment.created`、`comment.updated`、`comment.deleted`、`label.added`、`label.removed`、`sprint.started`、`sprint.completed`、`ai.task_completed` 和 `ai.task_failed`。创建或更新 Webhook 时，API 会拒绝其他任何事件名。载荷结构详见 [Webhooks](/zh/plan/webhooks/)。
 
 ### 通知
 
@@ -64,29 +64,29 @@ Sylvode 通过模型上下文协议（MCP）暴露 140 个工具，允许 AI 代
 
 ## 架构
 
-Sylvode 由五个服务组成：
+Sylvode 由五个服务组成，定义在仓库自带的 `docker-compose.yml` 中：
 
 | 服务 | 端口 | 角色 |
 |------|------|------|
-| **api** | 8080 | REST API 服务器（Axum） |
-| **worker** | -- | 后台任务调度器（轮询 `ai_tasks` 表） |
+| **api** | 容器内 8080，发布到宿主机端口 8081 | REST API 服务器（Axum） |
+| **worker** | -- | 后台流水线（AI 任务派发、治理结算、表单任务） |
 | **mcp-server** | 8090 | MCP 协议服务器（HTTP、stdio、SSE） |
-| **frontend** | 80 | Web UI（SvelteKit，通过 nginx 提供服务） |
-| **postgres** | 5432 | PostgreSQL 16 数据库 |
+| **frontend** | 容器内 80，发布到宿主机端口 3000 | Web UI（SvelteKit，通过 nginx 提供服务，并把 `/api` 代理到 API） |
+| **postgres** | 5432，仅在 compose 网络内 | PostgreSQL 16 数据库 |
 
 可选的 **webhook** 服务处理出站事件路由和 WSS 隧道支持，用于 NAT 后的代理。
 
 ```
-Frontend (nginx :3000) --> API (:8080) <-- MCP Server (:8090)
+Frontend (host :3000) --> API (host :8081, container :8080) <-- MCP Server (:8090)
                               |
-                         PostgreSQL (:5432)
+                         PostgreSQL (compose network)
                               |
                          Worker (后台)
 ```
 
 ## 数据库
 
-Sylvode 使用 PostgreSQL 16，包含 38 张表，分为三组：
+Sylvode 使用 PostgreSQL 16。迁移脚本编号从 `0000` 到 `0069`，按顺序执行后共创建 101 张表，其中包括：
 
 **核心项目管理** -- `users`、`workspaces`、`workspace_members`、`projects`、`work_items`、`comments`、`activities`、`labels`、`work_item_labels`、`sprints`
 
@@ -94,29 +94,27 @@ Sylvode 使用 PostgreSQL 16，包含 38 张表，分为三组：
 
 **基础设施** -- `notifications`、`webhooks`、`webhook_deliveries`、`pages`、`job_queue`、`scheduled_jobs`、`cache_entries`、`ai_learning_records`、`ai_participants`
 
-数据库迁移脚本编号从 `0001` 到 `0019`，在首次启动时通过 PostgreSQL 的 `docker-entrypoint-initdb.d` 机制自动应用。
+其余的表属于通用表单、插件、工作流、项目类型、事件账本和 Flow。迁移脚本编译进 API，API 启动时会按顺序应用尚未执行的迁移；空数据卷首次启动时，PostgreSQL 镜像也会通过 `docker-entrypoint-initdb.d` 执行这些脚本。
 
 ## 快速开始
 
 ### 前置条件
 
-- Docker 和 Docker Compose
+- 带 `docker compose` 插件的 Docker，或 Podman
 - Git
+- Rust 工具链和 Python 3.11+（`scripts/start.sh` 会在宿主机上构建二进制文件并校验生成的配置）
 
 ### 使用 Docker Compose 部署
 
 ```bash
-git clone https://github.com/openprx/sylvode
-cd sylvode
+git clone https://github.com/openprx/openpr
+cd openpr
 
-# 设置生产环境 JWT 密钥
-export JWT_SECRET="your-secure-random-string"
-
-# 启动所有服务
-docker compose up -d
+# Generate the configuration, build the binaries and start all services
+bash scripts/start.sh
 ```
 
-这将启动 PostgreSQL、运行迁移、并启动 API、Worker、MCP 服务器和前端。
+首次运行时，`scripts/start.sh` 会生成 `config/sylvode.compose.toml`（API 和 Worker）与 `config/sylvode.compose.mcp.toml`（MCP 服务器），其中填入随机的引导密钥，另生成仅供 compose 使用的 `.env`，然后构建发布版二进制文件并执行 `docker compose up -d --build`。
 
 ### 访问
 
@@ -126,18 +124,24 @@ docker compose up -d
 | REST API | `http://localhost:8081` |
 | MCP 服务器 | `http://localhost:8090` |
 
-第一个注册的用户将自动成为工作区管理员。
+Web UI 没有注册页面。在还没有任何用户时，`POST /api/v1/auth/register` 创建第一个账户，该账户成为系统管理员；之后的账户由管理员创建。
 
-### 环境变量
+### 配置
 
-| 变量 | 默认值 | 说明 |
-|------|--------|------|
-| `JWT_SECRET` | `change-me-in-production` | JWT 令牌签名密钥 |
-| `JWT_ACCESS_TTL_SECONDS` | `2592000`（30 天） | 访问令牌有效期 |
-| `JWT_REFRESH_TTL_SECONDS` | `2592000`（30 天） | 刷新令牌有效期 |
-| `DATABASE_URL` | （在 compose 中设置） | PostgreSQL 连接字符串 |
-| `RUST_LOG` | `info` | 日志级别过滤 |
-| `UPLOAD_DIR` | `/app/uploads` | 文件上传存储目录 |
+`api`、`worker` 和 `mcp-server` 不读取任何环境变量。所有设置都来自一个 TOML 文件，通过 `--config` 指定，默认为 `config/sylvode.toml`：
+
+| 键 | 默认值 | 说明 |
+|----|--------|------|
+| `database.url` | 必填（API、Worker） | PostgreSQL 连接 URL |
+| `auth.jwt_secret` | 必填（API、Worker） | JWT 签名密钥，至少 16 个字符 |
+| `auth.access_ttl_seconds` | `1296000`（15 天） | 访问令牌有效期 |
+| `auth.refresh_ttl_seconds` | `1728000`（20 天） | 刷新令牌有效期 |
+| `server.bind_addr` | `0.0.0.0:8081`（API） | 监听地址 |
+| `logging.filter` | `<service>=info,tower_http=info` | 日志过滤（取代 `RUST_LOG`） |
+| `storage.dir` | `./uploads` | 本地存储后端的上传目录 |
+| `mcp.api_url`、`mcp.bot_token`、`mcp.workspace_id` | `http://localhost:8081`、无、必填 | MCP 服务器设置 |
+
+只有 compose 层面的 `SYLVODE_*` 变量（绑定地址、发布端口、运行时镜像）会被 `docker compose` 和 `scripts/start.sh` 读取。全部配置项见[配置参考](https://docs.openprx.dev/zh/sylvode/configuration/)。
 
 ### 生产环境部署
 
@@ -166,6 +170,6 @@ Sylvode 区分两种实体类型：
 ## 下一步
 
 - [MCP 服务器](/zh/plan/mcp-server/) -- 140 个 AI 代理集成工具
-- [Webhooks](/zh/plan/webhooks/) -- 30 种事件类型和载荷结构
+- [Webhooks](/zh/plan/webhooks/) -- 14 种可订阅事件和载荷结构
 - [AI 任务](/zh/plan/ai-tasks/) -- 任务派发和代理回调工作流
 - [治理](/zh/plan/governance/) -- 提案、投票、否决权和信任分

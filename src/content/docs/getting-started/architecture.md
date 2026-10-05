@@ -40,7 +40,7 @@ The primary integration protocol. Sylvode exposes 140 MCP tools via HTTP, stdio,
 
 ### Webhooks
 
-Sylvode fires 30 event types via HMAC-SHA256 signed webhooks. The Sylvode Webhook service receives these events and dispatches work to AI agents.
+Sylvode delivers HMAC-SHA256 signed webhooks for 14 subscribable events: issue, comment, label and sprint changes and AI task completion or failure. The Sylvode Webhook service receives these deliveries and dispatches work to AI agents.
 
 ### WSS Tunnel
 

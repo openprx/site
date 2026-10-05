@@ -1,6 +1,6 @@
 ---
 title: "Webhooks"
-description: "Sylvode fires 30 HMAC-SHA256 signed webhook event types covering issues, comments, sprints, governance, and AI task lifecycle."
+description: "Sylvode delivers HMAC-SHA256 signed webhooks for 14 subscribable events covering issues, comments, labels, sprints and the AI task lifecycle."
 sidebar:
   order: 3
 ---
@@ -18,7 +18,9 @@ Sylvode uses webhooks to notify external systems of state changes in real time. 
 
 ## Event Types
 
-Sylvode fires 30 event types organized into seven categories.
+A webhook can subscribe to exactly 14 events: `issue.created`, `issue.updated`, `issue.assigned`, `issue.deleted`, `issue.state_changed`, `comment.created`, `comment.updated`, `comment.deleted`, `label.added`, `label.removed`, `sprint.started`, `sprint.completed`, `ai.task_completed` and `ai.task_failed`. The API refuses any other event name when a webhook is created or updated.
+
+The API's event enum defines further kinds -- project, member, proposal, veto, escalation, appeal and governance configuration events -- but they are not on the subscription allow-list, so no webhook can receive them today. They are listed below for reference and marked as not subscribable.
 
 ### Issue Events (5)
 
@@ -52,7 +54,7 @@ Sylvode fires 30 event types organized into seven categories.
 | `sprint.started` | A sprint status changes to active |
 | `sprint.completed` | A sprint is marked as completed |
 
-### Project and Member Events (5)
+### Project and Member Events (5, not subscribable)
 
 | Event | Fired When |
 |-------|------------|
@@ -62,7 +64,7 @@ Sylvode fires 30 event types organized into seven categories.
 | `member.added` | A user is added to the workspace |
 | `member.removed` | A user is removed from the workspace |
 
-### Governance Events (9)
+### Governance Events (9, not subscribable)
 
 | Event | Fired When |
 |-------|------------|
@@ -76,14 +78,14 @@ Sylvode fires 30 event types organized into seven categories.
 | `veto.exercised` | A vetoer exercises their veto right |
 | `veto.withdrawn` | A veto is withdrawn |
 
-### Escalation and Appeal Events (2)
+### Escalation and Appeal Events (2, not subscribable)
 
 | Event | Fired When |
 |-------|------------|
 | `escalation.started` | An escalation process begins |
 | `appeal.created` | An appeal is filed against a decision |
 
-### Configuration Events (1)
+### Configuration Events (1, not subscribable)
 
 | Event | Fired When |
 |-------|------------|

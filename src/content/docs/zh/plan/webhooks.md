@@ -1,6 +1,6 @@
 ---
 title: "Webhooks"
-description: "Sylvode 触发 30 种 HMAC-SHA256 签名的 Webhook 事件类型，覆盖 Issue、评论、Sprint、治理和 AI 任务生命周期。"
+description: "Sylvode 为 14 种可订阅事件投递 HMAC-SHA256 签名的 Webhook，覆盖 Issue、评论、标签、Sprint 和 AI 任务生命周期。"
 sidebar:
   order: 3
 ---
@@ -18,7 +18,9 @@ Sylvode 使用 Webhook 实时通知外部系统状态变更。每次 Webhook 投
 
 ## 事件类型
 
-Sylvode 触发 30 种事件类型，分为七个类别。
+一个 Webhook 只能订阅以下 14 种事件：`issue.created`、`issue.updated`、`issue.assigned`、`issue.deleted`、`issue.state_changed`、`comment.created`、`comment.updated`、`comment.deleted`、`label.added`、`label.removed`、`sprint.started`、`sprint.completed`、`ai.task_completed` 和 `ai.task_failed`。创建或更新 Webhook 时，API 会拒绝其他任何事件名。
+
+API 的事件枚举还定义了其他类型——项目、成员、提案、否决、升级、申诉和治理配置事件——但它们不在订阅白名单中，因此目前任何 Webhook 都无法接收这些事件。下文列出它们仅供参考，并标注为不可订阅。
 
 ### Issue 事件（5 种）
 
@@ -52,7 +54,7 @@ Sylvode 触发 30 种事件类型，分为七个类别。
 | `sprint.started` | Sprint 状态变为活跃 |
 | `sprint.completed` | Sprint 标记为已完成 |
 
-### 项目和成员事件（5 种）
+### 项目和成员事件（5 种，不可订阅）
 
 | 事件 | 触发时机 |
 |------|----------|
@@ -62,7 +64,7 @@ Sylvode 触发 30 种事件类型，分为七个类别。
 | `member.added` | 用户加入工作区 |
 | `member.removed` | 用户从工作区移除 |
 
-### 治理事件（9 种）
+### 治理事件（9 种，不可订阅）
 
 | 事件 | 触发时机 |
 |------|----------|
@@ -76,14 +78,14 @@ Sylvode 触发 30 种事件类型，分为七个类别。
 | `veto.exercised` | 否决权人行使否决权 |
 | `veto.withdrawn` | 否决权被撤回 |
 
-### 升级和申诉事件（2 种）
+### 升级和申诉事件（2 种，不可订阅）
 
 | 事件 | 触发时机 |
 |------|----------|
 | `escalation.started` | 升级流程开始 |
 | `appeal.created` | 对决策提起申诉 |
 
-### 配置事件（1 种）
+### 配置事件（1 种，不可订阅）
 
 | 事件 | 触发时机 |
 |------|----------|

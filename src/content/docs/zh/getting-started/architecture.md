@@ -40,7 +40,7 @@ sidebar:
 
 ### Webhooks
 
-Sylvode 通过 HMAC-SHA256 签名的 Webhook 触发 30 种事件类型。Sylvode Webhook 服务接收这些事件并将工作派发给 AI 代理。
+Sylvode 为 14 种可订阅事件投递 HMAC-SHA256 签名的 Webhook：Issue、评论、标签和 Sprint 的变更，以及 AI 任务的完成或失败。Sylvode Webhook 服务接收这些投递并将工作派发给 AI 代理。
 
 ### WSS 隧道
 

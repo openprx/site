@@ -52,7 +52,7 @@ Sylvode აქვეყნებს 140 ინსტრუმენტს Model 
 
 ### ვებჰუკები
 
-30 ტიპის მოვლენა გაისვრება HMAC-SHA256 ხელმოწერილი HTTP ვებჰუკებით, რომლებიც მოიცავს ამოცანებს, კომენტარებს, ლეიბლებს, სპრინტებს, წინადადებებს, მმართველობას და ხელოვნური ინტელექტის ამოცანების სასიცოცხლო ციკლს. იხილეთ [ვებჰუკები](/ka/plan/webhooks/) მოვლენების ტიპებისა და პეილოადის სტრუქტურისთვის.
+სამუშაო სივრცის ვებჰუკები მოვლენებს HMAC-SHA256-ით ხელმოწერილი HTTP მოთხოვნებით აწვდიან. ვებჰუკს შეუძლია გამოიწეროს ზუსტად ეს 14 მოვლენა: `issue.created`, `issue.updated`, `issue.assigned`, `issue.deleted`, `issue.state_changed`, `comment.created`, `comment.updated`, `comment.deleted`, `label.added`, `label.removed`, `sprint.started`, `sprint.completed`, `ai.task_completed` და `ai.task_failed`. ვებჰუკის შექმნისას ან განახლებისას API უარყოფს ნებისმიერ სხვა მოვლენის სახელს. პეილოადის სტრუქტურა იხილეთ [ვებჰუკებში](/ka/plan/webhooks/).
 
 ### შეტყობინებები
 
@@ -64,29 +64,29 @@ Sylvode აქვეყნებს 140 ინსტრუმენტს Model 
 
 ## არქიტექტურა
 
-Sylvode შედგება ხუთი სერვისისგან:
+Sylvode შედგება ხუთი სერვისისგან, რომლებიც რეპოზიტორიის `docker-compose.yml`-შია განსაზღვრული:
 
 | სერვისი | პორტი | როლი |
 |---------|------|------|
-| **api** | 8080 | REST API სერვერი (Axum) |
-| **worker** | -- | ფონური ამოცანების დისპეტჩერი (`ai_tasks` ცხრილის გამოკითხვა) |
+| **api** | კონტეინერში 8080, ჰოსტზე გამოქვეყნებულია 8081 პორტზე | REST API სერვერი (Axum) |
+| **worker** | -- | ფონური პროცესები (ხელოვნური ინტელექტის ამოცანების გაგზავნა, მმართველობის კენჭისყრის დასრულება, ფორმების ამოცანები) |
 | **mcp-server** | 8090 | MCP პროტოკოლის სერვერი (HTTP, stdio, SSE) |
-| **frontend** | 80 | ვებ ინტერფეისი (SvelteKit, nginx-ით მოწოდებული) |
-| **postgres** | 5432 | PostgreSQL 16 მონაცემთა ბაზა |
+| **frontend** | კონტეინერში 80, ჰოსტზე გამოქვეყნებულია 3000 პორტზე | ვებ ინტერფეისი (SvelteKit, nginx-ით, რომელიც `/api`-ს API-ზე გადაამისამართებს) |
+| **postgres** | 5432, მხოლოდ compose ქსელში | PostgreSQL 16 მონაცემთა ბაზა |
 
 არჩევითი **webhook** სერვისი მართავს გამავალ მოვლენების მარშრუტიზაციას და WSS ტუნელის მხარდაჭერას NAT-ის უკან მყოფი აგენტებისთვის.
 
 ```
-Frontend (nginx :3000) --> API (:8080) <-- MCP Server (:8090)
+Frontend (host :3000) --> API (host :8081, container :8080) <-- MCP Server (:8090)
                               |
-                         PostgreSQL (:5432)
+                         PostgreSQL (compose network)
                               |
                          Worker (ფონური)
 ```
 
 ## მონაცემთა ბაზა
 
-Sylvode იყენებს PostgreSQL 16-ს 38 ცხრილით, ორგანიზებული სამ ჯგუფად:
+Sylvode იყენებს PostgreSQL 16-ს. მიგრაციები დანომრილია `0000`-დან `0069`-მდე; თანმიმდევრულად გაშვებისას ისინი 101 ცხრილს ქმნიან. მათ შორისაა:
 
 **პროექტების მართვის ბირთვი** -- `users`, `workspaces`, `workspace_members`, `projects`, `work_items`, `comments`, `activities`, `labels`, `work_item_labels`, `sprints`
 
@@ -94,50 +94,54 @@ Sylvode იყენებს PostgreSQL 16-ს 38 ცხრილით, ორ
 
 **ინფრასტრუქტურა** -- `notifications`, `webhooks`, `webhook_deliveries`, `pages`, `job_queue`, `scheduled_jobs`, `cache_entries`, `ai_learning_records`, `ai_participants`
 
-მიგრაციები დანომრილია `0001`-დან `0019`-მდე და ავტომატურად გამოიყენება პირველ გაშვებაზე PostgreSQL-ის `docker-entrypoint-initdb.d` მექანიზმით.
+დანარჩენი ცხრილები ეკუთვნის უნივერსალურ ფორმებს, პლაგინებს, სამუშაო პროცესებს, პროექტის ტიპებს, მოვლენების ჟურნალს და Flow-ს. მიგრაციები API-შია ჩაშენებული და API გაშვებისას თანმიმდევრულად იყენებს ყველა ჯერ არგაშვებულ მიგრაციას; ცარიელი ტომის პირველ გაშვებაზე PostgreSQL-ის იმიჯიც უშვებს მათ `docker-entrypoint-initdb.d`-ის საშუალებით.
 
 ## სწრაფი დაწყება
 
 ### წინაპირობები
 
-- Docker და Docker Compose
+- Docker `docker compose` დანამატით, ან Podman
 - Git
+- Rust-ის ინსტრუმენტები და Python 3.11+ (`scripts/start.sh` ბინარულ ფაილებს ჰოსტზე აგებს და გენერირებულ კონფიგურაციას ამოწმებს)
 
 ### გაშლა Docker Compose-ით
 
 ```bash
-git clone https://github.com/openprx/sylvode
-cd sylvode
+git clone https://github.com/openprx/openpr
+cd openpr
 
-# დააყენეთ პროდაქშენის JWT საიდუმლო
-export JWT_SECRET="your-secure-random-string"
-
-# გაუშვით ყველა სერვისი
-docker compose up -d
+# Generate the configuration, build the binaries and start all services
+bash scripts/start.sh
 ```
 
-ეს იწყებს PostgreSQL-ს, უშვებს მიგრაციებს და ამუშავებს API-ს, worker-ს, MCP სერვერს და ფრონტენდს.
+პირველ გაშვებაზე `scripts/start.sh` ქმნის `config/sylvode.compose.toml`-ს (API და worker) და `config/sylvode.compose.mcp.toml`-ს (MCP სერვერი) შემთხვევითი საწყისი საიდუმლოებით, ასევე მხოლოდ compose-ისთვის განკუთვნილ `.env`-ს, შემდეგ აგებს release ბინარულ ფაილებს და უშვებს `docker compose up -d --build`-ს.
 
 ### წვდომა
 
-| ბოლო წერტილი | URL |
+| წერტილი | URL |
 |----------|-----|
 | ვებ ინტერფეისი | `http://localhost:3000` |
 | REST API | `http://localhost:8081` |
 | MCP სერვერი | `http://localhost:8090` |
 
-პირველი დარეგისტრირებული მომხმარებელი ავტომატურად ხდება სამუშაო სივრცის ადმინისტრატორი.
+ვებ ინტერფეისს რეგისტრაციის გვერდი არ აქვს. სანამ არცერთი მომხმარებელი არ არსებობს, `POST /api/v1/auth/register` ქმნის პირველ ანგარიშს, რომელიც სისტემის ადმინისტრატორი ხდება; შემდგომ ანგარიშებს ადმინისტრატორი ქმნის.
 
-### გარემოს ცვლადები
+### კონფიგურაცია
 
-| ცვლადი | ნაგულისხმევი | აღწერა |
-|----------|---------|-------------|
-| `JWT_SECRET` | `change-me-in-production` | JWT ტოკენების ხელმოწერის საიდუმლო |
-| `JWT_ACCESS_TTL_SECONDS` | `2592000` (30 დღე) | წვდომის ტოკენის სიცოცხლის ხანგრძლივობა |
-| `JWT_REFRESH_TTL_SECONDS` | `2592000` (30 დღე) | განახლების ტოკენის სიცოცხლის ხანგრძლივობა |
-| `DATABASE_URL` | (compose-ში დაყენებული) | PostgreSQL კავშირის სტრიქონი |
-| `RUST_LOG` | `info` | ლოგირების დონის ფილტრი |
-| `UPLOAD_DIR` | `/app/uploads` | ფაილების ატვირთვის შენახვის დირექტორია |
+`api`, `worker` და `mcp-server` გარემოს ცვლადებს არ კითხულობენ. ყველა პარამეტრი ერთი TOML ფაილიდან მოდის, რომელიც `--config`-ით მიეთითება და ნაგულისხმევად `config/sylvode.toml`-ია:
+
+| გასაღები | ნაგულისხმევი | აღწერა |
+|-----|---------|-------------|
+| `database.url` | სავალდებულო (API, worker) | PostgreSQL-ის კავშირის URL |
+| `auth.jwt_secret` | სავალდებულო (API, worker) | JWT ხელმოწერის საიდუმლო, მინიმუმ 16 სიმბოლო |
+| `auth.access_ttl_seconds` | `1296000` (15 დღე) | წვდომის ტოკენის სიცოცხლის ხანგრძლივობა |
+| `auth.refresh_ttl_seconds` | `1728000` (20 დღე) | განახლების ტოკენის სიცოცხლის ხანგრძლივობა |
+| `server.bind_addr` | `0.0.0.0:8081` (API) | მოსმენის მისამართი |
+| `logging.filter` | `<service>=info,tower_http=info` | ლოგების ფილტრი (ცვლის `RUST_LOG`-ს) |
+| `storage.dir` | `./uploads` | ლოკალური საცავის ატვირთვების დირექტორია |
+| `mcp.api_url`, `mcp.bot_token`, `mcp.workspace_id` | `http://localhost:8081`, არ აქვს, სავალდებულო | MCP სერვერის პარამეტრები |
+
+იკითხება მხოლოდ compose-ის დონის `SYLVODE_*` ცვლადები (მიბმის ჰოსტი, გამოქვეყნებული პორტები, გაშვების იმიჯი) — მათ `docker compose` და `scripts/start.sh` კითხულობენ. ყველა გასაღები იხილეთ [კონფიგურაციის ცნობარში](https://docs.openprx.dev/ka/sylvode/configuration/).
 
 ### პროდაქშენის გაშლა
 
@@ -166,6 +170,6 @@ Sylvode განასხვავებს ორ ერთეულის ტ
 ## რა არის შემდეგი
 
 - [MCP სერვერი](/ka/plan/mcp-server/) -- 140 ინსტრუმენტი ხელოვნური ინტელექტის აგენტების ინტეგრაციისთვის
-- [ვებჰუკები](/ka/plan/webhooks/) -- 30 მოვლენის ტიპი და პეილოადის სტრუქტურა
+- [ვებჰუკები](/ka/plan/webhooks/) -- 14 გამოსაწერი მოვლენა და პეილოადის სტრუქტურა
 - [ხელოვნური ინტელექტის ამოცანები](/ka/plan/ai-tasks/) -- ამოცანების გაშვება და აგენტის გამოძახების სამუშაო პროცესი
 - [მმართველობა](/ka/plan/governance/) -- წინადადებები, კენჭისყრა, ვეტოს უფლებები და ნდობის ქულები
