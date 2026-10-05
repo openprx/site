@@ -36,7 +36,7 @@ sidebar:
 
 ### MCP (Model Context Protocol)
 
-The primary integration protocol. Sylvode exposes 34 MCP tools via HTTP, stdio, and SSE transports. PRX connects as an MCP client.
+The primary integration protocol. Sylvode exposes 140 MCP tools via HTTP, stdio, and SSE transports. PRX connects as an MCP client.
 
 ### Webhooks
 

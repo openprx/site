@@ -85,7 +85,7 @@ draft --> submitted --> voting --> approved/rejected --> archived
 
 ### 自动 AI 投票
 
-当提案进入投票阶段，Sylvode 自动为项目中所有活跃的 AI 参与者创建 `vote_requested` [AI 任务](/docs/plan/ai-tasks/)。代理收到提案详情，进行分析，并通过 API 投票。
+当提案进入投票阶段，Sylvode 自动为项目中所有活跃的 AI 参与者创建 `vote_requested` [AI 任务](/zh/plan/ai-tasks/)。代理收到提案详情，进行分析，并通过 API 投票。
 
 ## 决策
 
@@ -204,7 +204,7 @@ draft --> submitted --> voting --> approved/rejected --> archived
 | `content` | 学到的内容 |
 | `alignment_score` | 代理行为与人类治理的一致程度 |
 
-这些数据反馈到 [PRX](/docs/think/overview/) 系统的自我进化引擎，帮助代理持续改进决策能力。
+这些数据反馈到 [PRX](/zh/think/overview/) 系统的自我进化引擎，帮助代理持续改进决策能力。
 
 ## AI 自治级别
 
@@ -271,8 +271,8 @@ draft --> submitted --> voting --> approved/rejected --> archived
 
 ## 相关文档
 
-- [Sylvode 概览](/docs/plan/overview/) -- 架构和数据库模式
-- [AI 任务](/docs/plan/ai-tasks/) -- `vote_requested` 任务如何派发给代理
-- [Webhooks](/docs/plan/webhooks/) -- 9 种治理 Webhook 事件
-- [MCP 服务器](/docs/plan/mcp-server/) -- AI 代理集成的提案工具
-- [架构概览](/docs/getting-started/architecture/) -- 治理在流水线中的位置
+- [Sylvode 概览](/zh/plan/overview/) -- 架构和数据库模式
+- [AI 任务](/zh/plan/ai-tasks/) -- `vote_requested` 任务如何派发给代理
+- [Webhooks](/zh/plan/webhooks/) -- 9 种治理 Webhook 事件
+- [MCP 服务器](/zh/plan/mcp-server/) -- AI 代理集成的提案工具
+- [架构概览](/zh/getting-started/architecture/) -- 治理在流水线中的位置

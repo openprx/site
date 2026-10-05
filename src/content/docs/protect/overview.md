@@ -9,8 +9,8 @@ The Protect stage defends deployed applications and infrastructure with two comp
 
 | Product | Domain | What it protects |
 |---------|--------|-----------------|
-| [PRX-WAF](/docs/protect/prx-waf/) | Network | HTTP/HTTPS traffic -- blocks attacks before they reach your application |
-| [PRX-SD](/docs/protect/prx-sd/) | Endpoint | Files and processes -- detects and removes malware on hosts |
+| [PRX-WAF](/protect/prx-waf/) | Network | HTTP/HTTPS traffic -- blocks attacks before they reach your application |
+| [PRX-SD](/protect/prx-sd/) | Endpoint | Files and processes -- detects and removes malware on hosts |
 
 ## Defense in Depth
 

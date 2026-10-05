@@ -202,7 +202,7 @@
       "description": "为现代工程团队打造的完整项目协作平台。",
       "tech": "Rust (Axum + SeaORM), SvelteKit, PostgreSQL",
       "language": "Rust",
-      "license": "Apache-2.0",
+      "license": "MIT OR Apache-2.0",
       "features": [
         {
           "icon": "board",
@@ -222,7 +222,7 @@
         {
           "icon": "plug",
           "title": "MCP 服务",
-          "description": "提供 34 个工具，支持 HTTP、stdio 与 SSE 三种协议。"
+          "description": "提供 140 个工具，支持 HTTP、stdio 与 SSE 三种协议。"
         },
         {
           "icon": "attachment",
@@ -240,7 +240,7 @@
         "frontend": "SvelteKit 前端",
         "api": "Rust API（Axum）",
         "database": "PostgreSQL",
-        "mcp": "MCP 服务（34 个工具）",
+        "mcp": "MCP 服务（140 个工具）",
         "transports": "HTTP | stdio | SSE"
       },
       "repo": "https://github.com/openprx/sylvode",

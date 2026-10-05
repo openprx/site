@@ -29,11 +29,11 @@ The dispatcher supports five agent types:
 
 | Agent Type | Description |
 |------------|-------------|
-| `openclaw` | The OpenPRX default coding agent |
-| `openprx` | General-purpose OpenPRX agent |
-| `webhook` | Forward events to an external webhook |
-| `custom` | User-defined agent with custom configuration |
-| `cli` | CLI-based agent executed locally |
+| `openclaw` | Send a notification through the OpenClaw CLI (Signal, Telegram) |
+| `openprx` | Send a notification through the OpenPRX Signal API or CLI |
+| `webhook` | Forward events to an external HTTP endpoint |
+| `custom` | Run a user-defined command |
+| `cli` | Run a whitelisted coding agent locally |
 
 ## CLI Executor
 
@@ -57,20 +57,14 @@ Any attempt to execute a binary not on this whitelist is rejected.
 |-----------|---------|-------------|
 | Working directory | Configured per agent | The repository checkout path |
 | Timeout | 900s (15 min) | Maximum execution time before forceful termination |
-| Prompt template | Per agent type | Template with placeholders for issue context |
+| Prompt template | `Fix issue {issue_id}: {title}` | Template with placeholders for issue context |
 
 ### Prompt Templates
 
-Prompt templates support placeholders that are filled from the webhook event payload:
+`prompt_template` supports placeholders that are filled from the webhook event payload: `{issue_id}`, `{title}`, `{reason}`, `{event}`, `{project_id}`, `{form_id}`, `{form_key}` and `{record_id}`.
 
-```
-You are working on project {{project_name}}.
-Issue #{{issue_number}}: {{issue_title}}
-
-Description:
-{{issue_description}}
-
-Please implement the required changes and report your results.
+```toml
+prompt_template = "Fix issue {issue_id}: {title}\nContext: {reason}"
 ```
 
 ## Callback Loop
@@ -101,18 +95,17 @@ Sylvode Webhook is designed with defense-in-depth:
 
 ### Feature Gates
 
-All capabilities are behind feature gates that default to **false**:
+The riskier paths sit behind feature gates in the `[features]` section, all defaulting to **false**:
 
 | Feature | Default | Description |
 |---------|---------|-------------|
-| `cli_executor` | `false` | Enable local CLI agent execution |
-| `wss_tunnel` | `false` | Enable WSS tunnel connection |
-| `webhook_forward` | `false` | Enable forwarding to external webhooks |
-| `custom_agent` | `false` | Enable custom agent configurations |
+| `cli_enabled` | `false` | Enable local CLI agent execution |
+| `tunnel_enabled` | `false` | Enable the WSS tunnel connection (also needs `[tunnel].enabled = true`) |
+| `callback_enabled` | `false` | Enable result callbacks to Sylvode |
 
 ### Safe Mode
 
-When safe mode is enabled, the dispatcher operates in a read-only observation mode: events are received and logged but no agents are dispatched. This is useful for testing webhook connectivity and validating event payloads before enabling execution.
+Setting the environment variable `SYLVODE_WEBHOOK_SAFE_MODE=1` (also `true`, `yes` or `on`) forces the CLI, tunnel and callback paths off at runtime, whatever the configuration file says. It is a one-switch rollback to webhook-only behavior: events are still verified and forwarded to notification agents, but no coding agent is launched. The legacy name `OPENPR_WEBHOOK_SAFE_MODE` is still read, with a deprecation notice, and is not removed before v2.0.
 
 ### Executor Whitelist
 
@@ -121,30 +114,40 @@ The strict CLI whitelist (`codex`, `claude-code`, `opencode`) prevents arbitrary
 ## Configuration
 
 ```toml
-[webhook]
-secret = "your-hmac-secret"
-listen = "0.0.0.0:8091"
+[server]
+listen = "0.0.0.0:9090"
 
-[executor]
-working_dir = "/opt/repos"
+[security]
+webhook_secrets = ["your-hmac-secret"]
+
+[features]
+cli_enabled = true
+
+[[agents]]
+id = "ai-fixer"
+name = "AI Issue Fixer"
+agent_type = "cli"
+
+[agents.cli]
+executor = "claude-code" # codex | claude-code | opencode
+workdir = "/opt/repos/my-project"
 timeout_secs = 900
-safe_mode = false
-
-[agents.default]
-type = "cli"
-cli = "claude-code"
-prompt_template = "default.txt"
+prompt_template = "Fix issue {issue_id}: {title}\nContext: {reason}"
 ```
+
+The full reference is `config.example.toml` in the [repository](https://github.com/openprx/openpr-webhook).
 
 ## Running
 
 ```bash
-# Build
+# Build (inside the openpr-webhook repository checkout)
 cargo build --release
 
-# Run with default config
-./target/release/openpr-webhook
+# Run with config.toml from the working directory
+./target/release/sylvode-webhook
 
-# Run with custom config path
-./target/release/openpr-webhook --config /etc/openpr-webhook/config.toml
+# Run with an explicit config path
+./target/release/sylvode-webhook /etc/sylvode-webhook/config.toml
 ```
+
+The configuration path is a positional argument; `--help` and `--version` print usage and the version. Release archives and the container image `ghcr.io/openprx/sylvode-webhook` ship the same executable. The legacy executable name `openpr-webhook` still works and prints a deprecation notice; the legacy image name `ghcr.io/openprx/openpr-webhook` is published with the same digest. Neither is removed before v2.0.

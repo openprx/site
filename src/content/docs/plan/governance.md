@@ -85,7 +85,7 @@ See [Trust Scores](#trust-scores) below for how scores are calculated.
 
 ### Automatic AI Voting
 
-When a proposal enters the voting phase, Sylvode automatically creates `vote_requested` [AI tasks](/docs/plan/ai-tasks/) for all active AI participants in the project. The agent receives the proposal details, analyzes them, and casts a vote through the API.
+When a proposal enters the voting phase, Sylvode automatically creates `vote_requested` [AI tasks](/plan/ai-tasks/) for all active AI participants in the project. The agent receives the proposal details, analyzes them, and casts a vote through the API.
 
 ## Decisions
 
@@ -204,7 +204,7 @@ The `ai_learning_records` table tracks what AI agents learn from governance proc
 | `content` | What was learned |
 | `alignment_score` | How well the agent's actions aligned with human governance |
 
-This data feeds back into the [PRX](/docs/think/overview/) system's self-evolution engine, helping agents improve their decision-making over time.
+This data feeds back into the [PRX](/think/overview/) system's self-evolution engine, helping agents improve their decision-making over time.
 
 ## AI Autonomy Levels
 
@@ -271,8 +271,8 @@ Audit logs are paginated and filterable by project, action, resource type, actor
 
 ## Related
 
-- [Sylvode Overview](/docs/plan/overview/) -- Architecture and database schema
-- [AI Tasks](/docs/plan/ai-tasks/) -- How `vote_requested` tasks are dispatched to agents
-- [Webhooks](/docs/plan/webhooks/) -- 9 governance webhook events
-- [MCP Server](/docs/plan/mcp-server/) -- Proposal tools for AI agent integration
-- [Architecture Overview](/docs/getting-started/architecture/) -- How governance fits in the pipeline
+- [Sylvode Overview](/plan/overview/) -- Architecture and database schema
+- [AI Tasks](/plan/ai-tasks/) -- How `vote_requested` tasks are dispatched to agents
+- [Webhooks](/plan/webhooks/) -- 9 governance webhook events
+- [MCP Server](/plan/mcp-server/) -- Proposal tools for AI agent integration
+- [Architecture Overview](/getting-started/architecture/) -- How governance fits in the pipeline

@@ -217,7 +217,7 @@
       "description": "A complete project collaboration platform for modern engineering teams.",
       "tech": "Rust (Axum + SeaORM), SvelteKit, PostgreSQL",
       "language": "Rust",
-      "license": "Apache-2.0",
+      "license": "MIT OR Apache-2.0",
       "features": [
         {
           "icon": "board",
@@ -237,7 +237,7 @@
         {
           "icon": "plug",
           "title": "MCP Server",
-          "description": "34 tools across HTTP, stdio, and SSE protocols."
+          "description": "140 tools across HTTP, stdio, and SSE transports."
         },
         {
           "icon": "attachment",
@@ -255,7 +255,7 @@
         "frontend": "SvelteKit Frontend",
         "api": "Rust API (Axum)",
         "database": "PostgreSQL",
-        "mcp": "MCP Server (34 tools)",
+        "mcp": "MCP Server (140 tools)",
         "transports": "HTTP | stdio | SSE"
       },
       "repo": "https://github.com/openprx/sylvode",

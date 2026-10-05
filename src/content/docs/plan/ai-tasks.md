@@ -270,8 +270,8 @@ The `idempotency_key` prevents duplicate task creation. If a task with the same 
 
 ## Related
 
-- [Sylvode Overview](/docs/plan/overview/) -- Architecture and deployment
-- [MCP Server](/docs/plan/mcp-server/) -- 34 tools for agent interaction
-- [Webhooks](/docs/plan/webhooks/) -- Event types including `ai.task_completed` and `ai.task_failed`
-- [Governance](/docs/plan/governance/) -- How `vote_requested` tasks are auto-created
-- [Architecture Overview](/docs/getting-started/architecture/) -- Full pipeline data flow
+- [Sylvode Overview](/plan/overview/) -- Architecture and deployment
+- [MCP Server](/plan/mcp-server/) -- 140 tools for agent interaction
+- [Webhooks](/plan/webhooks/) -- Event types including `ai.task_completed` and `ai.task_failed`
+- [Governance](/plan/governance/) -- How `vote_requested` tasks are auto-created
+- [Architecture Overview](/getting-started/architecture/) -- Full pipeline data flow

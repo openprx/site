@@ -11,8 +11,8 @@ The Build stage connects project management (Plan) to actual code generation. Wh
 
 | Component | Role | Language |
 |-----------|------|----------|
-| [Sylvode Webhook](/docs/build/webhook-dispatcher/) | Receives Sylvode events, dispatches AI agents | Rust (Axum) |
-| [prx-memory](/docs/build/prx-memory/) | Persistent knowledge store for agents (MCP server) | Rust |
+| [Sylvode Webhook](/build/webhook-dispatcher/) | Receives Sylvode events, dispatches AI agents | Rust (Axum) |
+| [prx-memory](/build/prx-memory/) | Persistent knowledge store for agents (MCP server) | Rust |
 
 ## Data Flow
 

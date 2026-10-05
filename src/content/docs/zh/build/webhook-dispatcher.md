@@ -29,11 +29,11 @@ Sylvode ──webhook──▶ Sylvode Webhook ──CLI──▶ AI 代理
 
 | 代理类型 | 说明 |
 |----------|------|
-| `openclaw` | OpenPRX 默认编码代理 |
-| `openprx` | 通用 OpenPRX 代理 |
-| `webhook` | 将事件转发到外部 Webhook |
-| `custom` | 用户自定义代理，带自定义配置 |
-| `cli` | 本地执行的基于 CLI 的代理 |
+| `openclaw` | 通过 OpenClaw CLI 发送通知（Signal、Telegram） |
+| `openprx` | 通过 OpenPRX Signal API 或 CLI 发送通知 |
+| `webhook` | 将事件转发到外部 HTTP 端点 |
+| `custom` | 运行用户自定义命令 |
+| `cli` | 在本地运行白名单内的编码代理 |
 
 ## CLI 执行器
 
@@ -57,20 +57,14 @@ CLI 执行器是主要的派发机制。它以受控参数将编码代理作为�
 |------|--------|------|
 | 工作目录 | 每个代理配置 | 代码仓库的检出路径 |
 | 超时 | 900 秒（15 分钟） | 强制终止前的最大执行时间 |
-| 提示词模板 | 每代理类型 | 带有 Issue 上下文占位符的模板 |
+| 提示词模板 | `Fix issue {issue_id}: {title}` | 带有 Issue 上下文占位符的模板 |
 
 ### 提示词模板
 
-提示词模板支持从 Webhook 事件载荷中填充的占位符：
+`prompt_template` 支持从 Webhook 事件载荷中填充的占位符：`{issue_id}`、`{title}`、`{reason}`、`{event}`、`{project_id}`、`{form_id}`、`{form_key}` 和 `{record_id}`。
 
-```
-You are working on project {{project_name}}.
-Issue #{{issue_number}}: {{issue_title}}
-
-Description:
-{{issue_description}}
-
-Please implement the required changes and report your results.
+```toml
+prompt_template = "Fix issue {issue_id}: {title}\nContext: {reason}"
 ```
 
 ## 回调循环
@@ -101,18 +95,17 @@ Sylvode Webhook 采用纵深防御设计：
 
 ### 功能门控
 
-所有功能都在功能门控后面，默认为 **false**：
+风险较高的路径位于 `[features]` 段的功能门控之后，默认均为 **false**：
 
 | 功能 | 默认值 | 说明 |
 |------|--------|------|
-| `cli_executor` | `false` | 启用本地 CLI 代理执行 |
-| `wss_tunnel` | `false` | 启用 WSS 隧道连接 |
-| `webhook_forward` | `false` | 启用转发到外部 Webhook |
-| `custom_agent` | `false` | 启用自定义代理配置 |
+| `cli_enabled` | `false` | 启用本地 CLI 代理执行 |
+| `tunnel_enabled` | `false` | 启用 WSS 隧道连接（还需 `[tunnel].enabled = true`） |
+| `callback_enabled` | `false` | 启用向 Sylvode 的结果回调 |
 
 ### 安全模式
 
-启用安全模式后，调度器以只读观察模式运行：事件被接收和记录，但不派发代理。这对于在启用执行之前测试 Webhook 连接和验证事件载荷很有用。
+设置环境变量 `SYLVODE_WEBHOOK_SAFE_MODE=1`（也接受 `true`、`yes`、`on`）会在运行时强制关闭 CLI、隧道和回调路径，无论配置文件如何设置。这是一键回退到纯 Webhook 行为的开关：事件仍会被验证并转发给通知类代理，但不会启动任何编码代理。旧变量名 `OPENPR_WEBHOOK_SAFE_MODE` 仍会被读取并给出弃用提示，最早在 v2.0 才会移除。
 
 ### 执行器白名单
 
@@ -121,30 +114,40 @@ Sylvode Webhook 采用纵深防御设计：
 ## 配置
 
 ```toml
-[webhook]
-secret = "your-hmac-secret"
-listen = "0.0.0.0:8091"
+[server]
+listen = "0.0.0.0:9090"
 
-[executor]
-working_dir = "/opt/repos"
+[security]
+webhook_secrets = ["your-hmac-secret"]
+
+[features]
+cli_enabled = true
+
+[[agents]]
+id = "ai-fixer"
+name = "AI Issue Fixer"
+agent_type = "cli"
+
+[agents.cli]
+executor = "claude-code" # codex | claude-code | opencode
+workdir = "/opt/repos/my-project"
 timeout_secs = 900
-safe_mode = false
-
-[agents.default]
-type = "cli"
-cli = "claude-code"
-prompt_template = "default.txt"
+prompt_template = "Fix issue {issue_id}: {title}\nContext: {reason}"
 ```
+
+完整参考见[仓库](https://github.com/openprx/openpr-webhook)中的 `config.example.toml`。
 
 ## 运行
 
 ```bash
-# 构建
+# 构建（在 openpr-webhook 仓库检出目录中）
 cargo build --release
 
-# 使用默认配置运行
-./target/release/openpr-webhook
+# 使用工作目录中的 config.toml 运行
+./target/release/sylvode-webhook
 
-# 使用自定义配置路径运行
-./target/release/openpr-webhook --config /etc/openpr-webhook/config.toml
+# 使用显式配置路径运行
+./target/release/sylvode-webhook /etc/sylvode-webhook/config.toml
 ```
+
+配置路径是位置参数；`--help` 与 `--version` 分别输出用法和版本。发布归档和容器镜像 `ghcr.io/openprx/sylvode-webhook` 提供同一个可执行文件。旧可执行名 `openpr-webhook` 仍可使用并会输出弃用提示；旧镜像名 `ghcr.io/openprx/openpr-webhook` 以相同 digest 发布。两者最早在 v2.0 才会移除。

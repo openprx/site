@@ -35,7 +35,7 @@ Product
 
 ### Upload API
 
-CI/CD pipelines upload builds via a simple `POST /upload` endpoint with token authentication. See [Upload API](/docs/ship/upload-api/) for full details.
+CI/CD pipelines upload builds via a simple `POST /upload` endpoint with token authentication. See [Upload API](/ship/upload-api/) for full details.
 
 ### Download Pages
 
@@ -84,7 +84,7 @@ In the OpenPRX pipeline, Fenfa sits between Build and Protect:
 
 1. An AI agent completes code changes and pushes to the repository
 2. CI/CD builds the artifact (IPA, APK, DMG, etc.)
-3. CI uploads the artifact to Fenfa via the [Upload API](/docs/ship/upload-api/)
+3. CI uploads the artifact to Fenfa via the [Upload API](/ship/upload-api/)
 4. Fenfa generates download pages and notifies stakeholders
 5. Users download and install the application
 6. PRX-WAF and PRX-SD protect the deployed application

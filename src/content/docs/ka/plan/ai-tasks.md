@@ -270,8 +270,8 @@ Content-Type: application/json
 
 ## დაკავშირებული
 
-- [Sylvode მიმოხილვა](/docs/plan/overview/) -- არქიტექტურა და გაშლა
-- [MCP სერვერი](/docs/plan/mcp-server/) -- 34 ინსტრუმენტი აგენტის ინტერაქციისთვის
-- [ვებჰუკები](/docs/plan/webhooks/) -- მოვლენების ტიპები, მათ შორის `ai.task_completed` და `ai.task_failed`
-- [მმართველობა](/docs/plan/governance/) -- როგორ იქმნება `vote_requested` ამოცანები ავტომატურად
-- [არქიტექტურის მიმოხილვა](/docs/getting-started/architecture/) -- სრული პაიპლაინის მონაცემთა ნაკადი
+- [Sylvode მიმოხილვა](/ka/plan/overview/) -- არქიტექტურა და გაშლა
+- [MCP სერვერი](/ka/plan/mcp-server/) -- 140 ინსტრუმენტი აგენტის ინტერაქციისთვის
+- [ვებჰუკები](/ka/plan/webhooks/) -- მოვლენების ტიპები, მათ შორის `ai.task_completed` და `ai.task_failed`
+- [მმართველობა](/ka/plan/governance/) -- როგორ იქმნება `vote_requested` ამოცანები ავტომატურად
+- [არქიტექტურის მიმოხილვა](/ka/getting-started/architecture/) -- სრული პაიპლაინის მონაცემთა ნაკადი

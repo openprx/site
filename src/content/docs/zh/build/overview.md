@@ -11,8 +11,8 @@ Build 阶段将项目管理（Plan）与实际代码生成连接起来。当 Syl
 
 | 组件 | 角色 | 语言 |
 |------|------|------|
-| [Sylvode Webhook](/docs/build/webhook-dispatcher/) | 接收 Sylvode 事件，派发 AI 代理 | Rust (Axum) |
-| [prx-memory](/docs/build/prx-memory/) | 代理的持久化知识存储（MCP 服务器） | Rust |
+| [Sylvode Webhook](/zh/build/webhook-dispatcher/) | 接收 Sylvode 事件，派发 AI 代理 | Rust (Axum) |
+| [prx-memory](/zh/build/prx-memory/) | 代理的持久化知识存储（MCP 服务器） | Rust |
 
 ## 数据流
 

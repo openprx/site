@@ -117,10 +117,12 @@ Webhook 通过 API 按工作区配置。每个 Webhook 指定：
 | 头 | 值 |
 |----|-----|
 | `Content-Type` | `application/json` |
-| `User-Agent` | `OpenPR-Webhook/1.0` |
+| `User-Agent` | `Sylvode-Webhook/1.0 (compatible; OpenPR-Webhook/1.0)` |
 | `X-Webhook-Signature` | `sha256=<十六进制编码的 HMAC>` |
 | `X-Webhook-Event` | 事件类型（如 `issue.created`） |
 | `X-Webhook-Delivery` | 唯一投递 UUID |
+
+OpenPR 更名为 Sylvode 后，`User-Agent` 由 `OpenPR-Webhook/1.0` 改为 `Sylvode-Webhook/1.0 (compatible; OpenPR-Webhook/1.0)`。按子串匹配旧标识的接收方不受影响；按精确值或前缀匹配旧值的接收方必须更新匹配规则。
 
 ### 载荷正文
 
@@ -275,7 +277,7 @@ function verifyWebhook(secret, body, signatureHeader) {
 
 ## 相关文档
 
-- [Sylvode 概览](/docs/plan/overview/) -- 架构和快速开始
-- [AI 任务](/docs/plan/ai-tasks/) -- Webhook 如何驱动 AI 任务派发
-- [治理](/docs/plan/governance/) -- 治理事件和配置
-- [架构概览](/docs/getting-started/architecture/) -- 完整流水线通信
+- [Sylvode 概览](/zh/plan/overview/) -- 架构和快速开始
+- [AI 任务](/zh/plan/ai-tasks/) -- Webhook 如何驱动 AI 任务派发
+- [治理](/zh/plan/governance/) -- 治理事件和配置
+- [架构概览](/zh/getting-started/architecture/) -- 完整流水线通信

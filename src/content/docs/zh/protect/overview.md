@@ -9,8 +9,8 @@ Protect 阶段通过两个互补的产品防护已部署的应用和基础设施
 
 | 产品 | 领域 | 保护对象 |
 |------|------|----------|
-| [PRX-WAF](/docs/protect/prx-waf/) | 网络 | HTTP/HTTPS 流量——在攻击到达你的应用之前拦截 |
-| [PRX-SD](/docs/protect/prx-sd/) | 端点 | 文件和进程——检测并清除主机上的恶意软件 |
+| [PRX-WAF](/zh/protect/prx-waf/) | 网络 | HTTP/HTTPS 流量——在攻击到达你的应用之前拦截 |
+| [PRX-SD](/zh/protect/prx-sd/) | 端点 | 文件和进程——检测并清除主机上的恶意软件 |
 
 ## 纵深防御
 

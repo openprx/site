@@ -11,8 +11,8 @@ Build ეტაპი აკავშირებს პროექტები
 
 | კომპონენტი | როლი | ენა |
 |-----------|------|----------|
-| [Sylvode Webhook](/docs/build/webhook-dispatcher/) | Sylvode მოვლენების მიღება, ხელოვნური ინტელექტის აგენტების გაშვება | Rust (Axum) |
-| [prx-memory](/docs/build/prx-memory/) | აგენტებისთვის მუდმივი ცოდნის საცავი (MCP სერვერი) | Rust |
+| [Sylvode Webhook](/ka/build/webhook-dispatcher/) | Sylvode მოვლენების მიღება, ხელოვნური ინტელექტის აგენტების გაშვება | Rust (Axum) |
+| [prx-memory](/ka/build/prx-memory/) | აგენტებისთვის მუდმივი ცოდნის საცავი (MCP სერვერი) | Rust |
 
 ## მონაცემთა ნაკადი
 

@@ -117,10 +117,12 @@ Sylvode ასხივებს 30 მოვლენის ტიპს, ო�
 | ჰედერი | მნიშვნელობა |
 |--------|-------|
 | `Content-Type` | `application/json` |
-| `User-Agent` | `OpenPR-Webhook/1.0` |
+| `User-Agent` | `Sylvode-Webhook/1.0 (compatible; OpenPR-Webhook/1.0)` |
 | `X-Webhook-Signature` | `sha256=<hex-კოდირებული HMAC>` |
 | `X-Webhook-Event` | მოვლენის ტიპი (მაგ., `issue.created`) |
 | `X-Webhook-Delivery` | მიწოდების უნიკალური UUID |
+
+OpenPR-ის Sylvode-ად გადარქმევისას `User-Agent` შეიცვალა `OpenPR-Webhook/1.0`-დან `Sylvode-Webhook/1.0 (compatible; OpenPR-Webhook/1.0)`-ზე. მიმღებები, რომლებიც ძველ ტოკენს ქვესტრიქონად ამოწმებენ, კვლავ იმუშავებენ; მიმღებებმა, რომლებიც ძველ მნიშვნელობას ზუსტად ან პრეფიქსით ადარებენ, წესი უნდა განაახლონ.
 
 ### პეილოადის სხეული
 
@@ -275,7 +277,7 @@ function verifyWebhook(secret, body, signatureHeader) {
 
 ## დაკავშირებული
 
-- [Sylvode მიმოხილვა](/docs/plan/overview/) -- არქიტექტურა და სწრაფი დაწყება
-- [ხელოვნური ინტელექტის ამოცანები](/docs/plan/ai-tasks/) -- როგორ მართავენ ვებჰუკები ხელოვნური ინტელექტის ამოცანების გაშვებას
-- [მმართველობა](/docs/plan/governance/) -- მმართველობის მოვლენები და კონფიგურაცია
-- [არქიტექტურის მიმოხილვა](/docs/getting-started/architecture/) -- სრული პაიპლაინის კომუნიკაცია
+- [Sylvode მიმოხილვა](/ka/plan/overview/) -- არქიტექტურა და სწრაფი დაწყება
+- [ხელოვნური ინტელექტის ამოცანები](/ka/plan/ai-tasks/) -- როგორ მართავენ ვებჰუკები ხელოვნური ინტელექტის ამოცანების გაშვებას
+- [მმართველობა](/ka/plan/governance/) -- მმართველობის მოვლენები და კონფიგურაცია
+- [არქიტექტურის მიმოხილვა](/ka/getting-started/architecture/) -- სრული პაიპლაინის კომუნიკაცია

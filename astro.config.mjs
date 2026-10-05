@@ -17,6 +17,8 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Docs',
+      favicon: '/brand-assets/favicon.svg',
+      routeMiddleware: './src/starlightRouteData.ts',
       logo: {
         dark: './src/assets/logo.svg',
         light: './src/assets/logo-light.svg'

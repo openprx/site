@@ -27,12 +27,12 @@ Sylvode dispatches tasks. PRX decides which model handles them, manages conversa
 
 | Subsystem | Purpose |
 |-----------|---------|
-| [Channels](/docs/think/channels/) | 19 messaging integrations (Signal, WhatsApp, Telegram, Discord, Slack, Matrix, etc.) |
-| [Providers](/docs/think/providers/) | 14 LLM backends with unified tool-calling abstraction |
-| [Router](/docs/think/router/) | Intelligent model selection: intent classification, Elo rating, KNN semantic routing, Automix |
-| [Sub-agents](/docs/think/sub-agents/) | Three-tier delegation: synchronous named agents, async fire-and-forget sessions, management commands |
-| [Self-evolution](/docs/think/self-evolution/) | Autonomous improvement of prompts, memory, and strategies with safety gates |
-| [Security](/docs/think/security/) | 5-layer policy pipeline, approval workflows, sandbox enforcement (Docker, Firejail, Bubblewrap, Landlock, WASM) |
+| [Channels](/think/channels/) | 19 messaging integrations (Signal, WhatsApp, Telegram, Discord, Slack, Matrix, etc.) |
+| [Providers](/think/providers/) | 14 LLM backends with unified tool-calling abstraction |
+| [Router](/think/router/) | Intelligent model selection: intent classification, Elo rating, KNN semantic routing, Automix |
+| [Sub-agents](/think/sub-agents/) | Three-tier delegation: synchronous named agents, async fire-and-forget sessions, management commands |
+| [Self-evolution](/think/self-evolution/) | Autonomous improvement of prompts, memory, and strategies with safety gates |
+| [Security](/think/security/) | 5-layer policy pipeline, approval workflows, sandbox enforcement (Docker, Firejail, Bubblewrap, Landlock, WASM) |
 | Plugins | WASM-based plugin system with wasmtime sandboxing |
 | MCP Client | Connects to external MCP servers to consume tools |
 | Remote Nodes | Distributed execution via `prx-node` with H2 transport and device pairing |

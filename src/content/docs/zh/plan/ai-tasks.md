@@ -270,8 +270,8 @@ Content-Type: application/json
 
 ## 相关文档
 
-- [Sylvode 概览](/docs/plan/overview/) -- 架构和部署
-- [MCP 服务器](/docs/plan/mcp-server/) -- 34 个代理交互工具
-- [Webhooks](/docs/plan/webhooks/) -- 事件类型，包括 `ai.task_completed` 和 `ai.task_failed`
-- [治理](/docs/plan/governance/) -- `vote_requested` 任务如何自动创建
-- [架构概览](/docs/getting-started/architecture/) -- 完整流水线数据流
+- [Sylvode 概览](/zh/plan/overview/) -- 架构和部署
+- [MCP 服务器](/zh/plan/mcp-server/) -- 140 个代理交互工具
+- [Webhooks](/zh/plan/webhooks/) -- 事件类型，包括 `ai.task_completed` 和 `ai.task_failed`
+- [治理](/zh/plan/governance/) -- `vote_requested` 任务如何自动创建
+- [架构概览](/zh/getting-started/architecture/) -- 完整流水线数据流

@@ -1,6 +1,6 @@
 ---
 title: "MCP 服务器"
-description: "Sylvode 的模型上下文协议服务器暴露 34 个工具，供 AI 代理管理项目、Issue、Sprint、标签、提案等。"
+description: "Sylvode 的模型上下文协议服务器暴露 140 个工具，供 AI 代理管理项目、Issue、表单、Flow 对象、治理等。"
 sidebar:
   order: 2
 ---
@@ -32,18 +32,45 @@ MCP 服务器使用带 `opr_` 前缀的**机器人令牌**进行认证。这些�
 
 ### 配置
 
-MCP 服务器需要以下环境变量：
+MCP 服务器不读取任何环境变量，其设置来自 `--config` 指定的 TOML 文件（默认 `config/sylvode.toml`）中的 `[mcp]` 段：
 
-| 变量 | 说明 |
-|------|------|
-| `OPENPR_API_URL` | Sylvode API 的基础 URL |
-| `OPENPR_BOT_TOKEN` | 机器人令牌（`opr_` 前缀），用于认证 |
-| `OPENPR_WORKSPACE_ID` | 操作的工作区 UUID |
-| `DEFAULT_AUTHOR_ID` | 未指定作者时的默认用户 ID |
+| 键 | 说明 |
+|----|------|
+| `api_url` | Sylvode API 的基础 URL（默认 `http://localhost:8081`） |
+| `bot_token` | 机器人令牌（`opr_` 前缀）；`stdio` 与 CLI 子命令必填，`http`/`sse` 不使用，由每个客户端发送自己的令牌 |
+| `workspace_id` | 操作的工作区 UUID（必填） |
+| `transport` | `stdio`、`http` 或 `sse`（默认 `stdio`） |
+| `bind_addr` | `http`/`sse` 的监听地址（默认 `127.0.0.1:8090`） |
+
+```toml
+[mcp]
+bot_token = "opr_..."
+workspace_id = "..."
+```
 
 ## 工具目录
 
-MCP 服务器暴露 34 个工具，按以下类别组织。
+MCP 服务器暴露 140 个工具。总数与排序后名称的哈希固定在 `apps/mcp-server/tool-registry-baseline.json` 中，并与运行时注册表核对。
+
+| 领域 | 数量 |
+|------|-----:|
+| 通用表单与事件 | 34 |
+| Flow | 30 |
+| 工作项 | 11 |
+| 场景工具 | 9 |
+| 项目类型与资源 | 6 |
+| 项目 | 5 |
+| 标签 | 5 |
+| 插件 | 5 |
+| 提案与检查结果 | 5 |
+| Sprint | 4 |
+| 评论 | 3 |
+| 上下文 | 3 |
+| 场景模板 | 3 |
+| 操作记录 | 1 |
+| 文件、成员、搜索、发布就绪 | 4 × 1 |
+
+以下各节介绍核心项目管理工具。完整目录及精确参数模式请使用 `tools/list` 或 `list-tools` 程序获取。
 
 ### 项目管理（5 个工具）
 
@@ -55,7 +82,7 @@ MCP 服务器暴露 34 个工具，按以下类别组织。
 | `projects.update` | 更新项目字段 |
 | `projects.delete` | 删除项目 |
 
-### 工作项 / Issue（10 个工具）
+### 工作项 / Issue（11 个工具）
 
 | 工具 | 说明 |
 |------|------|
@@ -94,17 +121,18 @@ MCP 服务器暴露 34 个工具，按以下类别组织。
 |------|------|
 | `labels.create` | 创建标签（指定名称和颜色） |
 | `labels.list` | 列出工作区中的所有标签 |
-| `labels.list_project` | 列出特定项目范围的标签 |
+| `labels.list_by_project` | 列出特定项目范围的标签 |
 | `labels.update` | 更新标签名称或颜色 |
 | `labels.delete` | 删除标签 |
 
-### 治理 / 提案（3 个工具）
+### 治理 / 提案（4 个工具）
 
 | 工具 | 说明 |
 |------|------|
 | `proposals.list` | 列出项目的提案，可按状态过滤 |
 | `proposals.get` | 获取提案详情（支持 UUID 和 `PROP-` 前缀 ID） |
 | `proposals.create` | 创建新提案（指定标题、描述和项目） |
+| `proposals.create_from_result` | 基于检查结果创建治理提案，而不是直接执行高风险操作 |
 
 ### 成员（1 个工具）
 
@@ -176,8 +204,8 @@ MCP 服务器暴露 34 个工具，按以下类别组织。
 {
   "mcpServers": {
     "sylvode": {
-      "url": "http://localhost:8090/mcp",
-      "transport": "http",
+      "type": "http",
+      "url": "http://localhost:8090/mcp/rpc",
       "headers": {
         "Authorization": "Bearer opr_your_bot_token_here"
       }
@@ -193,31 +221,28 @@ MCP 服务器暴露 34 个工具，按以下类别组织。
   "mcpServers": {
     "sylvode": {
       "command": "/path/to/mcp-server",
-      "args": ["serve", "--transport", "stdio"],
-      "env": {
-        "OPENPR_API_URL": "http://localhost:8081",
-        "OPENPR_BOT_TOKEN": "opr_your_bot_token_here",
-        "OPENPR_WORKSPACE_ID": "your-workspace-uuid"
-      }
+      "args": ["serve", "--config", "/absolute/path/to/config/sylvode.toml"]
     }
   }
 }
 ```
 
+没有 `env` 块：`api_url`、`bot_token` 和 `workspace_id` 来自 `--config` 指定文件的 `[mcp]` 段。请使用绝对路径，因为默认的 `config/sylvode.toml` 相对于 MCP 客户端启动进程时的工作目录。
+
 ## 列出可用工具
 
-MCP 服务器内置工具列表功能：
+`mcp-server` 包附带一个无需运行 API 的 `list-tools` 程序：
 
 ```bash
-# 以 JSON 格式打印所有工具定义
-mcp-server list-tools
+# 打印每个工具的名称、描述和输入模式
+cargo run --bin list-tools
 ```
 
 这将输出每个工具的名称、描述和输入模式——便于调试或生成客户端代码。
 
 ## 相关文档
 
-- [Sylvode 概览](/docs/plan/overview/) -- 架构和部署
-- [AI 任务](/docs/plan/ai-tasks/) -- 任务如何派发给代理
-- [Webhooks](/docs/plan/webhooks/) -- 事件驱动集成
-- [架构概览](/docs/getting-started/architecture/) -- MCP 在完整流水线中的位置
+- [Sylvode 概览](/zh/plan/overview/) -- 架构和部署
+- [AI 任务](/zh/plan/ai-tasks/) -- 任务如何派发给代理
+- [Webhooks](/zh/plan/webhooks/) -- 事件驱动集成
+- [架构概览](/zh/getting-started/architecture/) -- MCP 在完整流水线中的位置

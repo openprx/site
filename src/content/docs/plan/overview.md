@@ -7,7 +7,7 @@ sidebar:
 
 > Sylvode was formerly named OpenPR. Existing deployments keep working; only the product name changed.
 
-Sylvode is the **Plan** stage of the [OpenPRX pipeline](/docs/getting-started/overview/). It is a project management platform purpose-built for teams where AI agents work alongside humans. Unlike traditional issue trackers, Sylvode treats AI agents as first-class participants with their own authentication, task queues, governance roles, and callback APIs.
+Sylvode is the **Plan** stage of the [OpenPRX pipeline](/getting-started/overview/). It is a project management platform purpose-built for teams where AI agents work alongside humans. Unlike traditional issue trackers, Sylvode treats AI agents as first-class participants with their own authentication, task queues, governance roles, and callback APIs.
 
 ## Position in the Pipeline
 
@@ -17,7 +17,7 @@ Plan  -->  Think  -->  Build  -->  Ship  -->  Protect
  Sylvode
 ```
 
-Sylvode is the origin point. Issues created here flow downstream through the rest of the pipeline: [PRX](/docs/think/overview/) selects the right AI model, the agent writes code, [Fenfa](/docs/ship/overview/) distributes the artifact, and [WAF + SD](/docs/protect/overview/) defends the deployed application.
+Sylvode is the origin point. Issues created here flow downstream through the rest of the pipeline: [PRX](/think/overview/) selects the right AI model, the agent writes code, [Fenfa](/ship/overview/) distributes the artifact, and [WAF + SD](/protect/overview/) defends the deployed application.
 
 ## Key Features
 
@@ -40,19 +40,19 @@ Time-boxed iterations with start and end dates. Sprints can be created, updated,
 
 ### Governance
 
-A full governance module enables structured decision-making with human oversight of AI operations. See the dedicated [governance documentation](/docs/plan/governance/) for details on proposals, voting, veto rights, trust scores, and impact reviews.
+A full governance module enables structured decision-making with human oversight of AI operations. See the dedicated [governance documentation](/plan/governance/) for details on proposals, voting, veto rights, trust scores, and impact reviews.
 
 ### AI Task System
 
-Issues can be assigned to bot users and dispatched as structured tasks to AI coding agents (Codex, Claude Code, OpenCode). The worker process polls pending tasks, dispatches them via webhook, and the agent reports results back through the API. See [AI Tasks](/docs/plan/ai-tasks/) for the full workflow.
+Issues can be assigned to bot users and dispatched as structured tasks to AI coding agents (Codex, Claude Code, OpenCode). The worker process polls pending tasks, dispatches them via webhook, and the agent reports results back through the API. See [AI Tasks](/plan/ai-tasks/) for the full workflow.
 
 ### MCP Server
 
-Sylvode exposes 34 tools via the Model Context Protocol (MCP), allowing AI agents to manage projects, issues, sprints, labels, proposals, and more through a standardized interface. See [MCP Server](/docs/plan/mcp-server/) for the complete tool catalog.
+Sylvode exposes 140 tools via the Model Context Protocol (MCP), allowing AI agents to manage projects, issues, sprints, labels, proposals, and more through a standardized interface. See [MCP Server](/plan/mcp-server/) for the complete tool catalog.
 
 ### Webhooks
 
-30 event types are fired via HMAC-SHA256 signed HTTP webhooks covering issues, comments, labels, sprints, proposals, governance, and AI task lifecycle. See [Webhooks](/docs/plan/webhooks/) for event types and payload structure.
+30 event types are fired via HMAC-SHA256 signed HTTP webhooks covering issues, comments, labels, sprints, proposals, governance, and AI task lifecycle. See [Webhooks](/plan/webhooks/) for event types and payload structure.
 
 ### Notifications
 
@@ -165,7 +165,7 @@ Both types can be assigned to issues, participate in governance, and interact th
 
 ## What's Next
 
-- [MCP Server](/docs/plan/mcp-server/) -- 34 tools for AI agent integration
-- [Webhooks](/docs/plan/webhooks/) -- 30 event types and payload structure
-- [AI Tasks](/docs/plan/ai-tasks/) -- Task dispatch and agent callback workflow
-- [Governance](/docs/plan/governance/) -- Proposals, voting, veto rights, and trust scores
+- [MCP Server](/plan/mcp-server/) -- 140 tools for AI agent integration
+- [Webhooks](/plan/webhooks/) -- 30 event types and payload structure
+- [AI Tasks](/plan/ai-tasks/) -- Task dispatch and agent callback workflow
+- [Governance](/plan/governance/) -- Proposals, voting, veto rights, and trust scores

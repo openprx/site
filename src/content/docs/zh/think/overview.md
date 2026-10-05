@@ -27,12 +27,12 @@ Sylvode 派发任务。PRX 决定由哪个模型处理任务，管理对话历�
 
 | 子系统 | 用途 |
 |--------|------|
-| [通道](/docs/think/channels/) | 19 个消息集成（Signal、WhatsApp、Telegram、Discord、Slack、Matrix 等） |
-| [供应商](/docs/think/providers/) | 14 个 LLM 后端，统一的工具调用抽象 |
-| [路由器](/docs/think/router/) | 智能模型选择：意图分类、Elo 评分、KNN 语义路由、Automix |
-| [子代理](/docs/think/sub-agents/) | 三层委派：同步命名代理、异步即发即忘会话、管理命令 |
-| [自我进化](/docs/think/self-evolution/) | 自主改进提示词、记忆和策略，带安全门控 |
-| [安全](/docs/think/security/) | 5 层策略流水线、审批工作流、沙箱执行（Docker、Firejail、Bubblewrap、Landlock、WASM） |
+| [通道](/zh/think/channels/) | 19 个消息集成（Signal、WhatsApp、Telegram、Discord、Slack、Matrix 等） |
+| [供应商](/zh/think/providers/) | 14 个 LLM 后端，统一的工具调用抽象 |
+| [路由器](/zh/think/router/) | 智能模型选择：意图分类、Elo 评分、KNN 语义路由、Automix |
+| [子代理](/zh/think/sub-agents/) | 三层委派：同步命名代理、异步即发即忘会话、管理命令 |
+| [自我进化](/zh/think/self-evolution/) | 自主改进提示词、记忆和策略，带安全门控 |
+| [安全](/zh/think/security/) | 5 层策略流水线、审批工作流、沙箱执行（Docker、Firejail、Bubblewrap、Landlock、WASM） |
 | 插件 | 基于 WASM 的插件系统，使用 wasmtime 沙箱 |
 | MCP 客户端 | 连接外部 MCP 服务器以使用工具 |
 | 远程节点 | 通过 `prx-node` 实现分布式执行，使用 H2 传输和设备配对 |

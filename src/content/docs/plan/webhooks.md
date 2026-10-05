@@ -117,10 +117,12 @@ Every webhook delivery includes these HTTP headers:
 | Header | Value |
 |--------|-------|
 | `Content-Type` | `application/json` |
-| `User-Agent` | `OpenPR-Webhook/1.0` |
+| `User-Agent` | `Sylvode-Webhook/1.0 (compatible; OpenPR-Webhook/1.0)` |
 | `X-Webhook-Signature` | `sha256=<hex-encoded HMAC>` |
 | `X-Webhook-Event` | Event type (e.g., `issue.created`) |
 | `X-Webhook-Delivery` | Unique delivery UUID |
+
+The `User-Agent` changed from `OpenPR-Webhook/1.0` to `Sylvode-Webhook/1.0 (compatible; OpenPR-Webhook/1.0)` when OpenPR was renamed Sylvode. Receivers that match the old token as a substring keep working; receivers that match the old value exactly or by prefix must update their rule.
 
 ### Payload Body
 
@@ -275,7 +277,7 @@ The webhook's `last_triggered_at` timestamp is updated after each delivery attem
 
 ## Related
 
-- [Sylvode Overview](/docs/plan/overview/) -- Architecture and quick start
-- [AI Tasks](/docs/plan/ai-tasks/) -- How webhooks drive AI task dispatch
-- [Governance](/docs/plan/governance/) -- Governance events and configuration
-- [Architecture Overview](/docs/getting-started/architecture/) -- Full pipeline communication
+- [Sylvode Overview](/plan/overview/) -- Architecture and quick start
+- [AI Tasks](/plan/ai-tasks/) -- How webhooks drive AI task dispatch
+- [Governance](/plan/governance/) -- Governance events and configuration
+- [Architecture Overview](/getting-started/architecture/) -- Full pipeline communication

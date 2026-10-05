@@ -29,11 +29,11 @@ Sylvode ──ვებჰუკი──▶ Sylvode Webhook ──CLI──▶ 
 
 | აგენტის ტიპი | აღწერა |
 |------------|-------------|
-| `openclaw` | OpenPRX-ის ნაგულისხმევი კოდირების აგენტი |
-| `openprx` | ზოგადი დანიშნულების OpenPRX აგენტი |
-| `webhook` | მოვლენების გადაგზავნა გარე ვებჰუკზე |
-| `custom` | მომხმარებლის მიერ განსაზღვრული აგენტი მორგებული კონფიგურაციით |
-| `cli` | ლოკალურად შესრულებული CLI-ზე დაფუძნებული აგენტი |
+| `openclaw` | შეტყობინების გაგზავნა OpenClaw CLI-ით (Signal, Telegram) |
+| `openprx` | შეტყობინების გაგზავნა OpenPRX Signal API-ით ან CLI-ით |
+| `webhook` | მოვლენების გადაგზავნა გარე HTTP endpoint-ზე |
+| `custom` | მომხმარებლის მიერ განსაზღვრული ბრძანების გაშვება |
+| `cli` | ნებართვების სიაში შეტანილი კოდირების აგენტის ლოკალური გაშვება |
 
 ## CLI შემსრულებელი
 
@@ -57,20 +57,14 @@ CLI შემსრულებელი არის გაშვების �
 |-----------|---------|-------------|
 | სამუშაო დირექტორია | კონფიგურირებული აგენტზე | რეპოზიტორიის checkout-ის გზა |
 | ტაიმაუტი | 900წმ (15 წთ) | მაქსიმალური შესრულების დრო იძულებით შეწყვეტამდე |
-| პრომპტის შაბლონი | აგენტის ტიპის მიხედვით | შაბლონი ამოცანის კონტექსტის ჩანაცვლებებით |
+| პრომპტის შაბლონი | `Fix issue {issue_id}: {title}` | შაბლონი ამოცანის კონტექსტის ჩანაცვლებებით |
 
 ### პრომპტის შაბლონები
 
-პრომპტის შაბლონები მხარს უჭერენ ჩანაცვლებებს, რომლებიც ივსება ვებჰუკის მოვლენის პეილოადიდან:
+`prompt_template` მხარს უჭერს ჩანაცვლებებს, რომლებიც ივსება ვებჰუკის მოვლენის პეილოადიდან: `{issue_id}`, `{title}`, `{reason}`, `{event}`, `{project_id}`, `{form_id}`, `{form_key}` და `{record_id}`.
 
-```
-You are working on project {{project_name}}.
-Issue #{{issue_number}}: {{issue_title}}
-
-Description:
-{{issue_description}}
-
-Please implement the required changes and report your results.
+```toml
+prompt_template = "Fix issue {issue_id}: {title}\nContext: {reason}"
 ```
 
 ## გამოძახების ციკლი
@@ -101,18 +95,17 @@ Sylvode Webhook შექმნილია სიღრმისეული �
 
 ### ფუნქციის კარიბჭეები
 
-ყველა შესაძლებლობა ფუნქციის კარიბჭეების უკან დგას, რომლებიც ნაგულისხმევად **false**-ია:
+სარისკო გზები `[features]` სექციის ფუნქციის კარიბჭეების უკან დგას, ყველა ნაგულისხმევად **false**-ია:
 
 | ფუნქცია | ნაგულისხმევი | აღწერა |
 |---------|---------|-------------|
-| `cli_executor` | `false` | ლოკალური CLI აგენტის შესრულების ჩართვა |
-| `wss_tunnel` | `false` | WSS ტუნელის კავშირის ჩართვა |
-| `webhook_forward` | `false` | გარე ვებჰუკებზე გადაგზავნის ჩართვა |
-| `custom_agent` | `false` | მორგებული აგენტის კონფიგურაციების ჩართვა |
+| `cli_enabled` | `false` | ლოკალური CLI აგენტის შესრულების ჩართვა |
+| `tunnel_enabled` | `false` | WSS ტუნელის კავშირის ჩართვა (ასევე საჭიროა `[tunnel].enabled = true`) |
+| `callback_enabled` | `false` | შედეგების Sylvode-ში უკან გაგზავნის (callback) ჩართვა |
 
 ### უსაფრთხო რეჟიმი
 
-უსაფრთხო რეჟიმის ჩართვისას, დისპეტჩერი მუშაობს მხოლოდ წაკითხვის დაკვირვების რეჟიმში: მოვლენები მიიღება და ლოგირდება, მაგრამ აგენტები არ იგზავნება. ეს სასარგებლოა ვებჰუკის კავშირის ტესტირებისა და მოვლენების პეილოადების ვალიდაციისთვის შესრულების ჩართვამდე.
+გარემოს ცვლადი `SYLVODE_WEBHOOK_SAFE_MODE=1` (ასევე `true`, `yes` ან `on`) მუშაობის დროს იძულებით თიშავს CLI-ის, ტუნელისა და callback-ის გზებს, კონფიგურაციის ფაილის მიუხედავად. ეს არის ერთი გადამრთველით დაბრუნება მხოლოდ ვებჰუკის ქცევაზე: მოვლენები კვლავ მოწმდება და ეგზავნება შეტყობინების აგენტებს, მაგრამ კოდირების აგენტი არ ეშვება. ძველი სახელი `OPENPR_WEBHOOK_SAFE_MODE` კვლავ იკითხება მოძველების შეტყობინებით და არ წაიშლება v2.0-მდე.
 
 ### შემსრულებლის ნებართვების სია
 
@@ -121,30 +114,40 @@ Sylvode Webhook შექმნილია სიღრმისეული �
 ## კონფიგურაცია
 
 ```toml
-[webhook]
-secret = "your-hmac-secret"
-listen = "0.0.0.0:8091"
+[server]
+listen = "0.0.0.0:9090"
 
-[executor]
-working_dir = "/opt/repos"
+[security]
+webhook_secrets = ["your-hmac-secret"]
+
+[features]
+cli_enabled = true
+
+[[agents]]
+id = "ai-fixer"
+name = "AI Issue Fixer"
+agent_type = "cli"
+
+[agents.cli]
+executor = "claude-code" # codex | claude-code | opencode
+workdir = "/opt/repos/my-project"
 timeout_secs = 900
-safe_mode = false
-
-[agents.default]
-type = "cli"
-cli = "claude-code"
-prompt_template = "default.txt"
+prompt_template = "Fix issue {issue_id}: {title}\nContext: {reason}"
 ```
+
+სრული მითითება არის `config.example.toml` [რეპოზიტორიაში](https://github.com/openprx/openpr-webhook).
 
 ## გაშვება
 
 ```bash
-# აშენება
+# აწყობა (openpr-webhook რეპოზიტორიის checkout-ში)
 cargo build --release
 
-# ნაგულისხმევი კონფიგურაციით გაშვება
-./target/release/openpr-webhook
+# გაშვება სამუშაო დირექტორიის config.toml-ით
+./target/release/sylvode-webhook
 
-# მორგებული კონფიგურაციის გზით გაშვება
-./target/release/openpr-webhook --config /etc/openpr-webhook/config.toml
+# გაშვება კონფიგურაციის ცხადი გზით
+./target/release/sylvode-webhook /etc/sylvode-webhook/config.toml
 ```
+
+კონფიგურაციის გზა პოზიციური არგუმენტია; `--help` და `--version` ბეჭდავს გამოყენების წესს და ვერსიას. რელიზის არქივები და კონტეინერის იმიჯი `ghcr.io/openprx/sylvode-webhook` იმავე შესრულებად ფაილს შეიცავს. ძველი შესრულებადი სახელი `openpr-webhook` კვლავ მუშაობს და ბეჭდავს მოძველების შეტყობინებას; ძველი იმიჯის სახელი `ghcr.io/openprx/openpr-webhook` ქვეყნდება იმავე digest-ით. არცერთი არ წაიშლება v2.0-მდე.

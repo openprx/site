@@ -17,11 +17,11 @@ Plan → Think → Build → Ship → Protect
 
 | Stage | Product | What it does |
 |-------|---------|-------------|
-| **Plan** | [Sylvode](/docs/plan/overview/) | AI-native project management with MCP, webhooks, governance |
-| **Think** | [PRX](/docs/think/overview/) | AI orchestration brain — 14 providers, intelligent routing, self-evolution |
-| **Build** | [Webhook + Memory](/docs/build/overview/) | Agent dispatch, code execution, knowledge persistence |
-| **Ship** | [Fenfa](/docs/ship/overview/) | Multi-platform app distribution with upload API |
-| **Protect** | [WAF + SD](/docs/protect/overview/) | 17-phase web defense + ML-powered antivirus |
+| **Plan** | [Sylvode](/plan/overview/) | AI-native project management with MCP, webhooks, governance |
+| **Think** | [PRX](/think/overview/) | AI orchestration brain — 14 providers, intelligent routing, self-evolution |
+| **Build** | [Webhook + Memory](/build/overview/) | Agent dispatch, code execution, knowledge persistence |
+| **Ship** | [Fenfa](/ship/overview/) | Multi-platform app distribution with upload API |
+| **Protect** | [WAF + SD](/protect/overview/) | 17-phase web defense + ML-powered antivirus |
 
 ## How It's Different
 
@@ -46,7 +46,7 @@ Humans govern — setting policies, reviewing proposals, voting on decisions. AI
 | Total Rust code | 170K+ lines |
 | Messaging channels | 19 (Signal, WhatsApp, Telegram, Discord, Slack...) |
 | LLM providers | 14 (Anthropic, OpenAI, Google, Ollama...) |
-| MCP tools | 34 |
+| MCP tools | 140 |
 | Security rules | 38,800+ YARA rules |
 | WAF detection phases | 17 |
 | Self-evolution system | 9,800 lines |

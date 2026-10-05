@@ -1,6 +1,6 @@
 ---
 title: "MCP Server"
-description: "Sylvode's Model Context Protocol server exposes 34 tools for AI agents to manage projects, issues, sprints, labels, proposals, and more."
+description: "Sylvode's Model Context Protocol server exposes 140 tools for AI agents to manage projects, issues, forms, Flow objects, governance, and more."
 sidebar:
   order: 2
 ---
@@ -32,18 +32,45 @@ Bot tokens support:
 
 ### Configuration
 
-The MCP server requires these environment variables:
+The MCP server reads no environment variables. Its settings come from the `[mcp]` section of the TOML file named by `--config` (default `config/sylvode.toml`):
 
-| Variable | Description |
-|----------|-------------|
-| `OPENPR_API_URL` | Base URL of the Sylvode API |
-| `OPENPR_BOT_TOKEN` | Bot token (`opr_` prefix) for authentication |
-| `OPENPR_WORKSPACE_ID` | UUID of the workspace to operate in |
-| `DEFAULT_AUTHOR_ID` | Default user ID for operations without explicit author |
+| Key | Description |
+|-----|-------------|
+| `api_url` | Base URL of the Sylvode API (default `http://localhost:8081`) |
+| `bot_token` | Bot token (`opr_` prefix); required for `stdio` and the CLI subcommands, unused by `http`/`sse`, where each client sends its own token |
+| `workspace_id` | UUID of the workspace to operate in (required) |
+| `transport` | `stdio`, `http` or `sse` (default `stdio`) |
+| `bind_addr` | Listen address for `http`/`sse` (default `127.0.0.1:8090`) |
+
+```toml
+[mcp]
+bot_token = "opr_..."
+workspace_id = "..."
+```
 
 ## Tool Catalog
 
-The MCP server exposes 34 tools organized into the following categories.
+The MCP server exposes 140 tools. The total and the sorted-name hash are pinned in `apps/mcp-server/tool-registry-baseline.json` and checked against the live registry.
+
+| Domain | Count |
+|--------|------:|
+| Universal forms & events | 34 |
+| Flow | 30 |
+| Work items | 11 |
+| Scenario tools | 9 |
+| Project types & resources | 6 |
+| Projects | 5 |
+| Labels | 5 |
+| Plugins | 5 |
+| Proposals & check results | 5 |
+| Sprints | 4 |
+| Comments | 3 |
+| Context | 3 |
+| Scenario templates | 3 |
+| Operation records | 1 |
+| Files, members, search, release readiness | 4 × 1 |
+
+The sections below describe the core project-management tools. Use `tools/list` or the `list-tools` binary for the complete catalog with exact parameter schemas.
 
 ### Project Management (5 tools)
 
@@ -55,7 +82,7 @@ The MCP server exposes 34 tools organized into the following categories.
 | `projects.update` | Update project fields |
 | `projects.delete` | Delete a project |
 
-### Work Items / Issues (10 tools)
+### Work Items / Issues (11 tools)
 
 | Tool | Description |
 |------|-------------|
@@ -94,17 +121,18 @@ The MCP server exposes 34 tools organized into the following categories.
 |------|-------------|
 | `labels.create` | Create a label with name and color |
 | `labels.list` | List all labels in the workspace |
-| `labels.list_project` | List labels scoped to a specific project |
+| `labels.list_by_project` | List labels scoped to a specific project |
 | `labels.update` | Update label name or color |
 | `labels.delete` | Delete a label |
 
-### Governance / Proposals (3 tools)
+### Governance / Proposals (4 tools)
 
 | Tool | Description |
 |------|-------------|
 | `proposals.list` | List proposals for a project, optionally filtered by status |
 | `proposals.get` | Get proposal details (supports both UUID and `PROP-` prefixed IDs) |
 | `proposals.create` | Create a new proposal with title, description, and project |
+| `proposals.create_from_result` | Create a governance proposal from a check result instead of directly applying a high-risk action |
 
 ### Members (1 tool)
 
@@ -176,8 +204,8 @@ All tools return a `CallToolResult` with either a success payload (JSON-formatte
 {
   "mcpServers": {
     "sylvode": {
-      "url": "http://localhost:8090/mcp",
-      "transport": "http",
+      "type": "http",
+      "url": "http://localhost:8090/mcp/rpc",
       "headers": {
         "Authorization": "Bearer opr_your_bot_token_here"
       }
@@ -193,31 +221,28 @@ All tools return a `CallToolResult` with either a success payload (JSON-formatte
   "mcpServers": {
     "sylvode": {
       "command": "/path/to/mcp-server",
-      "args": ["serve", "--transport", "stdio"],
-      "env": {
-        "OPENPR_API_URL": "http://localhost:8081",
-        "OPENPR_BOT_TOKEN": "opr_your_bot_token_here",
-        "OPENPR_WORKSPACE_ID": "your-workspace-uuid"
-      }
+      "args": ["serve", "--config", "/absolute/path/to/config/sylvode.toml"]
     }
   }
 }
 ```
 
+There is no `env` block: `api_url`, `bot_token` and `workspace_id` come from the `[mcp]` section of the file named by `--config`. Use an absolute path, because the default `config/sylvode.toml` is relative to whatever working directory the MCP client launches the process in.
+
 ## Listing Available Tools
 
-The MCP server includes a built-in tool listing utility:
+The `mcp-server` package ships a `list-tools` binary that needs no running API:
 
 ```bash
-# Print all tool definitions as JSON
-mcp-server list-tools
+# Print every tool name, description and input schema
+cargo run --bin list-tools
 ```
 
 This outputs every tool name, description, and input schema -- useful for debugging or generating client code.
 
 ## Related
 
-- [Sylvode Overview](/docs/plan/overview/) -- Architecture and deployment
-- [AI Tasks](/docs/plan/ai-tasks/) -- How tasks are dispatched to agents
-- [Webhooks](/docs/plan/webhooks/) -- Event-driven integration
-- [Architecture Overview](/docs/getting-started/architecture/) -- How MCP fits into the full pipeline
+- [Sylvode Overview](/plan/overview/) -- Architecture and deployment
+- [AI Tasks](/plan/ai-tasks/) -- How tasks are dispatched to agents
+- [Webhooks](/plan/webhooks/) -- Event-driven integration
+- [Architecture Overview](/getting-started/architecture/) -- How MCP fits into the full pipeline

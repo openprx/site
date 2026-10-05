@@ -36,7 +36,7 @@ sidebar:
 
 ### MCP（模型上下文协议）
 
-主要集成协议。Sylvode 通过 HTTP、stdio 和 SSE 传输方式暴露 34 个 MCP 工具。PRX 作为 MCP 客户端进行连接。
+主要集成协议。Sylvode 通过 HTTP、stdio 和 SSE 传输方式暴露 140 个 MCP 工具。PRX 作为 MCP 客户端进行连接。
 
 ### Webhooks
 

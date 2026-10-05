@@ -17,11 +17,11 @@ Plan → Think → Build → Ship → Protect
 
 | 阶段 | 产品 | 功能 |
 |------|------|------|
-| **Plan** | [Sylvode](/docs/plan/overview/) | AI 原生项目管理，支持 MCP、Webhook、治理 |
-| **Think** | [PRX](/docs/think/overview/) | AI 编排大脑——14 个供应商、智能路由、自我进化 |
-| **Build** | [Webhook + Memory](/docs/build/overview/) | 代理调度、代码执行、知识持久化 |
-| **Ship** | [Fenfa](/docs/ship/overview/) | 多平台应用分发，带上传 API |
-| **Protect** | [WAF + SD](/docs/protect/overview/) | 17 阶段 Web 防御 + 基于 ML 的杀毒引擎 |
+| **Plan** | [Sylvode](/zh/plan/overview/) | AI 原生项目管理，支持 MCP、Webhook、治理 |
+| **Think** | [PRX](/zh/think/overview/) | AI 编排大脑——14 个供应商、智能路由、自我进化 |
+| **Build** | [Webhook + Memory](/zh/build/overview/) | 代理调度、代码执行、知识持久化 |
+| **Ship** | [Fenfa](/zh/ship/overview/) | 多平台应用分发，带上传 API |
+| **Protect** | [WAF + SD](/zh/protect/overview/) | 17 阶段 Web 防御 + 基于 ML 的杀毒引擎 |
 
 ## 与众不同之处
 
@@ -46,7 +46,7 @@ Plan → Think → Build → Ship → Protect
 | Rust 代码总量 | 170K+ 行 |
 | 消息通道 | 19 个（Signal、WhatsApp、Telegram、Discord、Slack 等） |
 | LLM 供应商 | 14 个（Anthropic、OpenAI、Google、Ollama 等） |
-| MCP 工具 | 34 个 |
+| MCP 工具 | 140 个 |
 | 安全规则 | 38,800+ 条 YARA 规则 |
 | WAF 检测阶段 | 17 个 |
 | 自我进化系统 | 9,800 行代码 |

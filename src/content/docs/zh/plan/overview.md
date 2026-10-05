@@ -7,7 +7,7 @@ sidebar:
 
 > Sylvode 原名 OpenPR。现有部署可继续使用，变化的只是产品名称。
 
-Sylvode 是 [OpenPRX 流水线](/docs/getting-started/overview/) 的 **Plan** 阶段。它是一个专为 AI 代理与人类协同工作的团队而构建的项目管理平台。与传统的 Issue 跟踪器不同，Sylvode 将 AI 代理视为一等参与者，拥有独立的认证、任务队列、治理角色和回调 API。
+Sylvode 是 [OpenPRX 流水线](/zh/getting-started/overview/) 的 **Plan** 阶段。它是一个专为 AI 代理与人类协同工作的团队而构建的项目管理平台。与传统的 Issue 跟踪器不同，Sylvode 将 AI 代理视为一等参与者，拥有独立的认证、任务队列、治理角色和回调 API。
 
 ## 在流水线中的位置
 
@@ -17,7 +17,7 @@ Plan  -->  Think  -->  Build  -->  Ship  -->  Protect
  Sylvode
 ```
 
-Sylvode 是起点。在此创建的 Issue 沿流水线向下流动：[PRX](/docs/think/overview/) 选择合适的 AI 模型，代理编写代码，[Fenfa](/docs/ship/overview/) 分发产物，[WAF + SD](/docs/protect/overview/) 防护已部署的应用。
+Sylvode 是起点。在此创建的 Issue 沿流水线向下流动：[PRX](/zh/think/overview/) 选择合适的 AI 模型，代理编写代码，[Fenfa](/zh/ship/overview/) 分发产物，[WAF + SD](/zh/protect/overview/) 防护已部署的应用。
 
 ## 核心功能
 
@@ -40,19 +40,19 @@ Sylvode 是起点。在此创建的 Issue 沿流水线向下流动：[PRX](/docs
 
 ### 治理
 
-完整的治理模块支持结构化决策，实现对 AI 操作的人类监督。详见专门的[治理文档](/docs/plan/governance/)，了解提案、投票、否决权、信任分和影响评审。
+完整的治理模块支持结构化决策，实现对 AI 操作的人类监督。详见专门的[治理文档](/zh/plan/governance/)，了解提案、投票、否决权、信任分和影响评审。
 
 ### AI 任务系统
 
-Issue 可以分配给机器人用户，并作为结构化任务派发给 AI 编码代理（Codex、Claude Code、OpenCode）。Worker 进程轮询待处理任务，通过 Webhook 派发，代理通过 API 回报结果。详见 [AI 任务](/docs/plan/ai-tasks/)。
+Issue 可以分配给机器人用户，并作为结构化任务派发给 AI 编码代理（Codex、Claude Code、OpenCode）。Worker 进程轮询待处理任务，通过 Webhook 派发，代理通过 API 回报结果。详见 [AI 任务](/zh/plan/ai-tasks/)。
 
 ### MCP 服务器
 
-Sylvode 通过模型上下文协议（MCP）暴露 34 个工具，允许 AI 代理通过标准化接口管理项目、Issue、Sprint、标签、提案等。详见 [MCP 服务器](/docs/plan/mcp-server/)。
+Sylvode 通过模型上下文协议（MCP）暴露 140 个工具，允许 AI 代理通过标准化接口管理项目、Issue、Sprint、标签、提案等。详见 [MCP 服务器](/zh/plan/mcp-server/)。
 
 ### Webhooks
 
-30 种事件类型通过 HMAC-SHA256 签名的 HTTP Webhook 触发，覆盖 Issue、评论、标签、Sprint、提案、治理和 AI 任务生命周期。详见 [Webhooks](/docs/plan/webhooks/)。
+30 种事件类型通过 HMAC-SHA256 签名的 HTTP Webhook 触发，覆盖 Issue、评论、标签、Sprint、提案、治理和 AI 任务生命周期。详见 [Webhooks](/zh/plan/webhooks/)。
 
 ### 通知
 
@@ -165,7 +165,7 @@ Sylvode 区分两种实体类型：
 
 ## 下一步
 
-- [MCP 服务器](/docs/plan/mcp-server/) -- 34 个 AI 代理集成工具
-- [Webhooks](/docs/plan/webhooks/) -- 30 种事件类型和载荷结构
-- [AI 任务](/docs/plan/ai-tasks/) -- 任务派发和代理回调工作流
-- [治理](/docs/plan/governance/) -- 提案、投票、否决权和信任分
+- [MCP 服务器](/zh/plan/mcp-server/) -- 140 个 AI 代理集成工具
+- [Webhooks](/zh/plan/webhooks/) -- 30 种事件类型和载荷结构
+- [AI 任务](/zh/plan/ai-tasks/) -- 任务派发和代理回调工作流
+- [治理](/zh/plan/governance/) -- 提案、投票、否决权和信任分

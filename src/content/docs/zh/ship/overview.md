@@ -35,7 +35,7 @@ Product（产品）
 
 ### 上传 API
 
-CI/CD 流水线通过带令牌认证的简单 `POST /upload` 端点上传构建。详见[上传 API](/docs/ship/upload-api/)。
+CI/CD 流水线通过带令牌认证的简单 `POST /upload` 端点上传构建。详见[上传 API](/zh/ship/upload-api/)。
 
 ### 下载页面
 
@@ -84,7 +84,7 @@ cd fenfa && go build -o fenfa ./cmd/fenfa
 
 1. AI 代理完成代码变更并推送到仓库
 2. CI/CD 构建产物（IPA、APK、DMG 等）
-3. CI 通过[上传 API](/docs/ship/upload-api/) 上传产物到 Fenfa
+3. CI 通过[上传 API](/zh/ship/upload-api/) 上传产物到 Fenfa
 4. Fenfa 生成下载页面并通知利益相关者
 5. 用户下载并安装应用
 6. PRX-WAF 和 PRX-SD 保护已部署的应用
