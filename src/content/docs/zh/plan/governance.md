@@ -1,6 +1,6 @@
 ---
 title: "治理模块"
-description: "OpenPR 的治理系统：提案、信任加权投票、否决权、申诉、信任分、影响评审和 AI 自治级别。"
+description: "Sylvode 的治理系统：提案、信任加权投票、否决权、申诉、信任分、影响评审和 AI 自治级别。"
 sidebar:
   order: 5
 ---
@@ -18,7 +18,7 @@ sidebar:
 - 人类能否推翻 AI 的决策？
 - 这个代理应该有多大的自主权？
 
-OpenPR 的治理模块通过正式提案、加权投票、否决权和信任评分来回答这些问题。
+Sylvode 的治理模块通过正式提案、加权投票、否决权和信任评分来回答这些问题。
 
 ## 核心概念
 
@@ -85,7 +85,7 @@ draft --> submitted --> voting --> approved/rejected --> archived
 
 ### 自动 AI 投票
 
-当提案进入投票阶段，OpenPR 自动为项目中所有活跃的 AI 参与者创建 `vote_requested` [AI 任务](/docs/plan/ai-tasks/)。代理收到提案详情，进行分析，并通过 API 投票。
+当提案进入投票阶段，Sylvode 自动为项目中所有活跃的 AI 参与者创建 `vote_requested` [AI 任务](/docs/plan/ai-tasks/)。代理收到提案详情，进行分析，并通过 API 投票。
 
 ## 决策
 
@@ -271,7 +271,7 @@ draft --> submitted --> voting --> approved/rejected --> archived
 
 ## 相关文档
 
-- [OpenPR 概览](/docs/plan/overview/) -- 架构和数据库模式
+- [Sylvode 概览](/docs/plan/overview/) -- 架构和数据库模式
 - [AI 任务](/docs/plan/ai-tasks/) -- `vote_requested` 任务如何派发给代理
 - [Webhooks](/docs/plan/webhooks/) -- 9 种治理 Webhook 事件
 - [MCP 服务器](/docs/plan/mcp-server/) -- AI 代理集成的提案工具

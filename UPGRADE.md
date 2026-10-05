@@ -21,7 +21,7 @@ Each product card should now include:
 - A tech stack line (small, dimmed)
 
 Highlight tags per product:
-- OpenPR: "Governance" "Kanban" "MCP Server" "SvelteKit"
+- Sylvode: "Governance" "Kanban" "MCP Server" "SvelteKit"
 - PRX: "14 Providers" "19 Channels" "Self-Evolution" "OAuth"
 - prx-memory: "MCP Native" "Local-First" "Evolution" "Codex/Claude"
 
@@ -35,7 +35,7 @@ After products, add a section with 3 columns:
 A visual architecture overview showing how the 3 products connect:
 ```
 ┌─────────────┐     MCP      ┌─────────────┐
-│   OpenPR    │◄────────────►│     PRX     │
+│   Sylvode   │◄────────────►│     PRX     │
 │  (Manage)   │              │  (Operate)  │
 └──────┬──────┘              └──────┬──────┘
        │                            │
@@ -67,7 +67,7 @@ Below the tagline, add a row of inline badges/stats:
 ### 2. Features → Visual Grid
 Replace the plain list with a 2-column grid of feature cards:
 - Each card: emoji/icon + title + 1-2 line description
-- OpenPR features (6 items):
+- Sylvode features (6 items):
   1. 📋 Issues & Boards — Full issue tracking with Kanban boards and sprint planning
   2. 🏛️ Governance Center — Proposals, voting, trust scores, decision records, veto & escalation  
   3. 🤖 AI Integration — Bot tokens, AI agents, AI tasks, AI review, webhook callbacks
@@ -94,7 +94,7 @@ Replace the plain list with a 2-column grid of feature cards:
 ### 3. Architecture Section (per product)
 Add a simple architecture diagram after features.
 
-OpenPR:
+Sylvode:
 ```
 Browser → SvelteKit Frontend → Rust API (Axum) → PostgreSQL
                                     ↕

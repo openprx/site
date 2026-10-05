@@ -9,13 +9,13 @@ sidebar:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                    OpenPR (Plan)                             │
+│                    Sylvode (Plan)                            │
 │  Issues · Boards · Sprints · Governance · MCP · Webhooks     │
 └──────────┬──────────────────────────────────┬───────────────┘
            │ 任务派发                          │ 结果回调
            ▼                                   ▲
 ┌──────────────────────┐              ┌────────────────────┐
-│  openpr-webhook      │              │  AI 代理            │
+│  Sylvode Webhook     │              │  AI 代理            │
 │  事件路由             │── 派发 ──    │  Codex / Claude /   │
 │  WSS 隧道            │              │  OpenCode           │
 └──────────┬───────────┘              └────────┬───────────┘
@@ -36,27 +36,27 @@ sidebar:
 
 ### MCP（模型上下文协议）
 
-主要集成协议。OpenPR 通过 HTTP、stdio 和 SSE 传输方式暴露 34 个 MCP 工具。PRX 作为 MCP 客户端进行连接。
+主要集成协议。Sylvode 通过 HTTP、stdio 和 SSE 传输方式暴露 34 个 MCP 工具。PRX 作为 MCP 客户端进行连接。
 
 ### Webhooks
 
-OpenPR 通过 HMAC-SHA256 签名的 Webhook 触发 30 种事件类型。openpr-webhook 服务接收这些事件并将工作派发给 AI 代理。
+Sylvode 通过 HMAC-SHA256 签名的 Webhook 触发 30 种事件类型。Sylvode Webhook 服务接收这些事件并将工作派发给 AI 代理。
 
 ### WSS 隧道
 
-对于位于 NAT/防火墙后的代理，openpr-webhook 支持到 OpenPR 控制面的出站 WebSocket 隧道。任务通过隧道接收、确认、执行，并将结果返回。
+对于位于 NAT/防火墙后的代理，Sylvode Webhook 支持到 Sylvode 控制面的出站 WebSocket 隧道。任务通过隧道接收、确认、执行，并将结果返回。
 
 ## 数据流
 
 ### Issue → 修复 → 部署
 
-1. **Issue 创建** — 在 OpenPR 中手动或通过 API 创建
-2. **机器人任务分配** — OpenPR 触发 `issue.created` Webhook，带有机器人上下文
+1. **Issue 创建** — 在 Sylvode 中手动或通过 API 创建
+2. **机器人任务分配** — Sylvode 触发 `issue.created` Webhook，带有机器人上下文
 3. **Webhook 调度器** 接收事件，匹配到代理配置
 4. **CLI 执行器** 启动编码代理（如 `claude-code`），使用模板化提示词
 5. **代理工作** — 阅读代码、进行修改、运行测试
 6. **代理使用 prx-memory** 通过 MCP 回忆过往模式并存储新知识
-7. **结果回调** — 代理通过 MCP/API 将结果发回 OpenPR
+7. **结果回调** — 代理通过 MCP/API 将结果发回 Sylvode
 8. **状态变更** — Issue 从 `in_progress` 转为 `done`
 9. **CI 构建** — 标准 CI/CD 流水线生成产物
 10. **Fenfa 分发** — 构建产物通过 API 上传，分发到所有平台
@@ -67,7 +67,7 @@ OpenPR 通过 HMAC-SHA256 签名的 Webhook 触发 30 种事件类型。openpr-w
 2. **SD 扫描** 端点上的文件，使用哈希匹配、YARA 规则和 ML 推理
 3. **检测到威胁** → 自动响应（拦截、隔离、修复）
 4. **通知** 通过 Webhook、邮件、Telegram 发送
-5. **未来规划**：安全事件反馈回 OpenPR，生成 Issue 供 AI 驱动的响应
+5. **未来规划**：安全事件反馈回 Sylvode，生成 Issue 供 AI 驱动的响应
 
 ## 部署拓扑
 
@@ -76,7 +76,7 @@ OpenPR 通过 HMAC-SHA256 签名的 Webhook 触发 30 种事件类型。openpr-w
 ```
 ┌─────────────────────────┐
 │  服务器                   │
-│  ├── OpenPR (Docker)     │
+│  ├── Sylvode (Docker)    │
 │  ├── PRX (二进制)         │
 │  ├── prx-memory (二进制)  │
 │  └── PostgreSQL          │
@@ -87,7 +87,7 @@ OpenPR 通过 HMAC-SHA256 签名的 Webhook 触发 30 种事件类型。openpr-w
 
 ```
 ┌──────────┐  ┌──────────┐  ┌──────────┐
-│ OpenPR   │  │ PRX      │  │ Fenfa    │
+│ Sylvode  │  │ PRX      │  │ Fenfa    │
 │ + Caddy  │  │ 守护进程  │  │ + S3/R2  │
 └────┬─────┘  └────┬─────┘  └──────────┘
      │             │

@@ -1,11 +1,11 @@
 ---
 title: "MCP 服务器"
-description: "OpenPR 的模型上下文协议服务器暴露 34 个工具，供 AI 代理管理项目、Issue、Sprint、标签、提案等。"
+description: "Sylvode 的模型上下文协议服务器暴露 34 个工具，供 AI 代理管理项目、Issue、Sprint、标签、提案等。"
 sidebar:
   order: 2
 ---
 
-OpenPR MCP 服务器实现了[模型上下文协议](https://modelcontextprotocol.io/)，为 AI 代理提供对项目管理操作的结构化访问。代理无需爬取 Web UI 或解析 API 文档，而是通过带有 JSON Schema 输入验证的类型化工具定义进行交互。
+Sylvode MCP 服务器实现了[模型上下文协议](https://modelcontextprotocol.io/)，为 AI 代理提供对项目管理操作的结构化访问。代理无需爬取 Web UI 或解析 API 文档，而是通过带有 JSON Schema 输入验证的类型化工具定义进行交互。
 
 ## 传输方式
 
@@ -36,7 +36,7 @@ MCP 服务器需要以下环境变量：
 
 | 变量 | 说明 |
 |------|------|
-| `OPENPR_API_URL` | OpenPR API 的基础 URL |
+| `OPENPR_API_URL` | Sylvode API 的基础 URL |
 | `OPENPR_BOT_TOKEN` | 机器人令牌（`opr_` 前缀），用于认证 |
 | `OPENPR_WORKSPACE_ID` | 操作的工作区 UUID |
 | `DEFAULT_AUTHOR_ID` | 未指定作者时的默认用户 ID |
@@ -175,7 +175,7 @@ MCP 服务器暴露 34 个工具，按以下类别组织。
 ```json
 {
   "mcpServers": {
-    "openpr": {
+    "sylvode": {
       "url": "http://localhost:8090/mcp",
       "transport": "http",
       "headers": {
@@ -191,7 +191,7 @@ MCP 服务器暴露 34 个工具，按以下类别组织。
 ```json
 {
   "mcpServers": {
-    "openpr": {
+    "sylvode": {
       "command": "/path/to/mcp-server",
       "args": ["serve", "--transport", "stdio"],
       "env": {
@@ -217,7 +217,7 @@ mcp-server list-tools
 
 ## 相关文档
 
-- [OpenPR 概览](/docs/plan/overview/) -- 架构和部署
+- [Sylvode 概览](/docs/plan/overview/) -- 架构和部署
 - [AI 任务](/docs/plan/ai-tasks/) -- 任务如何派发给代理
 - [Webhooks](/docs/plan/webhooks/) -- 事件驱动集成
 - [架构概览](/docs/getting-started/architecture/) -- MCP 在完整流水线中的位置

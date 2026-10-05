@@ -4,8 +4,8 @@
     "siteName": "OpenPRX",
     "homeTitle": "OpenPRX | AI-ავტონომიური პროგრამული ინჟინერიის ინფრასტრუქტურა",
     "homeDescription": "ღია ინფრასტრუქტურა, სადაც AI აგენტები ავტონომიურად გეგმავენ, წერენ კოდს, ავრცელებენ და იცავენ პროგრამულ უზრუნველყოფას. აგებულია Rust-ზე.",
-    "openprTitle": "OpenPR | OpenPRX",
-    "openprDescription": "ღია პროექტების მართვის პლატფორმა ჩაშენებული governance-ით.",
+    "sylvodeTitle": "Sylvode | OpenPRX",
+    "sylvodeDescription": "ღია პროექტების მართვის პლატფორმა ჩაშენებული governance-ით.",
     "prxTitle": "PRX | OpenPRX",
     "prxDescription": "თვითევოლუციური AI ასისტენტის ფრეიმვორკი Rust-ზე.",
     "memoryTitle": "prx-memory | OpenPRX",
@@ -19,7 +19,7 @@
   },
   "nav": {
     "home": "მთავარი",
-    "openpr": "OpenPR",
+    "sylvode": "Sylvode",
     "prx": "PRX",
     "memory": "PRX-Memory",
     "prxSd": "PRX-SD",
@@ -53,8 +53,9 @@
     "techLabel": "ტექნოლოგიები",
     "items": [
       {
-        "id": "openpr",
-        "name": "OpenPR",
+        "id": "sylvode",
+        "name": "Sylvode",
+        "formerly": "ყოფილი სახელი: OpenPR",
         "tagline": "პროექტის მართვა, სადაც გუნდი ერთად წყვეტს",
         "description": "დაგეგმეთ სამუშაო, თვალყური ადევნეთ issues-ს და მიიღეთ გადაწყვეტილებები ჩაშენებული წინადადებებით, კენჭისყრითა და ნდობის ქულებით.",
         "highlights": [
@@ -64,7 +65,7 @@
           "წინადადებები და კენჭისყრა"
         ],
         "tech": "Rust, SvelteKit, PostgreSQL",
-        "repo": "https://github.com/openprx/openpr"
+        "repo": "https://github.com/openprx/sylvode"
       },
       {
         "id": "prx",
@@ -149,8 +150,8 @@
     "stages": [
       {
         "name": "დაგეგმვა",
-        "product": "OpenPR",
-        "href": "/openpr",
+        "product": "Sylvode",
+        "href": "/sylvode",
         "description": "ჩაშენებული მართვის სამუშაო ორგანიზაცია. AI აგენტები ავტომატურად იღებენ ამოცანებს."
       },
       {
@@ -209,8 +210,9 @@
     "docs": "დოკუმენტაცია"
   },
   "pages": {
-    "openpr": {
-      "name": "OpenPR",
+    "sylvode": {
+      "name": "Sylvode",
+      "formerly": "ყოფილი სახელი: OpenPR",
       "tagline": "ღია project management ჩაშენებული governance-ით",
       "description": "თანამედროვე საინჟინრო გუნდებისთვის სრული კოლაბორაციის პლატფორმა.",
       "tech": "Rust (Axum + SeaORM), SvelteKit, PostgreSQL",
@@ -256,11 +258,11 @@
         "mcp": "MCP Server (34 tools)",
         "transports": "HTTP | stdio | SSE"
       },
-      "repo": "https://github.com/openprx/openpr",
+      "repo": "https://github.com/openprx/sylvode",
       "quickStart": [
-        "git clone https://github.com/openprx/openpr.git",
-        "cd openpr",
-        "docker compose up -d"
+        "git clone https://github.com/openprx/sylvode.git",
+        "cd sylvode",
+        "bash scripts/start.sh"
       ]
     },
     "prx": {

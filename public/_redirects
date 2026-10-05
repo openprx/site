@@ -1,0 +1,9 @@
+# Sylvode was formerly OpenPR: keep the old product page URLs working.
+/openpr       /sylvode/     301
+/openpr/      /sylvode/     301
+/zh/openpr    /zh/sylvode/  301
+/zh/openpr/   /zh/sylvode/  301
+/ka/openpr    /ka/sylvode/  301
+/ka/openpr/   /ka/sylvode/  301
+/ru/openpr    /ru/sylvode/  301
+/ru/openpr/   /ru/sylvode/  301

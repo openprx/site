@@ -4,8 +4,8 @@
     "siteName": "OpenPRX",
     "homeTitle": "OpenPRX | AI-Autonomous Software Engineering Infrastructure",
     "homeDescription": "Open-source infrastructure where AI agents autonomously plan, code, distribute, and defend software. Built with Rust.",
-    "openprTitle": "OpenPR | OpenPRX",
-    "openprDescription": "Open-source project management with built-in governance.",
+    "sylvodeTitle": "Sylvode | OpenPRX",
+    "sylvodeDescription": "Open-source project management with built-in governance.",
     "prxTitle": "PRX | OpenPRX",
     "prxDescription": "Self-evolving AI assistant framework in Rust.",
     "memoryTitle": "prx-memory | OpenPRX",
@@ -19,7 +19,7 @@
   },
   "nav": {
     "home": "Home",
-    "openpr": "OpenPR",
+    "sylvode": "Sylvode",
     "prx": "PRX",
     "memory": "PRX-Memory",
     "prxSd": "PRX-SD",
@@ -53,8 +53,9 @@
     "techLabel": "Tech Stack",
     "items": [
       {
-        "id": "openpr",
-        "name": "OpenPR",
+        "id": "sylvode",
+        "name": "Sylvode",
+        "formerly": "Formerly OpenPR",
         "tagline": "Project management where the team decides together",
         "description": "Plan work, track issues, and make decisions with built-in proposals, voting, and trust scores.",
         "highlights": [
@@ -64,7 +65,7 @@
           "Proposals & Voting"
         ],
         "tech": "Rust, SvelteKit, PostgreSQL",
-        "repo": "https://github.com/openprx/openpr"
+        "repo": "https://github.com/openprx/sylvode"
       },
       {
         "id": "prx",
@@ -149,8 +150,8 @@
     "stages": [
       {
         "name": "Plan",
-        "product": "OpenPR",
-        "href": "/openpr",
+        "product": "Sylvode",
+        "href": "/sylvode",
         "description": "Organize work with built-in governance. AI agents pick up tasks automatically."
       },
       {
@@ -209,8 +210,9 @@
     "docs": "Documentation"
   },
   "pages": {
-    "openpr": {
-      "name": "OpenPR",
+    "sylvode": {
+      "name": "Sylvode",
+      "formerly": "Formerly OpenPR",
       "tagline": "Open-source project management with built-in governance",
       "description": "A complete project collaboration platform for modern engineering teams.",
       "tech": "Rust (Axum + SeaORM), SvelteKit, PostgreSQL",
@@ -256,11 +258,11 @@
         "mcp": "MCP Server (34 tools)",
         "transports": "HTTP | stdio | SSE"
       },
-      "repo": "https://github.com/openprx/openpr",
+      "repo": "https://github.com/openprx/sylvode",
       "quickStart": [
-        "git clone https://github.com/openprx/openpr.git",
-        "cd openpr",
-        "docker compose up -d"
+        "git clone https://github.com/openprx/sylvode.git",
+        "cd sylvode",
+        "bash scripts/start.sh"
       ]
     },
     "prx": {

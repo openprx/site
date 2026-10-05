@@ -7,7 +7,7 @@ import { getDictionary, localePath, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
-  product: 'openpr' | 'prx' | 'prx-memory' | 'prx-sd' | 'prx-waf' | 'fenfa';
+  product: 'sylvode' | 'prx' | 'prx-memory' | 'prx-sd' | 'prx-waf' | 'fenfa';
 }
 
 const { locale, product } = Astro.props;
@@ -17,7 +17,7 @@ const arch = page.architecture as Record<string, string>;
 const related = dict.products.items.filter((item) => item.id !== product);
 
 const titleByProduct: Record<string, string> = {
-  openpr: dict.meta.openprTitle,
+  sylvode: dict.meta.sylvodeTitle,
   prx: dict.meta.prxTitle,
   'prx-memory': dict.meta.memoryTitle,
   'prx-sd': dict.meta.prxSdTitle,
@@ -26,7 +26,7 @@ const titleByProduct: Record<string, string> = {
 };
 
 const descByProduct: Record<string, string> = {
-  openpr: dict.meta.openprDescription,
+  sylvode: dict.meta.sylvodeDescription,
   prx: dict.meta.prxDescription,
   'prx-memory': dict.meta.memoryDescription,
   'prx-sd': dict.meta.prxSdDescription,
@@ -39,7 +39,7 @@ const repoPath = page.repo.replace('https://github.com/', '');
 const starsBadge = `https://img.shields.io/github/stars/${repoPath}?style=for-the-badge&logo=github&label=${encodeURIComponent(dict.common.star)}&color=6366f1`;
 
 const stageIndexByProduct: Record<string, number> = {
-  openpr: 0, prx: 1, 'prx-memory': 2, 'prx-sd': 4, 'prx-waf': 4, fenfa: 3
+  sylvode: 0, prx: 1, 'prx-memory': 2, 'prx-sd': 4, 'prx-waf': 4, fenfa: 3
 };
 const currentStageIndex = stageIndexByProduct[product] ?? -1;
 const stages = dict.pipeline.stages;
@@ -65,6 +65,9 @@ const stages = dict.pipeline.stages;
     <section class="panel px-6 py-10 md:px-10 md:py-12 reveal">
       <p class="mono-pill text-xs uppercase tracking-[0.18em] text-[var(--brand-strong)]">{dict.meta.siteName}</p>
       <h1 class="section-title mt-4">{page.name}</h1>
+      {'formerly' in page && page.formerly && (
+        <p class="mt-2 text-sm text-[var(--text-dim)]">{page.formerly}</p>
+      )}
       <p class="mt-3 text-lg text-[var(--brand-strong)]">{page.tagline}</p>
       <p class="mt-4 max-w-3xl text-[var(--text-dim)]">{page.description}</p>
 
@@ -82,7 +85,7 @@ const stages = dict.pipeline.stages;
 
       <div class="mt-7 flex flex-wrap gap-3">
         <a
-          href={`https://docs.openprx.dev/en/${product}/`}
+          href={`https://docs.openprx.dev/${locale}/${product}/`}
           target="_blank"
           rel="noreferrer"
           class="glow rounded-md bg-[var(--brand)] px-4 py-2 text-sm font-semibold text-white"
@@ -118,7 +121,7 @@ const stages = dict.pipeline.stages;
     <section class="mt-8 panel p-6 md:p-8 reveal">
       <h2 class="section-title text-2xl">{dict.common.architecture}</h2>
 
-      {product === 'openpr' && (
+      {product === 'sylvode' && (
         <div class="mt-5 architecture-shell">
           <div class="flow-row flow-row-top">
             <div class="arch-box">{arch.browser}</div>

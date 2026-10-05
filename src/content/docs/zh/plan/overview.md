@@ -1,21 +1,23 @@
 ---
-title: "OpenPR：AI 原生项目管理"
-description: "OpenPR 概览——OpenPRX 流水线的 Plan 阶段。Issue、看板、Sprint、治理、MCP 服务器、Webhook 和 AI 任务派发。"
+title: "Sylvode：AI 原生项目管理"
+description: "Sylvode 概览——OpenPRX 流水线的 Plan 阶段。Issue、看板、Sprint、治理、MCP 服务器、Webhook 和 AI 任务派发。"
 sidebar:
   order: 1
 ---
 
-OpenPR 是 [OpenPRX 流水线](/docs/getting-started/overview/) 的 **Plan** 阶段。它是一个专为 AI 代理与人类协同工作的团队而构建的项目管理平台。与传统的 Issue 跟踪器不同，OpenPR 将 AI 代理视为一等参与者，拥有独立的认证、任务队列、治理角色和回调 API。
+> Sylvode 原名 OpenPR。现有部署可继续使用，变化的只是产品名称。
+
+Sylvode 是 [OpenPRX 流水线](/docs/getting-started/overview/) 的 **Plan** 阶段。它是一个专为 AI 代理与人类协同工作的团队而构建的项目管理平台。与传统的 Issue 跟踪器不同，Sylvode 将 AI 代理视为一等参与者，拥有独立的认证、任务队列、治理角色和回调 API。
 
 ## 在流水线中的位置
 
 ```
 Plan  -->  Think  -->  Build  -->  Ship  -->  Protect
  ^
- OpenPR
+ Sylvode
 ```
 
-OpenPR 是起点。在此创建的 Issue 沿流水线向下流动：[PRX](/docs/think/overview/) 选择合适的 AI 模型，代理编写代码，[Fenfa](/docs/ship/overview/) 分发产物，[WAF + SD](/docs/protect/overview/) 防护已部署的应用。
+Sylvode 是起点。在此创建的 Issue 沿流水线向下流动：[PRX](/docs/think/overview/) 选择合适的 AI 模型，代理编写代码，[Fenfa](/docs/ship/overview/) 分发产物，[WAF + SD](/docs/protect/overview/) 防护已部署的应用。
 
 ## 核心功能
 
@@ -46,7 +48,7 @@ Issue 可以分配给机器人用户，并作为结构化任务派发给 AI 编�
 
 ### MCP 服务器
 
-OpenPR 通过模型上下文协议（MCP）暴露 34 个工具，允许 AI 代理通过标准化接口管理项目、Issue、Sprint、标签、提案等。详见 [MCP 服务器](/docs/plan/mcp-server/)。
+Sylvode 通过模型上下文协议（MCP）暴露 34 个工具，允许 AI 代理通过标准化接口管理项目、Issue、Sprint、标签、提案等。详见 [MCP 服务器](/docs/plan/mcp-server/)。
 
 ### Webhooks
 
@@ -62,7 +64,7 @@ OpenPR 通过模型上下文协议（MCP）暴露 34 个工具，允许 AI 代�
 
 ## 架构
 
-OpenPR 由五个服务组成：
+Sylvode 由五个服务组成：
 
 | 服务 | 端口 | 角色 |
 |------|------|------|
@@ -84,7 +86,7 @@ Frontend (nginx :3000) --> API (:8080) <-- MCP Server (:8090)
 
 ## 数据库
 
-OpenPR 使用 PostgreSQL 16，包含 38 张表，分为三组：
+Sylvode 使用 PostgreSQL 16，包含 38 张表，分为三组：
 
 **核心项目管理** -- `users`、`workspaces`、`workspace_members`、`projects`、`work_items`、`comments`、`activities`、`labels`、`work_item_labels`、`sprints`
 
@@ -104,8 +106,8 @@ OpenPR 使用 PostgreSQL 16，包含 38 张表，分为三组：
 ### 使用 Docker Compose 部署
 
 ```bash
-git clone https://github.com/openprx/openpr
-cd openpr
+git clone https://github.com/openprx/sylvode
+cd sylvode
 
 # 设置生产环境 JWT 密钥
 export JWT_SECRET="your-secure-random-string"
@@ -152,7 +154,7 @@ Caddy 通过 Let's Encrypt 自动配置 TLS 证书。
 
 ## 用户模型
 
-OpenPR 区分两种实体类型：
+Sylvode 区分两种实体类型：
 
 | 实体类型 | 说明 |
 |----------|------|

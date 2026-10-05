@@ -1,16 +1,16 @@
 ---
 title: "Webhooks"
-description: "OpenPR 触发 30 种 HMAC-SHA256 签名的 Webhook 事件类型，覆盖 Issue、评论、Sprint、治理和 AI 任务生命周期。"
+description: "Sylvode 触发 30 种 HMAC-SHA256 签名的 Webhook 事件类型，覆盖 Issue、评论、Sprint、治理和 AI 任务生命周期。"
 sidebar:
   order: 3
 ---
 
-OpenPR 使用 Webhook 实时通知外部系统状态变更。每次 Webhook 投递都使用 HMAC-SHA256 签名，记录在 `webhook_deliveries` 表中以供审计，并包含丰富的上下文数据供下游自动化使用。
+Sylvode 使用 Webhook 实时通知外部系统状态变更。每次 Webhook 投递都使用 HMAC-SHA256 签名，记录在 `webhook_deliveries` 表中以供审计，并包含丰富的上下文数据供下游自动化使用。
 
 ## Webhook 工作原理
 
 1. 发生状态变更（Issue 创建、Sprint 启动、提案提交等）
-2. OpenPR 查询 `webhooks` 表中工作区内订阅了该事件类型的活跃 Webhook
+2. Sylvode 查询 `webhooks` 表中工作区内订阅了该事件类型的活跃 Webhook
 3. 为每个匹配的 Webhook 构建包含完整实体数据的载荷
 4. 使用 Webhook 的密钥通过 HMAC-SHA256 对载荷签名
 5. 向 Webhook URL 发送带签名头的 HTTP POST 请求
@@ -18,7 +18,7 @@ OpenPR 使用 Webhook 实时通知外部系统状态变更。每次 Webhook 投�
 
 ## 事件类型
 
-OpenPR 触发 30 种事件类型，分为七个类别。
+Sylvode 触发 30 种事件类型，分为七个类别。
 
 ### Issue 事件（5 种）
 
@@ -275,7 +275,7 @@ function verifyWebhook(secret, body, signatureHeader) {
 
 ## 相关文档
 
-- [OpenPR 概览](/docs/plan/overview/) -- 架构和快速开始
+- [Sylvode 概览](/docs/plan/overview/) -- 架构和快速开始
 - [AI 任务](/docs/plan/ai-tasks/) -- Webhook 如何驱动 AI 任务派发
 - [治理](/docs/plan/governance/) -- 治理事件和配置
 - [架构概览](/docs/getting-started/architecture/) -- 完整流水线通信

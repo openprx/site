@@ -12,7 +12,7 @@ PRX 是一个用 169K 行 Rust 代码编写的持久 AI 编排守护进程。它
 在 OpenPRX 流水线（`Plan -> Think -> Build -> Ship -> Protect`）中，PRX 占据 **Think** 阶段。它是中枢神经系统：每一个 AI 驱动的决策都流经 PRX。
 
 ```
-OpenPR (Plan)                          Fenfa (Ship)
+Sylvode (Plan)                          Fenfa (Ship)
     │                                      ▲
     ▼                                      │
   PRX ── 子代理 ── prx-memory ── CI ───┘
@@ -21,7 +21,7 @@ OpenPR (Plan)                          Fenfa (Ship)
   WAF + SD (Protect)
 ```
 
-OpenPR 派发任务。PRX 决定由哪个模型处理任务，管理对话历史，执行安全策略，并将子任务委派给自主子代理。结果流回 OpenPR 和下游阶段。
+Sylvode 派发任务。PRX 决定由哪个模型处理任务，管理对话历史，执行安全策略，并将子任务委派给自主子代理。结果流回 Sylvode 和下游阶段。
 
 ## 核心子系统
 

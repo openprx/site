@@ -95,7 +95,7 @@ args = ["-y", "@modelcontextprotocol/server-filesystem", "/home/user/projects"]
 
 这是 PRX 连接以下服务的方式：
 - **prx-memory** 用于持久化知识存储和检索
-- **OpenPR** 用于项目管理操作（创建 Issue、更新状态）
+- **Sylvode** 用于项目管理操作（创建 Issue、更新状态）
 - **文件系统服务器** 用于沙箱化的文件访问
 - 任何第三方 MCP 兼容服务器
 

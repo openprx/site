@@ -4,8 +4,8 @@
     "siteName": "OpenPRX",
     "homeTitle": "OpenPRX | AI-автономная инфраструктура программной инженерии",
     "homeDescription": "Открытая инфраструктура, в которой AI-агенты автономно планируют, пишут код, распространяют и защищают программное обеспечение. Создано на Rust.",
-    "openprTitle": "OpenPR | OpenPRX",
-    "openprDescription": "Открытая система управления проектами со встроенным governance.",
+    "sylvodeTitle": "Sylvode | OpenPRX",
+    "sylvodeDescription": "Открытая система управления проектами со встроенным governance.",
     "prxTitle": "PRX | OpenPRX",
     "prxDescription": "Самоэволюционирующий фреймворк AI-ассистентов на Rust.",
     "memoryTitle": "prx-memory | OpenPRX",
@@ -19,7 +19,7 @@
   },
   "nav": {
     "home": "Главная",
-    "openpr": "OpenPR",
+    "sylvode": "Sylvode",
     "prx": "PRX",
     "memory": "PRX-Memory",
     "prxSd": "PRX-SD",
@@ -53,8 +53,9 @@
     "techLabel": "Технологии",
     "items": [
       {
-        "id": "openpr",
-        "name": "OpenPR",
+        "id": "sylvode",
+        "name": "Sylvode",
+        "formerly": "Прежнее название — OpenPR",
         "tagline": "Управление проектами, где команда решает вместе",
         "description": "Планируйте работу, отслеживайте задачи и принимайте решения со встроенными предложениями, голосованием и рейтингом доверия.",
         "highlights": [
@@ -64,7 +65,7 @@
           "Предложения и голосование"
         ],
         "tech": "Rust, SvelteKit, PostgreSQL",
-        "repo": "https://github.com/openprx/openpr"
+        "repo": "https://github.com/openprx/sylvode"
       },
       {
         "id": "prx",
@@ -149,8 +150,8 @@
     "stages": [
       {
         "name": "Планирование",
-        "product": "OpenPR",
-        "href": "/openpr",
+        "product": "Sylvode",
+        "href": "/sylvode",
         "description": "Организация работы со встроенным управлением. AI-агенты автоматически подхватывают задачи."
       },
       {
@@ -209,8 +210,9 @@
     "docs": "Документация"
   },
   "pages": {
-    "openpr": {
-      "name": "OpenPR",
+    "sylvode": {
+      "name": "Sylvode",
+      "formerly": "Прежнее название — OpenPR",
       "tagline": "Open-source project management со встроенным governance",
       "description": "Полноценная платформа совместной работы для современных инженерных команд.",
       "tech": "Rust (Axum + SeaORM), SvelteKit, PostgreSQL",
@@ -256,11 +258,11 @@
         "mcp": "MCP Server (34 tools)",
         "transports": "HTTP | stdio | SSE"
       },
-      "repo": "https://github.com/openprx/openpr",
+      "repo": "https://github.com/openprx/sylvode",
       "quickStart": [
-        "git clone https://github.com/openprx/openpr.git",
-        "cd openpr",
-        "docker compose up -d"
+        "git clone https://github.com/openprx/sylvode.git",
+        "cd sylvode",
+        "bash scripts/start.sh"
       ]
     },
     "prx": {

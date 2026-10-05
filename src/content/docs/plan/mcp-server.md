@@ -1,11 +1,11 @@
 ---
 title: "MCP Server"
-description: "OpenPR's Model Context Protocol server exposes 34 tools for AI agents to manage projects, issues, sprints, labels, proposals, and more."
+description: "Sylvode's Model Context Protocol server exposes 34 tools for AI agents to manage projects, issues, sprints, labels, proposals, and more."
 sidebar:
   order: 2
 ---
 
-The OpenPR MCP server implements the [Model Context Protocol](https://modelcontextprotocol.io/) to give AI agents structured access to project management operations. Rather than screen-scraping a web UI or parsing API docs, agents interact through typed tool definitions with JSON Schema input validation.
+The Sylvode MCP server implements the [Model Context Protocol](https://modelcontextprotocol.io/) to give AI agents structured access to project management operations. Rather than screen-scraping a web UI or parsing API docs, agents interact through typed tool definitions with JSON Schema input validation.
 
 ## Transports
 
@@ -36,7 +36,7 @@ The MCP server requires these environment variables:
 
 | Variable | Description |
 |----------|-------------|
-| `OPENPR_API_URL` | Base URL of the OpenPR API |
+| `OPENPR_API_URL` | Base URL of the Sylvode API |
 | `OPENPR_BOT_TOKEN` | Bot token (`opr_` prefix) for authentication |
 | `OPENPR_WORKSPACE_ID` | UUID of the workspace to operate in |
 | `DEFAULT_AUTHOR_ID` | Default user ID for operations without explicit author |
@@ -175,7 +175,7 @@ All tools return a `CallToolResult` with either a success payload (JSON-formatte
 ```json
 {
   "mcpServers": {
-    "openpr": {
+    "sylvode": {
       "url": "http://localhost:8090/mcp",
       "transport": "http",
       "headers": {
@@ -191,7 +191,7 @@ All tools return a `CallToolResult` with either a success payload (JSON-formatte
 ```json
 {
   "mcpServers": {
-    "openpr": {
+    "sylvode": {
       "command": "/path/to/mcp-server",
       "args": ["serve", "--transport", "stdio"],
       "env": {
@@ -217,7 +217,7 @@ This outputs every tool name, description, and input schema -- useful for debugg
 
 ## Related
 
-- [OpenPR Overview](/docs/plan/overview/) -- Architecture and deployment
+- [Sylvode Overview](/docs/plan/overview/) -- Architecture and deployment
 - [AI Tasks](/docs/plan/ai-tasks/) -- How tasks are dispatched to agents
 - [Webhooks](/docs/plan/webhooks/) -- Event-driven integration
 - [Architecture Overview](/docs/getting-started/architecture/) -- How MCP fits into the full pipeline

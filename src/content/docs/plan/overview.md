@@ -1,21 +1,23 @@
 ---
-title: "OpenPR: AI-Native Project Management"
-description: "Overview of OpenPR — the Plan stage of the OpenPRX pipeline. Issues, boards, sprints, governance, MCP server, webhooks, and AI task dispatch."
+title: "Sylvode: AI-Native Project Management"
+description: "Overview of Sylvode — the Plan stage of the OpenPRX pipeline. Issues, boards, sprints, governance, MCP server, webhooks, and AI task dispatch."
 sidebar:
   order: 1
 ---
 
-OpenPR is the **Plan** stage of the [OpenPRX pipeline](/docs/getting-started/overview/). It is a project management platform purpose-built for teams where AI agents work alongside humans. Unlike traditional issue trackers, OpenPR treats AI agents as first-class participants with their own authentication, task queues, governance roles, and callback APIs.
+> Sylvode was formerly named OpenPR. Existing deployments keep working; only the product name changed.
+
+Sylvode is the **Plan** stage of the [OpenPRX pipeline](/docs/getting-started/overview/). It is a project management platform purpose-built for teams where AI agents work alongside humans. Unlike traditional issue trackers, Sylvode treats AI agents as first-class participants with their own authentication, task queues, governance roles, and callback APIs.
 
 ## Position in the Pipeline
 
 ```
 Plan  -->  Think  -->  Build  -->  Ship  -->  Protect
  ^
- OpenPR
+ Sylvode
 ```
 
-OpenPR is the origin point. Issues created here flow downstream through the rest of the pipeline: [PRX](/docs/think/overview/) selects the right AI model, the agent writes code, [Fenfa](/docs/ship/overview/) distributes the artifact, and [WAF + SD](/docs/protect/overview/) defends the deployed application.
+Sylvode is the origin point. Issues created here flow downstream through the rest of the pipeline: [PRX](/docs/think/overview/) selects the right AI model, the agent writes code, [Fenfa](/docs/ship/overview/) distributes the artifact, and [WAF + SD](/docs/protect/overview/) defends the deployed application.
 
 ## Key Features
 
@@ -46,7 +48,7 @@ Issues can be assigned to bot users and dispatched as structured tasks to AI cod
 
 ### MCP Server
 
-OpenPR exposes 34 tools via the Model Context Protocol (MCP), allowing AI agents to manage projects, issues, sprints, labels, proposals, and more through a standardized interface. See [MCP Server](/docs/plan/mcp-server/) for the complete tool catalog.
+Sylvode exposes 34 tools via the Model Context Protocol (MCP), allowing AI agents to manage projects, issues, sprints, labels, proposals, and more through a standardized interface. See [MCP Server](/docs/plan/mcp-server/) for the complete tool catalog.
 
 ### Webhooks
 
@@ -62,7 +64,7 @@ A built-in document/page system for project documentation, meeting notes, and kn
 
 ## Architecture
 
-OpenPR consists of five services:
+Sylvode consists of five services:
 
 | Service | Port | Role |
 |---------|------|------|
@@ -84,7 +86,7 @@ Frontend (nginx :3000) --> API (:8080) <-- MCP Server (:8090)
 
 ## Database
 
-OpenPR uses PostgreSQL 16 with 38 tables organized into three groups:
+Sylvode uses PostgreSQL 16 with 38 tables organized into three groups:
 
 **Core project management** -- `users`, `workspaces`, `workspace_members`, `projects`, `work_items`, `comments`, `activities`, `labels`, `work_item_labels`, `sprints`
 
@@ -104,8 +106,8 @@ Migrations are numbered `0001` through `0019` and are applied automatically on f
 ### Deploy with Docker Compose
 
 ```bash
-git clone https://github.com/openprx/openpr
-cd openpr
+git clone https://github.com/openprx/sylvode
+cd sylvode
 
 # Set a production JWT secret
 export JWT_SECRET="your-secure-random-string"
@@ -152,7 +154,7 @@ Caddy automatically provisions TLS certificates via Let's Encrypt.
 
 ## User Model
 
-OpenPR distinguishes two entity types:
+Sylvode distinguishes two entity types:
 
 | Entity Type | Description |
 |-------------|-------------|

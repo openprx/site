@@ -11,10 +11,10 @@ interface Props {
 
 const { locale } = Astro.props;
 const dict = getDictionary(locale);
-const detailPages = new Set(['openpr', 'prx', 'prx-memory', 'prx-sd', 'prx-waf', 'fenfa']);
+const detailPages = new Set(['sylvode', 'prx', 'prx-memory', 'prx-sd', 'prx-waf', 'fenfa']);
 
 const productIcon: Record<string, string> = {
-  openpr: 'OPR',
+  sylvode: 'SYL',
   prx: 'PRX',
   'prx-memory': 'MEM',
   'prx-sd': 'AV',
@@ -113,6 +113,9 @@ const productIcon: Record<string, string> = {
               </div>
 
               <h3 class="mt-4 text-lg font-semibold">{item.name}</h3>
+              {'formerly' in item && item.formerly && (
+                <p class="text-xs text-[var(--text-dim)]">{item.formerly}</p>
+              )}
               <p class="text-sm text-[var(--brand-strong)]">{item.tagline}</p>
               <p class="mt-3 text-sm text-[var(--text-dim)]">{item.description}</p>
 

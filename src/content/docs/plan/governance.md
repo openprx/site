@@ -1,6 +1,6 @@
 ---
 title: "Governance Module"
-description: "OpenPR's governance system: proposals, trust-weighted voting, veto rights, appeals, trust scores, impact reviews, and AI autonomy levels."
+description: "Sylvode's governance system: proposals, trust-weighted voting, veto rights, appeals, trust scores, impact reviews, and AI autonomy levels."
 sidebar:
   order: 5
 ---
@@ -18,7 +18,7 @@ When AI agents can autonomously create issues, write code, and deploy changes, e
 - Can a human override an AI decision?
 - How much autonomy should this agent have?
 
-OpenPR's governance module answers these questions with formal proposals, weighted voting, veto rights, and trust scoring.
+Sylvode's governance module answers these questions with formal proposals, weighted voting, veto rights, and trust scoring.
 
 ## Core Concepts
 
@@ -85,7 +85,7 @@ See [Trust Scores](#trust-scores) below for how scores are calculated.
 
 ### Automatic AI Voting
 
-When a proposal enters the voting phase, OpenPR automatically creates `vote_requested` [AI tasks](/docs/plan/ai-tasks/) for all active AI participants in the project. The agent receives the proposal details, analyzes them, and casts a vote through the API.
+When a proposal enters the voting phase, Sylvode automatically creates `vote_requested` [AI tasks](/docs/plan/ai-tasks/) for all active AI participants in the project. The agent receives the proposal details, analyzes them, and casts a vote through the API.
 
 ## Decisions
 
@@ -271,7 +271,7 @@ Audit logs are paginated and filterable by project, action, resource type, actor
 
 ## Related
 
-- [OpenPR Overview](/docs/plan/overview/) -- Architecture and database schema
+- [Sylvode Overview](/docs/plan/overview/) -- Architecture and database schema
 - [AI Tasks](/docs/plan/ai-tasks/) -- How `vote_requested` tasks are dispatched to agents
 - [Webhooks](/docs/plan/webhooks/) -- 9 governance webhook events
 - [MCP Server](/docs/plan/mcp-server/) -- Proposal tools for AI agent integration

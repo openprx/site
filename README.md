@@ -41,6 +41,10 @@ Translations live in `src/i18n/*.json`. The `Dictionary` type is derived from `e
 
 Static output deployed to Cloudflare Pages. Push to `main` triggers auto-deploy.
 
+Redirects for renamed pages (for example `/openpr` to `/sylvode`) live in
+`public/_redirects`, which Cloudflare applies at the edge; `redirects` in
+`astro.config.mjs` generates fallback pages for the same paths.
+
 ## License
 
 [Apache-2.0](LICENSE)

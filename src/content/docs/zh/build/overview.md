@@ -5,22 +5,22 @@ sidebar:
   order: 1
 ---
 
-Build 阶段将项目管理（Plan）与实际代码生成连接起来。当 OpenPR 中的 Issue 被分配给机器人时，Build 层派发 AI 编码代理，管理其执行，并将结果反馈回项目。
+Build 阶段将项目管理（Plan）与实际代码生成连接起来。当 Sylvode 中的 Issue 被分配给机器人时，Build 层派发 AI 编码代理，管理其执行，并将结果反馈回项目。
 
 ## 核心组件
 
 | 组件 | 角色 | 语言 |
 |------|------|------|
-| [openpr-webhook](/docs/build/webhook-dispatcher/) | 接收 OpenPR 事件，派发 AI 代理 | Rust (Axum) |
+| [Sylvode Webhook](/docs/build/webhook-dispatcher/) | 接收 Sylvode 事件，派发 AI 代理 | Rust (Axum) |
 | [prx-memory](/docs/build/prx-memory/) | 代理的持久化知识存储（MCP 服务器） | Rust |
 
 ## 数据流
 
 ```
-OpenPR 事件（issue.created / issue.updated）
+Sylvode 事件（issue.created / issue.updated）
     │
     ▼
-openpr-webhook（HMAC-SHA256 验证）
+Sylvode Webhook（HMAC-SHA256 验证）
     │
     ├── 过滤：这是机器人任务吗？
     │
@@ -40,11 +40,11 @@ AI 代理工作
     ▼
 回调（MCP / API）
     │
-    ├── 将结果发布到 OpenPR
+    ├── 将结果发布到 Sylvode
     ├── 状态变更：in_progress → done
     │
     ▼
-OpenPR 更新 Issue
+Sylvode 更新 Issue
 ```
 
 ## 在流水线中的位置
@@ -61,12 +61,12 @@ Build 阶段位于 Think（AI 推理）和 Ship（分发）之间：
 
 单个代理会话遵循以下生命周期：
 
-1. **触发** -- OpenPR 触发 Webhook 事件（如带机器人指派人的 `issue.created`）
-2. **派发** -- openpr-webhook 将事件匹配到代理配置并启动 CLI 执行器
+1. **触发** -- Sylvode 触发 Webhook 事件（如带机器人指派人的 `issue.created`）
+2. **派发** -- Sylvode Webhook 将事件匹配到代理配置并启动 CLI 执行器
 3. **执行** -- 代理在沙箱工作目录中操作，有严格的超时限制
 4. **记忆** -- 执行期间，代理调用 prx-memory MCP 工具回忆过去的解决方案并存储新知识
-5. **汇报** -- 代理将结果（代码变更、测试结果、错误日志）发回 OpenPR
-6. **关闭** -- OpenPR 根据结果转换 Issue 状态
+5. **汇报** -- 代理将结果（代码变更、测试结果、错误日志）发回 Sylvode
+6. **关闭** -- Sylvode 根据结果转换 Issue 状态
 
 ## 快速开始
 
@@ -80,4 +80,4 @@ git clone https://github.com/openprx/prx-memory
 cd prx-memory && cargo run --release --features http
 ```
 
-使用你的 OpenPR 实例 URL、Webhook 密钥和代理设置配置 Webhook 调度器。详见各组件文档了解配置详情。
+使用你的 Sylvode 实例 URL、Webhook 密钥和代理设置配置 Webhook 调度器。详见各组件文档了解配置详情。

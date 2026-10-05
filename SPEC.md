@@ -22,13 +22,13 @@ Use Astro's built-in i18n routing. Create translation JSON files for each locale
 
 ### Pages
 1. **Home `/`** — Hero section with logo + tagline + product cards grid
-2. **OpenPR `/openpr`** — Project management platform detail page
+2. **Sylvode `/sylvode`** — Project management platform detail page
 3. **PRX `/prx`** — AI assistant framework detail page  
 4. **prx-memory `/prx-memory`** — MCP memory component detail page
 
 ### Home Page Sections
 - **Hero**: Large logo + "AI-native development infrastructure" + "Open source. Built with Rust." + GitHub link + Get Started CTA
-- **Products Grid**: 4 cards (OpenPR, PRX, prx-memory, wacli) with icon, description, GitHub link
+- **Products Grid**: 4 cards (Sylvode, PRX, prx-memory, wacli) with icon, description, GitHub link
 - **Features**: Key selling points (Rust performance, MCP protocol, Self-evolution, Governance)
 - **Footer**: GitHub org link, license info, language switcher
 
@@ -42,11 +42,11 @@ Each product page should have:
 
 ## Product Info
 
-### OpenPR
+### Sylvode
 - Tagline: "Open-source project management with built-in governance"
 - Tech: Rust (Axum + SeaORM), SvelteKit, PostgreSQL
 - Features: Issues/Kanban/Sprints, Governance center (proposals/voting/trust scores), AI integration (bot tokens, AI tasks), MCP server (34 tools, 3 protocols)
-- Repo: github.com/openprx/openpr
+- Repo: github.com/openprx/sylvode
 
 ### PRX (OpenPRX)
 - Tagline: "Self-evolving AI assistant framework"

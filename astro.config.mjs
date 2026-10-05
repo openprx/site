@@ -6,6 +6,14 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
   site: 'https://openprx.dev',
   output: 'static',
+  // Sylvode was formerly OpenPR. The edge redirects live in public/_redirects;
+  // these generate fallback pages for hosts that do not read that file.
+  redirects: {
+    '/openpr': '/sylvode',
+    '/zh/openpr': '/zh/sylvode',
+    '/ka/openpr': '/ka/sylvode',
+    '/ru/openpr': '/ru/sylvode'
+  },
   integrations: [
     starlight({
       title: 'Docs',
@@ -21,7 +29,7 @@ export default defineConfig({
       },
       sidebar: [
         { label: 'Getting Started', autogenerate: { directory: 'getting-started' } },
-        { label: 'Plan: OpenPR', autogenerate: { directory: 'plan' } },
+        { label: 'Plan: Sylvode', autogenerate: { directory: 'plan' } },
         { label: 'Think: PRX', autogenerate: { directory: 'think' } },
         { label: 'Build: Agent Pipeline', autogenerate: { directory: 'build' } },
         { label: 'Ship: Fenfa', autogenerate: { directory: 'ship' } },

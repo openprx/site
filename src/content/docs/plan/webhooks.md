@@ -1,16 +1,16 @@
 ---
 title: "Webhooks"
-description: "OpenPR fires 30 HMAC-SHA256 signed webhook event types covering issues, comments, sprints, governance, and AI task lifecycle."
+description: "Sylvode fires 30 HMAC-SHA256 signed webhook event types covering issues, comments, sprints, governance, and AI task lifecycle."
 sidebar:
   order: 3
 ---
 
-OpenPR uses webhooks to notify external systems of state changes in real time. Every webhook delivery is signed with HMAC-SHA256, recorded in the `webhook_deliveries` table for auditability, and includes rich contextual data for downstream automation.
+Sylvode uses webhooks to notify external systems of state changes in real time. Every webhook delivery is signed with HMAC-SHA256, recorded in the `webhook_deliveries` table for auditability, and includes rich contextual data for downstream automation.
 
 ## How Webhooks Work
 
 1. A state change occurs (issue created, sprint started, proposal submitted, etc.)
-2. OpenPR queries the `webhooks` table for active webhooks in the workspace that subscribe to that event type
+2. Sylvode queries the `webhooks` table for active webhooks in the workspace that subscribe to that event type
 3. For each matching webhook, a payload is constructed with full entity data
 4. The payload is signed with the webhook's secret key using HMAC-SHA256
 5. An HTTP POST is sent to the webhook URL with signature headers
@@ -18,7 +18,7 @@ OpenPR uses webhooks to notify external systems of state changes in real time. E
 
 ## Event Types
 
-OpenPR fires 30 event types organized into seven categories.
+Sylvode fires 30 event types organized into seven categories.
 
 ### Issue Events (5)
 
@@ -275,7 +275,7 @@ The webhook's `last_triggered_at` timestamp is updated after each delivery attem
 
 ## Related
 
-- [OpenPR Overview](/docs/plan/overview/) -- Architecture and quick start
+- [Sylvode Overview](/docs/plan/overview/) -- Architecture and quick start
 - [AI Tasks](/docs/plan/ai-tasks/) -- How webhooks drive AI task dispatch
 - [Governance](/docs/plan/governance/) -- Governance events and configuration
 - [Architecture Overview](/docs/getting-started/architecture/) -- Full pipeline communication

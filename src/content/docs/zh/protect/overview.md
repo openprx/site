@@ -68,8 +68,8 @@ PRX-WAF 和 PRX-SD 覆盖安全栈的不同层：
 在完整的 OpenPRX 流水线中，安全事件反馈回开发周期：
 
 1. **PRX-WAF** 检测到针对你 API 的新攻击模式
-2. 安全事件作为 Issue 创建到 **OpenPR** 中
-3. AI 代理通过 **openpr-webhook** 被派发分析漏洞
+2. 安全事件作为 Issue 创建到 **Sylvode** 中
+3. AI 代理通过 **Sylvode Webhook** 被派发分析漏洞
 4. 代理修补代码并推送修复
 5. **Fenfa** 分发更新后的构建
 6. **PRX-WAF** 和 **PRX-SD** 的规则更新以覆盖新模式

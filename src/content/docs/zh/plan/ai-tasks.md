@@ -1,11 +1,11 @@
 ---
 title: "AI 任务系统"
-description: "OpenPR 如何通过 Webhook 将工作项派发给 AI 编码代理，并通过 API 回调接收结果。"
+description: "Sylvode 如何通过 Webhook 将工作项派发给 AI 编码代理，并通过 API 回调接收结果。"
 sidebar:
   order: 4
 ---
 
-AI 任务系统是 OpenPR 将工作分配给 AI 编码代理的机制。它弥合了人类在项目跟踪器中创建 Issue 与 AI 代理自主编写代码解决问题之间的差距。
+AI 任务系统是 Sylvode 将工作分配给 AI 编码代理的机制。它弥合了人类在项目跟踪器中创建 Issue 与 AI 代理自主编写代码解决问题之间的差距。
 
 ## 概述
 
@@ -178,7 +178,7 @@ Worker 接受 `--concurrency` 参数（默认：4），控制每个轮询周期�
 
 ## 代理回调 API
 
-执行任务后，代理通过 REST API 向 OpenPR 回报结果。
+执行任务后，代理通过 REST API 向 Sylvode 回报结果。
 
 ### 完成任务
 
@@ -270,7 +270,7 @@ Content-Type: application/json
 
 ## 相关文档
 
-- [OpenPR 概览](/docs/plan/overview/) -- 架构和部署
+- [Sylvode 概览](/docs/plan/overview/) -- 架构和部署
 - [MCP 服务器](/docs/plan/mcp-server/) -- 34 个代理交互工具
 - [Webhooks](/docs/plan/webhooks/) -- 事件类型，包括 `ai.task_completed` 和 `ai.task_failed`
 - [治理](/docs/plan/governance/) -- `vote_requested` 任务如何自动创建

@@ -4,8 +4,8 @@
     "siteName": "OpenPRX",
     "homeTitle": "OpenPRX | AI 自主软件工程基础设施",
     "homeDescription": "AI 代理自主规划、编码、分发与防御软件的开源基础设施。由 Rust 构建。",
-    "openprTitle": "OpenPR | OpenPRX",
-    "openprDescription": "内置治理能力的开源项目管理平台。",
+    "sylvodeTitle": "Sylvode | OpenPRX",
+    "sylvodeDescription": "内置治理能力的开源项目管理平台。",
     "prxTitle": "PRX | OpenPRX",
     "prxDescription": "可自进化的 Rust AI 助手框架。",
     "memoryTitle": "prx-memory | OpenPRX",
@@ -19,7 +19,7 @@
   },
   "nav": {
     "home": "首页",
-    "openpr": "OpenPR",
+    "sylvode": "Sylvode",
     "prx": "PRX",
     "memory": "PRX-Memory",
     "prxSd": "PRX-SD",
@@ -53,13 +53,14 @@
     "techLabel": "技术栈",
     "items": [
       {
-        "id": "openpr",
-        "name": "OpenPR",
+        "id": "sylvode",
+        "name": "Sylvode",
+        "formerly": "原名 OpenPR",
         "tagline": "团队共同决策的项目管理",
         "description": "规划工作、追踪议题，通过内置的提案、投票与信任评分做出团队决策。",
         "highlights": ["团队治理", "迭代规划", "AI 集成", "提案投票"],
         "tech": "Rust、SvelteKit、PostgreSQL",
-        "repo": "https://github.com/openprx/openpr"
+        "repo": "https://github.com/openprx/sylvode"
       },
       {
         "id": "prx",
@@ -134,8 +135,8 @@
     "stages": [
       {
         "name": "规划",
-        "product": "OpenPR",
-        "href": "/openpr",
+        "product": "Sylvode",
+        "href": "/sylvode",
         "description": "内置治理的工作管理。AI 代理自动领取任务。"
       },
       {
@@ -194,8 +195,9 @@
     "docs": "文档"
   },
   "pages": {
-    "openpr": {
-      "name": "OpenPR",
+    "sylvode": {
+      "name": "Sylvode",
+      "formerly": "原名 OpenPR",
       "tagline": "内置治理能力的开源项目管理",
       "description": "为现代工程团队打造的完整项目协作平台。",
       "tech": "Rust (Axum + SeaORM), SvelteKit, PostgreSQL",
@@ -241,11 +243,11 @@
         "mcp": "MCP 服务（34 个工具）",
         "transports": "HTTP | stdio | SSE"
       },
-      "repo": "https://github.com/openprx/openpr",
+      "repo": "https://github.com/openprx/sylvode",
       "quickStart": [
-        "git clone https://github.com/openprx/openpr.git",
-        "cd openpr",
-        "docker compose up -d"
+        "git clone https://github.com/openprx/sylvode.git",
+        "cd sylvode",
+        "bash scripts/start.sh"
       ]
     },
     "prx": {

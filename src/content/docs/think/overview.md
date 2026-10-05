@@ -12,7 +12,7 @@ PRX is a persistent AI orchestration daemon written in 169K lines of Rust. It is
 In the OpenPRX pipeline (`Plan -> Think -> Build -> Ship -> Protect`), PRX occupies the **Think** stage. It is the central nervous system: every AI-driven decision flows through PRX.
 
 ```
-OpenPR (Plan)                          Fenfa (Ship)
+Sylvode (Plan)                          Fenfa (Ship)
     │                                      ▲
     ▼                                      │
   PRX ── sub-agents ── prx-memory ── CI ───┘
@@ -21,7 +21,7 @@ OpenPR (Plan)                          Fenfa (Ship)
   WAF + SD (Protect)
 ```
 
-OpenPR dispatches tasks. PRX decides which model handles them, manages conversation history, enforces security policy, and delegates subtasks to autonomous sub-agents. Results flow back to OpenPR and downstream stages.
+Sylvode dispatches tasks. PRX decides which model handles them, manages conversation history, enforces security policy, and delegates subtasks to autonomous sub-agents. Results flow back to Sylvode and downstream stages.
 
 ## Key Subsystems
 

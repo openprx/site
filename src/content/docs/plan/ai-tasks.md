@@ -1,11 +1,11 @@
 ---
 title: "AI Task System"
-description: "How OpenPR dispatches work items to AI coding agents via webhooks and receives results through API callbacks."
+description: "How Sylvode dispatches work items to AI coding agents via webhooks and receives results through API callbacks."
 sidebar:
   order: 4
 ---
 
-The AI task system is the mechanism by which OpenPR assigns work to AI coding agents. It bridges the gap between a human creating an issue in a project tracker and an AI agent autonomously writing code to resolve it.
+The AI task system is the mechanism by which Sylvode assigns work to AI coding agents. It bridges the gap between a human creating an issue in a project tracker and an AI agent autonomously writing code to resolve it.
 
 ## Overview
 
@@ -178,7 +178,7 @@ The worker accepts a `--concurrency` flag (default: 4) that controls how many ta
 
 ## Agent Callback API
 
-After executing a task, the agent reports results back to OpenPR through the REST API.
+After executing a task, the agent reports results back to Sylvode through the REST API.
 
 ### Complete a Task
 
@@ -270,7 +270,7 @@ The `idempotency_key` prevents duplicate task creation. If a task with the same 
 
 ## Related
 
-- [OpenPR Overview](/docs/plan/overview/) -- Architecture and deployment
+- [Sylvode Overview](/docs/plan/overview/) -- Architecture and deployment
 - [MCP Server](/docs/plan/mcp-server/) -- 34 tools for agent interaction
 - [Webhooks](/docs/plan/webhooks/) -- Event types including `ai.task_completed` and `ai.task_failed`
 - [Governance](/docs/plan/governance/) -- How `vote_requested` tasks are auto-created

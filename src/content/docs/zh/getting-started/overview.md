@@ -17,7 +17,7 @@ Plan → Think → Build → Ship → Protect
 
 | 阶段 | 产品 | 功能 |
 |------|------|------|
-| **Plan** | [OpenPR](/docs/plan/overview/) | AI 原生项目管理，支持 MCP、Webhook、治理 |
+| **Plan** | [Sylvode](/docs/plan/overview/) | AI 原生项目管理，支持 MCP、Webhook、治理 |
 | **Think** | [PRX](/docs/think/overview/) | AI 编排大脑——14 个供应商、智能路由、自我进化 |
 | **Build** | [Webhook + Memory](/docs/build/overview/) | 代理调度、代码执行、知识持久化 |
 | **Ship** | [Fenfa](/docs/ship/overview/) | 多平台应用分发，带上传 API |
@@ -29,13 +29,13 @@ Plan → Think → Build → Ship → Protect
 
 **OpenPRX** 自主运行整个工作流：
 
-1. 在 OpenPR 中创建一个 Issue
-2. OpenPR 通过 Webhook 将任务派发给 AI 编码代理
+1. 在 Sylvode 中创建一个 Issue
+2. Sylvode 通过 Webhook 将任务派发给 AI 编码代理
 3. PRX 选择合适的模型，委派给子代理
 4. 代理编写代码、提交并汇报结果
 5. CI 构建产物，Fenfa 进行分发
 6. WAF 和 SD 保护部署后的应用
-7. 安全事件反馈回 OpenPR，生成新的 Issue
+7. 安全事件反馈回 Sylvode，生成新的 Issue
 
 人类进行治理——设定策略、审查提案、对决策投票。AI 在这些边界内运作。
 
@@ -55,12 +55,12 @@ Plan → Think → Build → Ship → Protect
 
 所有核心产品均使用 **Rust** 构建，以确保性能和可靠性。技术栈包括：
 
-- **Rust** — PRX、OpenPR、WAF、SD、Memory、Webhook 的核心运行时
+- **Rust** — PRX、Sylvode、WAF、SD、Memory、Webhook 的核心运行时
 - **Go** — Fenfa 分发平台
-- **PostgreSQL** — OpenPR 和 WAF 的持久化存储
+- **PostgreSQL** — Sylvode 和 WAF 的持久化存储
 - **SQLite** — Memory、SD 签名（LMDB）、Email
 - **Vue 3 + Tauri** — PRX-SD 桌面 GUI
-- **SvelteKit** — OpenPR 前端
+- **SvelteKit** — Sylvode 前端
 
 ## 快速开始
 
@@ -68,7 +68,7 @@ Plan → Think → Build → Ship → Protect
 
 ```bash
 # 从项目管理开始
-git clone https://github.com/openprx/openpr && cd openpr
+git clone https://github.com/openprx/sylvode && cd sylvode
 docker compose up -d
 
 # 添加 AI 大脑

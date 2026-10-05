@@ -68,8 +68,8 @@ Both products push alerts through multiple channels:
 In the full OpenPRX pipeline, security events feed back into the development cycle:
 
 1. **PRX-WAF** detects a new attack pattern against your API
-2. A security event is created as an issue in **OpenPR**
-3. An AI agent is dispatched via **openpr-webhook** to analyze the vulnerability
+2. A security event is created as an issue in **Sylvode**
+3. An AI agent is dispatched via **Sylvode Webhook** to analyze the vulnerability
 4. The agent patches the code and pushes a fix
 5. **Fenfa** distributes the updated build
 6. **PRX-WAF** and **PRX-SD** rules are updated to cover the new pattern

@@ -1,16 +1,16 @@
 ---
 title: Webhook 调度器
-description: "openpr-webhook：接收 OpenPR 事件并派发 AI 编码代理的 Rust 服务。"
+description: "Sylvode Webhook：接收 Sylvode 事件并派发 AI 编码代理的 Rust 服务。"
 sidebar:
   order: 2
 ---
 
-openpr-webhook 是一个基于 Axum 构建的 Rust 服务，将 OpenPR 的项目管理事件与 AI 编码代理桥接起来。它接收 Webhook 事件，验证其真实性，并启动相应的代理来处理任务。
+Sylvode Webhook 是一个基于 Axum 构建的 Rust 服务，将 Sylvode 的项目管理事件与 AI 编码代理桥接起来。它接收 Webhook 事件，验证其真实性，并启动相应的代理来处理任务。
 
 ## 架构
 
 ```
-OpenPR ──webhook──▶ openpr-webhook ──CLI──▶ AI 代理
+Sylvode ──webhook──▶ Sylvode Webhook ──CLI──▶ AI 代理
                          │                      │
                          │◀─────callback─────────┘
                          │
@@ -19,9 +19,9 @@ OpenPR ──webhook──▶ openpr-webhook ──CLI──▶ AI 代理
 
 ## Webhook 端点
 
-该服务暴露一个 HTTP 端点来接收 OpenPR Webhook 事件。每个传入请求都使用 **HMAC-SHA256** 签名验证，基于 OpenPR 和调度器之间配置的共享密钥。
+该服务暴露一个 HTTP 端点来接收 Sylvode 的 Webhook 事件。每个传入请求都使用 **HMAC-SHA256** 签名验证，基于 Sylvode 和调度器之间配置的共享密钥。
 
-支持的事件类型包括 `issue.created`、`issue.updated` 和其他 OpenPR 生命周期事件。调度器过滤这些事件以识别**机器人任务**——指派人是机器人用户的事件——并忽略仅人类的分配。
+支持的事件类型包括 `issue.created`、`issue.updated` 和其他 Sylvode 生命周期事件。调度器过滤这些事件以识别**机器人任务**——指派人是机器人用户的事件——并忽略仅人类的分配。
 
 ## 代理类型
 
@@ -75,21 +75,21 @@ Please implement the required changes and report your results.
 
 ## 回调循环
 
-代理完成工作后，结果通过以下方式发回 OpenPR：
+代理完成工作后，结果通过以下方式发回 Sylvode：
 
-- **MCP** -- 代理直接调用 OpenPR 的 MCP 工具来更新 Issue 状态、添加评论和转换状态
-- **API** -- 直接调用 OpenPR HTTP 端点的 REST API
+- **MCP** -- 代理直接调用 Sylvode 的 MCP 工具来更新 Issue 状态、添加评论和转换状态
+- **API** -- 直接调用 Sylvode HTTP 端点的 REST API
 
 回调使用代理的输出更新 Issue，并转换其状态（成功时通常从 `in_progress` 到 `done`，失败时添加包含错误详情的评论）。
 
 ## WSS 隧道
 
-对于代理主机位于 NAT 或防火墙后的部署，openpr-webhook 支持到 OpenPR 控制面的出站 **WebSocket Secure (WSS) 隧道**。
+对于代理主机位于 NAT 或防火墙后的部署，Sylvode Webhook 支持到 Sylvode 控制面的出站 **WebSocket Secure (WSS) 隧道**。
 
 隧道流程：
 
-1. openpr-webhook 打开到 OpenPR 的出站 WSS 连接
-2. OpenPR 通过隧道推送任务事件
+1. Sylvode Webhook 打开到 Sylvode 的出站 WSS 连接
+2. Sylvode 通过隧道推送任务事件
 3. 调度器确认接收，在本地执行代理
 4. 结果通过同一隧道连接返回
 
@@ -97,7 +97,7 @@ Please implement the required changes and report your results.
 
 ## 安全控制
 
-openpr-webhook 采用纵深防御设计：
+Sylvode Webhook 采用纵深防御设计：
 
 ### 功能门控
 

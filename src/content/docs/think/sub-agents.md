@@ -95,7 +95,7 @@ When an MCP server is configured, its tools become available to PRX and all sub-
 
 This is how PRX connects to:
 - **prx-memory** for persistent knowledge storage and retrieval
-- **OpenPR** for project management operations (create issues, update status)
+- **Sylvode** for project management operations (create issues, update status)
 - **File system servers** for sandboxed file access
 - Any third-party MCP-compatible server
 
