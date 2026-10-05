@@ -107,8 +107,8 @@ The remaining tables belong to universal forms, plugins, workflows, project type
 ### Deploy with Docker Compose
 
 ```bash
-git clone https://github.com/openprx/openpr
-cd openpr
+git clone https://github.com/openprx/sylvode
+cd sylvode
 
 # Generate the configuration, build the binaries and start all services
 bash scripts/start.sh

@@ -107,8 +107,8 @@ Sylvode 使用 PostgreSQL 16。迁移脚本编号从 `0000` 到 `0069`，按顺�
 ### 使用 Docker Compose 部署
 
 ```bash
-git clone https://github.com/openprx/openpr
-cd openpr
+git clone https://github.com/openprx/sylvode
+cd sylvode
 
 # Generate the configuration, build the binaries and start all services
 bash scripts/start.sh
